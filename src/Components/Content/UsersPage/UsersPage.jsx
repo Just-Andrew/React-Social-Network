@@ -23,9 +23,9 @@ const UsersPage = props => {
                 <div className={styles.userInfo}>
 
                     <div className={styles.city}>{'Hell knows where (s)he\'s from'}</div>
-                   {/*  <NavLink to={`/profile/id/${u.id}`}> */}
+                     <NavLink to={`/profile/${u.id}`}> *
                         <div className={styles.userName}>{`${u.name}`}</div>
-                 {/*    </NavLink> */}
+                     </NavLink> 
 
                     <br />
                     <br />
@@ -48,7 +48,7 @@ const UsersPage = props => {
     let pagesSwitches = [];
     for (let i = 1; i <= pagesAmount; i++) {
         pagesSwitches[i] = <i
-            className={props.currentPage == i ? styles.selectedPage : ''}
+            className={props.currentPage === i ? styles.selectedPage : ''}
             onClick={(e) => { props.getNewUsers(i) }}>{i + ' '}
         </i>
     }

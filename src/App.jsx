@@ -1,32 +1,25 @@
 import React from 'react';
 import { Route, BrowserRouter } from "react-router-dom"
-import Header from './Components/Header/Header';
 import Navbar from './Components/Navbar/Navbar';
-import Profile from './Components/Content/Profile/Profile';
 import MessagesPage from './Components/Content/MessagesPage/MessagesPage';
 import './App.css';
 import UsersPageContainer from './Components/Content/UsersPage/UsersPageContainer';
+import ProfileContainer from './Components/Content/Profile/ProfileContainer';
+import HeaderContainer from './Components/Header/HeaderContainer';
 
 
-function App(props) {
+const App = () =>  {
 
   return (
     <BrowserRouter >
       <div className="App-wrapper">
-        <Header />
+        <HeaderContainer />
 
         <Navbar />
 
-        <Route exact path="/"
+        <Route path="/profile/:id?"
           render={() => 
-          <Profile />} />
-          
-
-        <Route  path="/profile/id"
-          render={() => 
-          <div> ff
-          <Profile />
-          </div>} />
+          <ProfileContainer />} />
 
         <Route path="/dialogs"
           render={() => <MessagesPage />} />

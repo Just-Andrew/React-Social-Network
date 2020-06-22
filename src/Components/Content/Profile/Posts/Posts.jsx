@@ -8,7 +8,7 @@ const Posts = (props) => {
             <div className={styles.post} key={p.id}>
 
                 <div className={styles.avatar} >
-                    <img src='https://avatars.mds.yandex.net/get-zen_doc/1538903/pub_5de7ba698d5b5f00b251d2e7_5de8721cfe289100b0b4a9f5/scale_1200' />
+                    <img src='https://avatars.mds.yandex.net/get-zen_doc/1538903/pub_5de7ba698d5b5f00b251d2e7_5de8721cfe289100b0b4a9f5/scale_1200' alt=''/>
                 </div>
 
                 <div className={styles.post}>
@@ -16,7 +16,7 @@ const Posts = (props) => {
                         {p.text}
                     </div>
                     <div className={styles.likes}>
-                        <img src='https://img2.freepng.ru/20180328/vuw/kisspng-blue-drawing-pin-computer-icons-bulletin-board-cli-like-5abc3127c992d3.5802419715222827918257.jpg' />
+                        <img src='https://img2.freepng.ru/20180328/vuw/kisspng-blue-drawing-pin-computer-icons-bulletin-board-cli-like-5abc3127c992d3.5802419715222827918257.jpg' alt=''/>
                         <b> {p.likes} </b>
                     </div>
                 </div>

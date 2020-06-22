@@ -7,7 +7,7 @@ const Contacts = (props) => {
         return (
             <div className={styles.contact} key={c.id}>
                 <div className={styles.avatar} >
-                    <img src={c.avatar} />
+                    <img src={c.avatar} alt=''/>
                 </div>
                 <b> {c.user} </b>
                 

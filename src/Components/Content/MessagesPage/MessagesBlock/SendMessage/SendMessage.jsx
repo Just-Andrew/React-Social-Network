@@ -20,7 +20,7 @@ const SendMessage = (props) => {
     let sendMessage = () => {
         setTimeout(scroll, 1);
         let text = txtArea.current.value;     
-        if (text != '') {
+        if (text !== '') {
             props.addMessage(text);                    
         }
     }

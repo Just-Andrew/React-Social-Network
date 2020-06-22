@@ -8,7 +8,7 @@ let AddPost = (props) => {
     /* logic */
     let addPost = () => {
         let text = txtArea.current.value;
-        if (text != '') {
+        if (text !== '') {
             props.addPost(text);
         }
     }

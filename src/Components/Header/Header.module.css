@@ -1,7 +1,7 @@
 .header {
     grid-area: h;
-    background-color: steelblue  ;
-    box-shadow: 10px 10px 7px rgba(0,0,0,.3);
+    background-color: steelblue;
+    box-shadow: 10px 10px 7px rgba(0, 0, 0, .3);
 }
 
 .tittle {
@@ -9,4 +9,38 @@
     text-align: center;
     color: white;
 }
-/*  */
+
+.auth {
+    float: right;
+    position: relative;
+    top: -30px;
+    margin-right: 25px;
+    font-size: 20px;
+    color: white;
+}
+
+.auth a {
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+}
+
+.login {
+    display: inline-block;
+    margin-right: 10px;
+    position: relative;
+    top: -10px;
+}
+
+.avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 100%;
+    overflow: hidden;
+    display: inline-block
+}
+
+.avatar img {
+    width: 35px;
+    height: 35px;
+}

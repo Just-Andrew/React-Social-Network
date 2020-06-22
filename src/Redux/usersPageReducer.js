@@ -17,7 +17,7 @@ let profileReducer = (state = InitialState, action) => {
         case 'TOGGLE-FOLLOW-STATUS':
             let copiedState = { ...state, users: [...state.users] }
             copiedState.users.forEach((item, i, array) => {
-                if (array[i].id == action.id) {
+                if (array[i].id === action.id) {
                     array[i].followed = !array[i].followed;
                 }
             });

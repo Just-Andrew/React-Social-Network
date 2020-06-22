@@ -1,5 +1,5 @@
-import { connect } from "react-redux";
 import React from 'react';
+import { connect } from "react-redux";
 import { toggleFollowStatus, setUsers, setTotalCount, setCurrentPage, toggleLoader } from "../../../Redux/usersPageReducer";
 import /* * as */ axios from 'axios';
 import UsersPage from './UsersPage';
