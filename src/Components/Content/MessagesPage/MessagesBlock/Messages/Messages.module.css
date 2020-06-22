@@ -1,0 +1,60 @@
+/* Messages */
+.MessagesBlock { 
+    max-height: 680px;
+    overflow-y: scroll;
+    overflow-x: scroll;  
+}
+
+.MessagesBlock::-webkit-scrollbar {
+    background: rgba(0, 0, 0, 0);
+}
+
+.message {
+    font-size: 17px;
+    font-weight: bold;
+    color: white;
+    padding-top: 0px;
+    margin-left: 15px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.mine {
+    text-align: right;
+}
+
+.mine div {
+    display: inline-block;
+    max-width: 375px;
+    text-align: right;
+    padding: 10px;
+    border-left: 1px solid gray;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    border-radius: 10px 0 0 10px;
+    text-align: center;
+}
+
+.notmine {
+    text-align: left;
+    padding: 10px;
+}
+
+.notmine div {
+    display: inline-block;
+    text-align: center;
+    padding: 10px;
+    border-right: 1px solid gray;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    border-radius: 0 10px 10px 0;
+    max-width: 375px;
+}
+
+.msgContainer {
+    background-color:  rgba(0, 140, 255, 0.7) ;
+}
+
+.messages {
+    margin-bottom: 20px;
+}

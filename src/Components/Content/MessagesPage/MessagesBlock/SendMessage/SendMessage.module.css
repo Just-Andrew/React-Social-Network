@@ -1,0 +1,30 @@
+/* SendMessage */
+.SendMessage {
+    text-align: center;
+}
+
+.SendMessage textarea {
+    box-sizing: border-box;
+    width: 450px;
+    height: 140px;
+    background-color: steelblue;
+    font-size: 17px; 
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    resize: none;
+    border-radius: 10px;
+    padding: 15px;
+} 
+.SendMessage textarea::placeholder {
+    font-size: 17px; 
+    color: white;
+    text-align: center;
+    padding: 5px;
+    padding-top: 40px;
+}
+
+.SendMessage .btnWrapper {
+   text-align: center;
+  
+  
+}

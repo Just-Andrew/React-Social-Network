@@ -1,0 +1,21 @@
+.nav {
+    background-color: steelblue ;
+    grid-area: n;
+    box-shadow: 10px 10px 7px rgba(0,0,0,.3);
+    min-height: 850px;
+   
+}
+.navItem {
+    font: 27px "Cookie";
+    color:white;
+    box-shadow: none;
+    padding-bottom: 10px;
+    text-align: center;
+    padding-top: 15px;
+    text-decoration: none;
+}
+
+.td {
+    text-decoration: none;
+    color: white;
+}

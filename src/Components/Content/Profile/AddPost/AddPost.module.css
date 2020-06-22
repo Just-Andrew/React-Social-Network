@@ -1,0 +1,28 @@
+/* AddPost */
+
+.AddPostBlock {
+    margin: 15px auto;
+    text-align: center;
+}
+
+.AddPostBlock textarea {
+    width: 450px;
+    height: 100px;
+    box-sizing: border-box;
+    overflow: scroll;
+    border: 1px solid steelblue;
+    resize: none;
+    font-size:  17px;
+    padding: 10px;
+}
+
+.AddPostBlock textarea::placeholder {
+    font-size:  17px;
+    text-align: center;
+    padding-top: 30px;
+}
+
+.AddPostBlock textarea::-webkit-scrollbar {
+    background-color: rgba(0, 0, 0, 0);
+
+}

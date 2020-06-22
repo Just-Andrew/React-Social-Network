@@ -1,0 +1,54 @@
+    App.js
+    Store {
+        Store.js
+    }
+    Components {
+        Header {
+            Header.jsx
+            Header.module.css
+        }
+        Navbar {
+            Navbar.jsx
+            Navbar.module.css
+        }
+        Content {
+            Profile {
+                Profile.jsx
+                Profile.module.css
+            }
+                AddPost {
+                    AddPost.jsx
+                    AddPost.module.css
+                }
+                PersonInfo {
+                    PersonInfo.jsx
+                    PersonInfo.module.css
+                }
+                Posts{
+                    Posts.jsx
+                    Posts.module.css
+                }
+            }
+
+            MessagesPage {
+                MessagesPage.jsx
+                MessagesPage.module.css
+                Contacts {
+                    Contacts.jsx
+                    Contacts.module.css
+                }
+                MessagesBlock{
+                    MessagesBlock.jsx
+                    MessagesBlock.module.css
+                    Messages {
+                        Messages.jsx
+                        Messages.module.css
+                    }
+                    SendMessage{
+                        SendMessage.jsx
+                        SendMessage.module.css
+                    }
+                }
+            }
+        }
+    }

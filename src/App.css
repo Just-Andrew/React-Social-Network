@@ -1,0 +1,13 @@
+.App-wrapper {
+  margin: 0 auto;
+  width: 1200px;
+  display: grid;
+  grid-template-rows: 60px 1fr;
+  grid-template-columns: 3fr 18fr;
+  grid-template-areas: 
+  "h h"
+  "n c";
+  grid-gap: 10px;
+  margin-top: 10px;
+ 
+}

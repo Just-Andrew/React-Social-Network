@@ -1,0 +1,11 @@
+/* Main component */
+
+.Dialogs {
+    grid-area: c;
+    display: grid;
+    grid-template-columns: 22fr 5fr;
+    grid-template-rows: 100%;
+    grid-gap: 5px;
+    grid-template-areas: 'm c';
+}
+

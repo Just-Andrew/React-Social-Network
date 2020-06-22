@@ -1,0 +1,32 @@
+.ContactsBlock {
+    background: steelblue;
+    box-shadow: 10px 10px 7px rgba(0, 0, 0, .3);
+    padding-left: 5px;
+}
+
+.contact {
+   
+    padding-top: 15px;
+}
+
+.contact b {
+    font-size: 15px;
+    color: white;
+    position: relative;
+    top: -14px;
+}
+
+
+.avatar {
+    border: 2px solid gray;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.avatar img {
+    width: 50px;
+    height: 50px;
+}

@@ -1,0 +1,53 @@
+
+
+.wrapper {
+    padding-bottom: 40px;
+}
+
+.background {
+    width: 1020px;
+    height: 200px;
+    background: url('https://www.nastol.com.ua/pic/201303/1920x1200/nastol.com.ua-42958.jpg');
+   /* -webkit-background-size: cover; */
+}
+.aboutPerson {
+    display: flex;
+    align-items: flex-end;
+    background:  #e0dede ;
+    padding-bottom: 15px;
+}
+
+.avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    display: inline-block;
+    margin-left: 150px;
+    margin-top: -75px;
+    overflow: hidden;
+}
+
+.avatar img {
+    width: 150px;
+    height: 150px;
+}
+
+.username {
+    font-size: 23px;
+}
+
+.info {
+    display: inline-block;
+    position: relative;
+    font-size: 18px;
+    padding-left: 15px;
+}
+
+.location img {
+    width: 18px;
+    height: 18px;
+    margin-left: -24px;
+}
+.location {
+    padding-left: 5px;
+}
