@@ -5,11 +5,12 @@ import /* * as */ axios from 'axios';
 import UsersPage from './UsersPage';
 import Preloader from '../../Preloader/Preloader';
 
-class UsersAPI extends React.Component {
+import {usersAPI} from '../../../API/api'
+
+class GetUsers extends React.Component {
     componentDidMount() {
         this.props.toggleLoader(true)
-        let getUsersUrl = `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.count}&friend=${this.props.friend}`
-        axios.get(getUsersUrl, { withCredentials: true })
+            usersAPI.getUsers(this.props.friend, this.props.count)
             .then(response => {
                 console.log(response.data)
                 this.props.setUsers(response.data.items)
@@ -25,8 +26,7 @@ class UsersAPI extends React.Component {
     GetNewUsers = page => {
         this.props.toggleLoader(true);
         this.props.setCurrentPage(page);
-        let getUsersUrl = `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.count}&friend=${this.props.friend}`;
-        axios.get(getUsersUrl, { withCredentials: true })
+        usersAPI.getUsers(this.props.friend, this.props.count, page)
             .then(response => {
                 this.props.setUsers(response.data.items)
                 this.props.toggleLoader(false)
@@ -34,42 +34,20 @@ class UsersAPI extends React.Component {
     }
 
 
-    ToggleFollowStatus = id => {
-        let getFollowStatusUrl = `https://social-network.samuraijs.com/api/1.0/follow/${id}`
-        axios.get(getFollowStatusUrl, {
-            withCredentials: true,
-            headers: {
-                'API-KEY': '69a84a29-fda8-47e5-9730-61a55a5fcdd2'
-            }
-        })
-            .then(res => {
-                if (res.data) {
+    ToggleFollowStatus = (id, val) => {
+                if (val) {
                     this.props.toggleFollowStatus(id, false)
-                    axios.delete(getFollowStatusUrl, {
-                        withCredentials: true,
-                        headers: {
-                            'API-KEY': '69a84a29-fda8-47e5-9730-61a55a5fcdd2'
-                        }
-                    })
+                    usersAPI.unfollow(id)
                         .then(res2 => {
                             console.log('UNFOLLOWED')
-                        }
-                        )
+                        })                        
                 } else {
                     this.props.toggleFollowStatus(id, true)
-                    axios.post(getFollowStatusUrl, {}, {
-                        withCredentials: true,
-                        headers: {
-                            'API-KEY': '69a84a29-fda8-47e5-9730-61a55a5fcdd2'
-                        }
-                    })
+                    usersAPI.follow(id)
                         .then(res2 => {
                             console.log('FOLLOWED')
                         })
                 }
-            })
-
-
     }
 
     render() {
@@ -103,6 +81,6 @@ let mapStateToProps = state => ({
 })
 
 let UsersPageContainer = connect(mapStateToProps,
-    { toggleFollowStatus, setUsers, setTotalCount, setCurrentPage, toggleLoader })(UsersAPI);
+    { toggleFollowStatus, setUsers, setTotalCount, setCurrentPage, toggleLoader })(GetUsers);
 
 export default UsersPageContainer

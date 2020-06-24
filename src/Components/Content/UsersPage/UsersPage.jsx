@@ -19,7 +19,7 @@ const Users = props => {
                             src={u.photos.large === null ? NoPhotoImage : u.photos.large}
                             alt='' />
                     </div>
-                    <button onClick={() => { props.toggleFollowStatus(u.id) }}>
+                    <button onClick={() => { props.toggleFollowStatus(u.id, u.followed) }}>
                         {u.followed === true ? 'Unfollow' : 'Follow'}
                     </button>
                 </div>

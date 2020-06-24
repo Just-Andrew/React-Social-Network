@@ -5,13 +5,13 @@ import Profile from './Profile'
 import { setCurrentUserData, toggleLoader } from '../../../Redux/profileReducer'
 import axios from 'axios'
 import Preloader from '../../Preloader/Preloader'
+import {profileAPI} from '../../../API/api'
 
-class ProfileAPI extends React.Component {
+class GetProfile extends React.Component {
     componentDidMount() {
         if (this.props.match.params.id !== undefined) {
             this.props.toggleLoader(true)
-            let getCurrentUserProfileUrl = `https://social-network.samuraijs.com/api/1.0/profile/${this.props.match.params.id}`
-            axios.get(getCurrentUserProfileUrl)
+            profileAPI.getProfile(this.props.match.params.id)
                 .then(res => {
                     this.props.toggleLoader(false)
                     this.props.setCurrentUserData({
@@ -32,6 +32,7 @@ class ProfileAPI extends React.Component {
             job: null
         })
     }
+
     render() {
         if (this.props.match.params.id === undefined) {
             this.ArtificialRerender()
@@ -60,6 +61,6 @@ let mapStateToProps = state => ({
     loading: state.profile.loading
 })
 
-let ProfileContainer = withRouter(connect(mapStateToProps, { setCurrentUserData, toggleLoader })(ProfileAPI))
+let ProfileContainer = withRouter(connect(mapStateToProps, { setCurrentUserData, toggleLoader })(GetProfile))
 
 export default ProfileContainer

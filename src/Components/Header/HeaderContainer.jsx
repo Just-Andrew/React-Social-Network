@@ -3,24 +3,23 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import { setCurrentUserInfo, setCurrentUserAvatar, setAuthStatus } from '../../Redux/headerReducer'
 import Header from './Header'
+import { headerAPI } from '../../API/api'
 
 class HeaderAPI extends React.Component {
     componentDidMount() {
-        let getCurrentUserDataUrl = `https://social-network.samuraijs.com/api/1.0/auth/me`
-        axios.get(getCurrentUserDataUrl, { withCredentials: true })
+        headerAPI.getAuthStatus()
             .then(res => {
                 this.props.setCurrentUserInfo({
                     id: res.data.data.id,
                     login: res.data.data.login,
                     email: res.data.data.email,
                 })
+
                 if (this.props.id !== undefined) {
                     this.props.setAuthStatus()
-
-                    let getCurrentUserAvatarUrl = `https://social-network.samuraijs.com/api/1.0/profile/${this.props.id}`
-                    axios.get(getCurrentUserAvatarUrl)
-                        .then(res2 => {
-                            this.props.setCurrentUserAvatar(res2.data.photos.large)
+                    headerAPI.getAvatar(this.props.id)
+                        .then(avatar => {
+                            this.props.setCurrentUserAvatar(avatar)
                         })
                 }
             })
