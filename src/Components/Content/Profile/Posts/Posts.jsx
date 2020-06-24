@@ -29,7 +29,7 @@ const Posts = (props) => {
     /* component itself */
     return (
         <div >
-            <div className={styles.tittle}>  <b> My posts </b> </div>
+            <div className={styles.title}>  <b> My posts </b> </div>
             <div className={styles.PostsBlock}>
 
                 <div className={styles.posts}>

@@ -28,5 +28,4 @@ let headerReducer = (state = InitialState, action) => {
     }
     return state
 }
-
 export default headerReducer;

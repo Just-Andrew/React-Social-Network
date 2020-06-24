@@ -1,5 +1,4 @@
 export const addMessage = text => ({ type: 'ADD-MESSAGE', text });
-
 export const changeCurrentMessageText = text => ({ type: 'CHANGE-CURRENT-MESSAGE-TEXT', text });
 
 let InitialState = {
@@ -146,5 +145,4 @@ let messagesPageReducer = (state = InitialState, action) => {
 
     return state;
 }
-
 export default messagesPageReducer;

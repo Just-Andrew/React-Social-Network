@@ -47,5 +47,4 @@ let mapStateToProps = state => ({
 })
 
 const HeaderContainer = connect(mapStateToProps, { setCurrentUserInfo, setCurrentUserAvatar, setAuthStatus })(HeaderAPI)
-
 export default HeaderContainer

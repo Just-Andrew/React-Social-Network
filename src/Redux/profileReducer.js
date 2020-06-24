@@ -54,10 +54,7 @@ let profileReducer = (state = InitialState, action) => {
         case 'TOGGLE-LOADER':
             return { ...state, loading: action.val }
     }
-
     return state
-
 }
-
 export default profileReducer;
 

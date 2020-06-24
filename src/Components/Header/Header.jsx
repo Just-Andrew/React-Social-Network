@@ -5,9 +5,8 @@ import NoPhotoImg from '../../assets/Pictures/NoPhotoImg.jpg'
 
 const Header = props => {
     return (
-
         <header className={styles.header}>
-            <div className={styles.tittle}>HeyBook</div>
+            <div className={styles.title}>HeyBook</div>
             <div className={styles.auth}>
                 {props.isAuth ? <div>
                     <div className={styles.login}> {props.login} </div>
@@ -17,10 +16,7 @@ const Header = props => {
                     <NavLink to='/login'> Log In </NavLink>}
             </div>
         </header>
-
-
     );
 }
-
 export default Header;
 

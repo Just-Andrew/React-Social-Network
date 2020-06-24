@@ -1,4 +1,4 @@
-export const toggleFollowStatus = id => ({ type: 'TOGGLE-FOLLOW-STATUS', id })
+export const toggleFollowStatus = (id, val) => ({ type: 'TOGGLE-FOLLOW-STATUS', id, val })
 export const setUsers = users => ({ type: 'SET-USERS', users })
 export const setTotalCount = num => ({ type: 'SET-TOTAL-COUNT', num })
 export const setCurrentPage = page => ({ type: 'SET-CURRENT-PAGE', page })
@@ -9,16 +9,16 @@ let InitialState = {
     currentPage: 1,
     totalCount: 0,
     count: 5,
-    loading: true
+    loading: false
 }
 
-let profileReducer = (state = InitialState, action) => {
+let usersPageReducer = (state = InitialState, action) => {
     switch (action.type) {
         case 'TOGGLE-FOLLOW-STATUS':
             let copiedState = { ...state, users: [...state.users] }
             copiedState.users.forEach((item, i, array) => {
                 if (array[i].id === action.id) {
-                    array[i].followed = !array[i].followed;
+                    array[i].followed = action.val
                 }
             });
             return copiedState;
@@ -35,11 +35,8 @@ let profileReducer = (state = InitialState, action) => {
             return { ...state, currentPage: action.page }
 
         case 'TOGGLE-LOADER':
-            return { ...state, loading: !state.loading }
+            return { ...state, loading: action.val }
     }
-
     return state
-
 }
-
-export default profileReducer;
+export default usersPageReducer;

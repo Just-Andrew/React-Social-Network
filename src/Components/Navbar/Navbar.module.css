@@ -1,13 +1,13 @@
 .nav {
-    background-color: steelblue ;
+    background-color: steelblue;
     grid-area: n;
-    box-shadow: 10px 10px 7px rgba(0,0,0,.3);
+    box-shadow: 10px 10px 7px rgba(0, 0, 0, .3);
     min-height: 850px;
-   
 }
+
 .navItem {
-    font: 27px "Cookie";
-    color:white;
+    font-size: 27px ;
+    color: white;
     box-shadow: none;
     padding-bottom: 10px;
     text-align: center;
@@ -15,7 +15,15 @@
     text-decoration: none;
 }
 
-.td {
+.navItem:hover {
+    background-color: rgba(0, 0, 0, .3);
+}
+
+.navItem a {
     text-decoration: none;
     color: white;
+}
+
+.navItem a:focus {
+    color: gold;
 }

@@ -7,8 +7,7 @@ import UsersPageContainer from './Components/Content/UsersPage/UsersPageContaine
 import ProfileContainer from './Components/Content/Profile/ProfileContainer';
 import HeaderContainer from './Components/Header/HeaderContainer';
 
-
-const App = () =>  {
+const App = () => {
 
   return (
     <BrowserRouter >
@@ -18,14 +17,17 @@ const App = () =>  {
         <Navbar />
 
         <Route path="/profile/:id?"
-          render={() => 
-          <ProfileContainer />} />
+          render={() =>
+            <ProfileContainer />} />
+
+        <Route path="/friends"
+          render={() => <UsersPageContainer friend={true} title='People You added' />} />
 
         <Route path="/dialogs"
           render={() => <MessagesPage />} />
 
         <Route path="/users"
-          render={() => <UsersPageContainer />} />
+          render={() => <UsersPageContainer friend={false} title='All registered users' />} />
 
       </div>
     </BrowserRouter>
