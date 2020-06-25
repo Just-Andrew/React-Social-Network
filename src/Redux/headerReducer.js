@@ -1,6 +1,30 @@
-export const setCurrentUserInfo = data => ({ type: 'SET-CURRENT-USER-INFO', data })
-export const setCurrentUserAvatar = avatar => ({ type: 'SET-CURRENT-USER-AVATAR', avatar })
-export const setAuthStatus = () => ({ type: 'SET-AUTH-STATUS' })
+import { headerAPI } from '../API/api'
+
+/*Action Creators */
+const setCurrentUserInfo = data => ({ type: 'SET-CURRENT-USER-INFO', data })
+const setCurrentUserAvatar = avatar => ({ type: 'SET-CURRENT-USER-AVATAR', avatar })
+const setAuthStatus = () => ({ type: 'SET-AUTH-STATUS' })
+
+/*Thunks Creators*/
+ export const authMe = () => dispatch => {
+    headerAPI.getAuthStatus()
+        .then(res => {
+            dispatch(setCurrentUserInfo({
+                id: res.data.data.id,
+                login: res.data.data.login,
+                email: res.data.data.email,
+            }))
+
+            if (res.data.data.id !== undefined) {
+                dispatch(setAuthStatus())
+                headerAPI.getAvatar(res.data.id)
+                    .then(avatar => {
+                        (setCurrentUserAvatar(avatar))
+                    })
+            }
+        })
+} 
+
 
 let InitialState = {
     id: null,

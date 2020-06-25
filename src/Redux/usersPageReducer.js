@@ -1,8 +1,48 @@
-export const toggleFollowStatus = (id, val) => ({ type: 'TOGGLE-FOLLOW-STATUS', id, val })
-export const setUsers = users => ({ type: 'SET-USERS', users })
-export const setTotalCount = num => ({ type: 'SET-TOTAL-COUNT', num })
-export const setCurrentPage = page => ({ type: 'SET-CURRENT-PAGE', page })
-export const toggleLoader = val => ({ type: 'TOGGLE-LOADER', val })
+import { usersAPI } from '../API/api'
+
+/*Action Creators*/
+const toggleFollowStatus = (id, val) => ({ type: 'TOGGLE-FOLLOW-STATUS', id, val })
+const setUsers = users => ({ type: 'SET-USERS', users })
+const setTotalCount = num => ({ type: 'SET-TOTAL-COUNT', num })
+const setCurrentPage = page => ({ type: 'SET-CURRENT-PAGE', page })
+const toggleLoader = val => ({ type: 'TOGGLE-LOADER', val })
+const toggleButtonStatus = (id, val) => ({ type: 'TOGGLE-BUTTON-STATUS', id, val })
+
+/*Thunk Creators*/
+export const getUsers = (friend, count, page) => dispatch => {
+    dispatch(toggleLoader(true))
+    dispatch(setCurrentPage(page))
+    usersAPI.getUsers(friend, count, page)
+        .then(response => {
+            console.log(response.data)
+            dispatch(setUsers(response.data.items))
+            dispatch(toggleLoader(false))
+            if (response.data.totalCount > 50) {
+                dispatch(setTotalCount(50))
+            } else {
+                dispatch(setTotalCount(response.data.totalCount))
+            }
+        })
+}
+
+export const changeFollowStatus = (id, val) => dispatch => {
+    dispatch(toggleButtonStatus(id, true))
+    if (val) {
+        usersAPI.unfollow(id)
+            .then(res2 => {
+                console.log('UNFOLLOWED')
+                dispatch(toggleFollowStatus(id, false))
+                dispatch(toggleButtonStatus(id, false))
+            })
+    } else {
+        usersAPI.follow(id)
+            .then(res2 => {
+                console.log('FOLLOWED')
+                dispatch(toggleFollowStatus(id, true))
+                dispatch(toggleButtonStatus(id, false))
+            })
+    }
+}
 
 let InitialState = {
     users: [],
@@ -20,12 +60,17 @@ let usersPageReducer = (state = InitialState, action) => {
                 if (array[i].id === action.id) {
                     array[i].followed = action.val
                 }
-            });
+            })
             return copiedState;
 
         case 'SET-USERS':
-            console.log(action.users);
-            return { ...state, users: action.users };
+            let modifiedUsers = [...action.users]
+            modifiedUsers.forEach((item, i) => {
+                modifiedUsers[i].isButtonDisabled = false
+            })
+            debugger
+            console.log(modifiedUsers)
+            return { ...state, users: modifiedUsers }
 
         case 'SET-TOTAL-COUNT':
             return { ...state, totalCount: action.num }
@@ -36,6 +81,15 @@ let usersPageReducer = (state = InitialState, action) => {
 
         case 'TOGGLE-LOADER':
             return { ...state, loading: action.val }
+
+        case 'TOGGLE-BUTTON-STATUS':
+            let newState = { ...state, users: [...state.users] }
+            newState.users.forEach((item, i, array) => {
+                if (array[i].id === action.id) {
+                    array[i].isButtonDisabled = action.val
+                }
+            })
+            return newState
     }
     return state
 }

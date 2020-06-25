@@ -16,11 +16,11 @@ const Users = props => {
                 <div className={styles.avatarAndButton}>
                     <div className={styles.avatar}>
                         <img
-                            src={u.photos.large === null ? NoPhotoImage : u.photos.large}
+                           src={u.photos.large === null ? NoPhotoImage : u.photos.large}
                             alt='' />
                     </div>
-                    <button onClick={() => { props.toggleFollowStatus(u.id, u.followed) }}>
-                        {u.followed === true ? 'Unfollow' : 'Follow'}
+                    <button disabled={u.isButtonDisabled} onClick={() => { props.toggleFollowStatus(u.id, u.followed) }}>
+                        {u.followed === true ? 'Unfriend' : 'Add'}
                     </button>
                 </div>
                 <div className={styles.userInfo}>

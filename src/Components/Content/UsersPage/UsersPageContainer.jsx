@@ -1,53 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { toggleFollowStatus, setUsers, setTotalCount, setCurrentPage, toggleLoader } from "../../../Redux/usersPageReducer";
-import /* * as */ axios from 'axios';
+import { changeFollowStatus, getUsers } from "../../../Redux/usersPageReducer";
 import UsersPage from './UsersPage';
 import Preloader from '../../Preloader/Preloader';
 
-import {usersAPI} from '../../../API/api'
-
 class GetUsers extends React.Component {
     componentDidMount() {
-        this.props.toggleLoader(true)
-            usersAPI.getUsers(this.props.friend, this.props.count)
-            .then(response => {
-                console.log(response.data)
-                this.props.setUsers(response.data.items)
-                this.props.toggleLoader(false)
-                if (response.data.totalCount > 50) {
-                    this.props.setTotalCount(50)
-                } else {
-                    this.props.setTotalCount(response.data.totalCount)
-                }
-            })
+        debugger
+        this.props.getUsers(this.props.friend, this.props.count, this.props.currentPage)
     }
 
     GetNewUsers = page => {
-        this.props.toggleLoader(true);
-        this.props.setCurrentPage(page);
-        usersAPI.getUsers(this.props.friend, this.props.count, page)
-            .then(response => {
-                this.props.setUsers(response.data.items)
-                this.props.toggleLoader(false)
-            })
+        this.props.getUsers(this.props.friend, this.props.count, page)
     }
 
-
     ToggleFollowStatus = (id, val) => {
-                if (val) {
-                    this.props.toggleFollowStatus(id, false)
-                    usersAPI.unfollow(id)
-                        .then(res2 => {
-                            console.log('UNFOLLOWED')
-                        })                        
-                } else {
-                    this.props.toggleFollowStatus(id, true)
-                    usersAPI.follow(id)
-                        .then(res2 => {
-                            console.log('FOLLOWED')
-                        })
-                }
+        this.props.changeFollowStatus(id, val)
     }
 
     render() {
@@ -57,18 +25,14 @@ class GetUsers extends React.Component {
                     <UsersPage
                         getNewUsers={this.GetNewUsers}
                         toggleFollowStatus={this.ToggleFollowStatus}
+                        users={this.props.users}
+                        currentPage={this.props.currentPage}
                         totalCount={this.props.totalCount}
                         count={this.props.count}
-                        currentPage={this.props.currentPage}
-                        users={this.props.users}
                         title={this.props.title}
                     />}
-
-
             </div>
         )
-
-
     }
 };
 
@@ -81,6 +45,6 @@ let mapStateToProps = state => ({
 })
 
 let UsersPageContainer = connect(mapStateToProps,
-    { toggleFollowStatus, setUsers, setTotalCount, setCurrentPage, toggleLoader })(GetUsers);
+    { changeFollowStatus, getUsers })(GetUsers);
 
 export default UsersPageContainer

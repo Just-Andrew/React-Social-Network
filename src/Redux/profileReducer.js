@@ -1,8 +1,27 @@
+import { profileAPI } from '../API/api'
 
+/*Action Creators */
 export const addPost = text => ({ type: 'ADD-POST', text })
 export const changeCurrentPostText = text => ({ type: 'CHANGE-CURRENT-POST-TEXT', text })
 export const setCurrentUserData = data => ({ type: 'SET-CURRENT-USER-DATA', data })
 export const toggleLoader = val => ({ type: 'TOGGLE-LOADER', val })
+
+/*Thunk Creators*/
+export const getUserProfile = id => dispatch => {
+    if (id !== undefined) {
+        dispatch(toggleLoader(true))
+        profileAPI.getProfile(id)
+            .then(res => {
+                dispatch(toggleLoader(false))
+                dispatch(setCurrentUserData({
+                    userId: res.data.userId,
+                    avatar: res.data.photos.large,
+                    fullName: res.data.fullName,
+                    job: res.data.lookingForAJob
+                }))
+            })
+    }
+}
 
 let InitialState = {
     CurrentPostText: '',

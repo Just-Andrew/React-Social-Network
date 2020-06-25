@@ -2,29 +2,15 @@ import React from 'react'
 import { connect } from "react-redux"
 import { withRouter } from "react-router-dom"
 import Profile from './Profile'
-import { setCurrentUserData, toggleLoader } from '../../../Redux/profileReducer'
-import axios from 'axios'
+import { getUserProfile } from '../../../Redux/profileReducer'
 import Preloader from '../../Preloader/Preloader'
-import {profileAPI} from '../../../API/api'
 
 class GetProfile extends React.Component {
     componentDidMount() {
-        if (this.props.match.params.id !== undefined) {
-            this.props.toggleLoader(true)
-            profileAPI.getProfile(this.props.match.params.id)
-                .then(res => {
-                    this.props.toggleLoader(false)
-                    this.props.setCurrentUserData({
-                        userId: res.data.userId,
-                        avatar: res.data.photos.large,
-                        fullName: res.data.fullName,
-                        job: res.data.lookingForAJob
-                    })
-                })
-        }
+        this.props.getUserProfile(this.props.match.params.id)
     }
 
-    ArtificialRerender () {
+    ArtificialRerender() {
         this.props.setCurrentUserData({
             userId: null,
             avatar: '',
@@ -61,6 +47,6 @@ let mapStateToProps = state => ({
     loading: state.profile.loading
 })
 
-let ProfileContainer = withRouter(connect(mapStateToProps, { setCurrentUserData, toggleLoader })(GetProfile))
+let ProfileContainer = withRouter(connect(mapStateToProps, { getUserProfile })(GetProfile))
 
 export default ProfileContainer
