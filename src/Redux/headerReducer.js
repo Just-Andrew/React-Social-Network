@@ -7,10 +7,10 @@ const setAuthStatus = () => ({ type: 'SET-AUTH-STATUS' })
 
 /*Thunks Creators*/
  export const authMe = () => dispatch => {
-    headerAPI.getAuthStatus()
+    headerAPI.getAuthorizedPersonData()
         .then(res => {
             dispatch(setCurrentUserInfo({
-                id: res.data.data.id,
+                myId: res.data.data.id,
                 login: res.data.data.login,
                 email: res.data.data.email,
             }))
@@ -27,7 +27,7 @@ const setAuthStatus = () => ({ type: 'SET-AUTH-STATUS' })
 
 
 let InitialState = {
-    id: null,
+    myId: null,
     login: null,
     email: null,
     avatar: null,
@@ -39,7 +39,7 @@ let headerReducer = (state = InitialState, action) => {
         case 'SET-CURRENT-USER-INFO':
             return {
                 ...state,
-                id: action.data.id,
+                myId: action.data.myId,
                 login: action.data.login,
                 email: action.data.email,
             }

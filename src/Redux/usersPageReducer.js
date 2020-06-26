@@ -14,7 +14,6 @@ export const getUsers = (friend, count, page) => dispatch => {
     dispatch(setCurrentPage(page))
     usersAPI.getUsers(friend, count, page)
         .then(response => {
-            console.log(response.data)
             dispatch(setUsers(response.data.items))
             dispatch(toggleLoader(false))
             if (response.data.totalCount > 50) {
@@ -30,14 +29,12 @@ export const changeFollowStatus = (id, val) => dispatch => {
     if (val) {
         usersAPI.unfollow(id)
             .then(res2 => {
-                console.log('UNFOLLOWED')
                 dispatch(toggleFollowStatus(id, false))
                 dispatch(toggleButtonStatus(id, false))
             })
     } else {
         usersAPI.follow(id)
             .then(res2 => {
-                console.log('FOLLOWED')
                 dispatch(toggleFollowStatus(id, true))
                 dispatch(toggleButtonStatus(id, false))
             })
@@ -68,15 +65,12 @@ let usersPageReducer = (state = InitialState, action) => {
             modifiedUsers.forEach((item, i) => {
                 modifiedUsers[i].isButtonDisabled = false
             })
-            debugger
-            console.log(modifiedUsers)
             return { ...state, users: modifiedUsers }
 
         case 'SET-TOTAL-COUNT':
             return { ...state, totalCount: action.num }
 
         case 'SET-CURRENT-PAGE':
-            console.log(action.page)
             return { ...state, currentPage: action.page }
 
         case 'TOGGLE-LOADER':

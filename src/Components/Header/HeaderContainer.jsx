@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux';
+import { compose } from 'redux'
 import { authMe } from '../../Redux/headerReducer'
 import Header from './Header'
 
@@ -25,5 +26,6 @@ let mapStateToProps = state => ({
     isAuth: state.header.isAuth
 })
 
-const HeaderContainer = connect(mapStateToProps, { authMe })(HeaderAPI)
-export default HeaderContainer
+export default compose(
+    connect(mapStateToProps, { authMe })
+)(HeaderAPI)

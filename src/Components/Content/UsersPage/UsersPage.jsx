@@ -54,7 +54,7 @@ const Pages = props => {
     if (pagesAmount !== 1) {
         for (let i = 1; i <= pagesAmount; i++) {
             pagesSwitches[i] =
-                <i
+                <i  key={i}
                     className={props.currentPage === i ? styles.selectedPage : ''}
                     onClick={(e) => { props.getNewUsers(i) }}>{i + ' '}
                 </i>

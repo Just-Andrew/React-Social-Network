@@ -8,19 +8,17 @@ export const toggleLoader = val => ({ type: 'TOGGLE-LOADER', val })
 
 /*Thunk Creators*/
 export const getUserProfile = id => dispatch => {
-    if (id !== undefined) {
-        dispatch(toggleLoader(true))
-        profileAPI.getProfile(id)
-            .then(res => {
-                dispatch(toggleLoader(false))
-                dispatch(setCurrentUserData({
-                    userId: res.data.userId,
-                    avatar: res.data.photos.large,
-                    fullName: res.data.fullName,
-                    job: res.data.lookingForAJob
-                }))
-            })
-    }
+    dispatch(toggleLoader(true))
+    profileAPI.getProfile(id)
+        .then(res => {
+            dispatch(toggleLoader(false))
+            dispatch(setCurrentUserData({
+                userId: res.data.userId,
+                avatar: res.data.photos.large,
+                fullName: res.data.fullName,
+                job: res.data.lookingForAJob
+            }))
+        })
 }
 
 let InitialState = {

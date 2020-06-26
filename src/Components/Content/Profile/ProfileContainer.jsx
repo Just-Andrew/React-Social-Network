@@ -1,28 +1,24 @@
 import React from 'react'
-import { connect } from "react-redux"
-import { withRouter } from "react-router-dom"
+import { compose } from 'redux'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import Profile from './Profile'
-import { getUserProfile } from '../../../Redux/profileReducer'
+import { getUserProfile, setCurrentUserData } from '../../../Redux/profileReducer'
 import Preloader from '../../Preloader/Preloader'
+import withRedirect from '../../../HOCs/redirect'
+
 
 class GetProfile extends React.Component {
     componentDidMount() {
-        this.props.getUserProfile(this.props.match.params.id)
-    }
+        if (this.props.match.params.id === undefined) {
+            this.props.getUserProfile(/* this.props.myId */ 8833)
+        } else {
+            this.props.getUserProfile(this.props.match.params.id)
+        }
 
-    ArtificialRerender() {
-        this.props.setCurrentUserData({
-            userId: null,
-            avatar: '',
-            fullName: null,
-            job: null
-        })
     }
 
     render() {
-        if (this.props.match.params.id === undefined) {
-            this.ArtificialRerender()
-        }
         return (
             <div>
                 {this.props.loading ?
@@ -33,20 +29,22 @@ class GetProfile extends React.Component {
                         job={this.props.job}
                     />}
             </div>
-
-        );
+        )
     }
 }
-
 
 let mapStateToProps = state => ({
     userId: state.profile.currentUserId,
     avatar: state.profile.avatar,
     fullName: state.profile.fullName,
     job: state.profile.lookingForAJob,
-    loading: state.profile.loading
+    loading: state.profile.loading,
+    myId: state.header.myId,
+    isAuth: state.header.isAuth
 })
 
-let ProfileContainer = withRouter(connect(mapStateToProps, { getUserProfile })(GetProfile))
-
-export default ProfileContainer
+export default compose(
+    connect(mapStateToProps, { getUserProfile, setCurrentUserData }),
+    withRouter,
+    withRedirect
+)(GetProfile)
