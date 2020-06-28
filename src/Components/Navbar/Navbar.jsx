@@ -1,13 +1,13 @@
 import React from 'react';
 import styles from './Navbar.module.css';
 import {NavLink} from 'react-router-dom';
+import { connect } from 'react-redux';
 
-const Navbar = () => {
+const Navbar = props => {
     return (
         <nav className={styles.nav}>
-           
             <div className={styles.navItem}>
-               <NavLink to="/profile" className={styles.td}>Profile</NavLink>
+               <NavLink to={`/profile/${props.myId}`} className={styles.td}>Profile</NavLink>
             </div>
             <div className={styles.navItem}>
               <NavLink to='/friends' className={styles.td}>Friends</NavLink> 
@@ -21,12 +21,13 @@ const Navbar = () => {
             <div className={styles.navItem}>
                Exit
             </div>
-
-        
-
-
         </nav>
-
-    );
+    )
 }
-export default Navbar;
+
+let mapStateToProps = state => ({
+    myId: state.header.myId
+})
+
+export default connect(mapStateToProps, {})(Navbar)
+//export default Navbar;

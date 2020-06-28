@@ -13,6 +13,7 @@ const MessagesPage = (props) => {
     );
 }
 
-let MessagesPageContainer = withRedirect(MessagesPage)
+//let MessagesPageContainer = withRedirect(MessagesPage)
 
-export default MessagesPageContainer;
+export default MessagesPage;
+/* export default MessagesPageContainer; */

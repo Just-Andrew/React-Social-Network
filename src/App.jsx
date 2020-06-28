@@ -6,6 +6,7 @@ import './App.css';
 import UsersPageContainer from './Components/Content/UsersPage/UsersPageContainer';
 import ProfileContainer from './Components/Content/Profile/ProfileContainer';
 import HeaderContainer from './Components/Header/HeaderContainer';
+import LoginPage from './Components/LoginPage/LoginPage';
 
 const App = () => {
 
@@ -29,6 +30,8 @@ const App = () => {
         <Route path="/users"
           render={() => <UsersPageContainer friend={false} title='All registered users' />} />
 
+        {<Route path="/login"
+          render={() => <LoginPage />} />}
       </div>
     </BrowserRouter>
   );

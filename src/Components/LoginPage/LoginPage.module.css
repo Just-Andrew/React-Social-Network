@@ -1,0 +1,16 @@
+.LoginPage {
+    grid-area: c;
+    background-color:  white ;
+    box-shadow: 10px 10px 7px rgba(0, 0, 0, .3);
+    height: 870px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.formWrapper {
+    height: 450px;
+    width: 350px;
+    border: 1px solid black;
+    text-align: center;
+}

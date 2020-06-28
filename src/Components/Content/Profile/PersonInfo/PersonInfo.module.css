@@ -35,6 +35,8 @@
 
 .username {
     font-size: 23px;
+    position: relative;
+    top: 10px;
 }
 
 .info {
@@ -42,18 +44,6 @@
     position: relative;
     font-size: 18px;
     padding-left: 15px;
-}
-
-.location img {
-    width: 18px;
-    height: 18px;
-    margin-left: -24px;
-}
-
-.location {
-    padding-left: 5px;
-    position: relative;
-  /*   top: -10px; */
 }
 
 /*  .job {
@@ -65,5 +55,18 @@
     width: 25px;
     height: 25px;
     position: relative;
-    top: 10px; 
+    top: 8px; 
 }  
+
+.status img {
+    width: 25px;
+    height: 25px;
+    position: relative;
+    top: 8px;
+}
+
+.status {
+    position: relative;
+    top: -5px;
+    cursor: pointer;
+}

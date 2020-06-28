@@ -2,9 +2,10 @@ import { profileAPI } from '../API/api'
 
 /*Action Creators */
 export const addPost = text => ({ type: 'ADD-POST', text })
-export const changeCurrentPostText = text => ({ type: 'CHANGE-CURRENT-POST-TEXT', text })
-export const setCurrentUserData = data => ({ type: 'SET-CURRENT-USER-DATA', data })
-export const toggleLoader = val => ({ type: 'TOGGLE-LOADER', val })
+const setCurrentUserData = data => ({ type: 'SET-CURRENT-USER-DATA', data })
+const setCurrentUserStatus = status => ({ type: 'SET-CURRENT-USER-STATUS', status })
+const toggleLoader = val => ({ type: 'TOGGLE-LOADER', val })
+export const updateStatusText = text => ({ type: 'UPDATE-STATUS-TEXT', text })
 
 /*Thunk Creators*/
 export const getUserProfile = id => dispatch => {
@@ -19,13 +20,26 @@ export const getUserProfile = id => dispatch => {
                 job: res.data.lookingForAJob
             }))
         })
+    profileAPI.getProfileStatus(id)
+        .then(resp => {
+            dispatch(setCurrentUserStatus(resp.data))
+        })
+}
+
+export const setNewStatus = status => dispatch => {
+    dispatch(toggleLoader(true))
+    profileAPI.setNewStatus(status)
+    .then(() => {
+        dispatch(setCurrentUserStatus(status))
+        dispatch(toggleLoader(false))
+    })
 }
 
 let InitialState = {
-    CurrentPostText: '',
     currentUserId: null,
     fullName: null,
     avatar: null,
+    status: null,
     loading: false,
     lookingForAJob: false,
     posts: [
@@ -54,10 +68,7 @@ let profileReducer = (state = InitialState, action) => {
                 'text': action.text,
                 'likes': 0
             };
-            return { ...state, posts: [post, ...state.posts], CurrentPostText: '' };
-
-        case 'CHANGE-CURRENT-POST-TEXT':
-            return { ...state, CurrentPostText: action.text };
+            return { ...state, posts: [post, ...state.posts] }
 
         case 'SET-CURRENT-USER-DATA':
             return {
@@ -68,8 +79,14 @@ let profileReducer = (state = InitialState, action) => {
                 lookingForAJob: action.data.job
             }
 
+        case 'SET-CURRENT-USER-STATUS':
+            return { ...state, status: action.status }
+
         case 'TOGGLE-LOADER':
             return { ...state, loading: action.val }
+
+        case 'UPDATE-STATUS-TEXT':
+            return { ...state, status: action.text }
     }
     return state
 }

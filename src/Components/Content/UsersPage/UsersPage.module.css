@@ -40,8 +40,11 @@
 }
 
 .avatarAndButton button {
+    height: 25px;
     width: 90px;
     border-radius: 10px;
+    border: none;
+    background-color: steelblue;
     box-shadow: 10px 10px 7px rgba(0, 0, 0, .3);
 }
 
@@ -97,4 +100,5 @@
 
 .pages {
     text-align: center;
+    cursor: pointer;
 }

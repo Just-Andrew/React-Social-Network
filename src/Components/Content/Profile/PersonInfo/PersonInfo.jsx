@@ -4,64 +4,146 @@ import icon from '../../../../assets/Pictures/gps_icon.png'
 import NoPhotoImg from '../../../../assets/Pictures/NoPhotoImg.jpg'
 import tick from '../../../../assets/Pictures/tick.png'
 import cross from '../../../../assets/Pictures/cross.png'
+import { profileAPI } from '../../../../API/api'
+import editIcon from '../../../../assets/Pictures/edit_icon.png'
 
-const PersonInfo = props => {
+class Status extends React.Component {
+    state = {
+        status: this.props.status,
+        editMode: false,
+        statusInputValue: '',
+        myId: this.props.myId,
+        currentUserId: this.props.currentUserId
+    }
 
-    // let avatar = 'https://avatars.mds.yandex.net/get-zen_doc/1538903/pub_5de7ba698d5b5f00b251d2e7_5de8721cfe289100b0b4a9f5/scale_1200'
-    return (
-        /*  props.fullName === null ? */
-        /* MY PROFILE */
-        /*  <div className={styles.wrapper}>
-             <div className={styles.background}>
-             </div>
-             <div className={styles.aboutPerson}>
-                 <div className={styles.avatar}>
+    statusInput = React.createRef()
 
-                     <img src={avatar}
-                         alt="" />
-                 </div>
-                 <div className={styles.info}>
-                     <div className={styles.username}><b> JustHuman </b></div>
 
-                     <div className={styles.job}>
-                         Avaliable for a hire
-                         <img src={props.job ? tick : cross} alt=""/>
-                     </div>
-                     <div className={styles.location}>
-                         <img src={icon} alt=""/>
-                 Moscow, Russia
-                 </div>
-                 </div>
-             </div>
-         </div> : */
+    activateEditMode = () => {
+        this.setState({
+            editMode: true
+        })
+    }
 
-        /* SOME USER'S PROFILE */
-        <div className={styles.wrapper}>
-            <div className={styles.background}>
-            </div>
-            <div className={styles.aboutPerson}>
-                <div className={styles.avatar}>
+    disableEditMode = () => {
+        this.setState({
+            editMode: false,
+            statusInputValue: ''
+        })
+    }
 
-                    <img src={props.avatar === null ? NoPhotoImg : props.avatar}
-                        alt="" />
-                </div>
-                <div className={styles.info}>
-                    <div className={styles.username}><b> {props.fullName} </b></div>
+    componentDidMount() {
+        if (this.state.currentUserId === this.state.myId) {
+            this.state.statusEditability = true
+        } else {
+            this.state.statusEditability = false
+        }
+    }
 
-                    <div className={styles.job}>Avaliable for a hire
-                        <img src={props.job ? tick : cross} alt="" />
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.status !== this.props.status) {
+            this.setState({
+                status: this.props.status
+            })
+        }
+
+        if(prevProps.myId !== this.props.myId) {
+            this.setState({
+                myId: this.props.myId
+            })
+        }
+
+        if(prevProps.currentUserId !== this.props.currentUserId) {
+            this.setState({
+                currentUserId: this.props.currentUserId
+            })
+        }
+    }
+
+    onInputChange = () => {
+        this.setState({
+            statusInputValue: this.statusInput.current.value
+        })
+    }
+
+    changeStatus = () => {
+        if (this.state.statusInputValue !== '') {
+            (async function () {
+                return this.setState({
+                    status: this.statusInput.current.value,
+                })
+            }).bind(this)()
+                .then(() => {
+                    this.props.setNewStatus(this.state.status)
+
+                })
+            this.disableEditMode()
+        }
+    }
+
+    render() {
+        return (
+            <>
+                {!this.state.statusEditability
+                    ? !this.state.editMode
+                        ? <div className={styles.status} onDoubleClick={this.activateEditMode}>
+                            Status: {this.state.status !== null
+                                ? this.state.status
+                                : <b>Change your status</b>} <img src={editIcon} alt='' />
+                        </div>
+                        : <>
+                            <input type='text'
+                                ref={this.statusInput}
+                                onChange={this.onInputChange}
+                                value={this.state.statusInputValue} />
+                            <button onClick={this.changeStatus}>save</button>
+                            <button onClick={this.disableEditMode} >X</button>
+                        </>
+                    : <div className={styles.status} onDoubleClick={this.activateEditMode}>
+                        Status: {this.state.status !== null
+                            ? this.state.status
+                            : <b>This user doesnt have any status</b>}
+                    </div>}
+
+            </>
+        )
+    }
+}
+
+class PersonInfo extends React.Component {
+
+    render() {
+        return (
+            <div className={styles.wrapper}>
+                <div className={styles.background}></div>
+
+                <div className={styles.aboutPerson}>
+                    <div className={styles.avatar}>
+
+                        <img src={this.props.avatar === null ? NoPhotoImg : this.props.avatar}
+                            alt="" />
                     </div>
+                    <div className={styles.info}>
+                        <div className={styles.username}><b> {this.props.fullName} </b></div>
 
-                    <div className={styles.location}>
-                        <img src={icon} alt="" />
-                        Moscow, Russia
-        </div>
+                        <div className={styles.job}>Avaliable for a hire
+                        <img src={this.props.job ? tick : cross} alt="" />
+                        </div>
+
+                        <div className={styles.statusBlock}>
+                            <Status status={this.props.status}
+                                myId={this.props.myId}
+                                currentUserId={this.props.currentUserId}
+                                setNewStatus={this.props.setNewStatus}
+                            />
+                        </div>
+
+                    </div>
                 </div>
             </div>
-        </div>
 
-    );
-
+        )
+    }
 }
 
 

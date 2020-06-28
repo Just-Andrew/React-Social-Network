@@ -11,6 +11,10 @@ const Profile = props => {
             avatar={props.avatar}
             fullName={props.fullName}
             job={props.job}
+            status={props.status}
+            myId={props.myId}
+            currentUserId={props.currentUserId}
+            setNewStatus={props.setNewStatus}
             />
 
            

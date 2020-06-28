@@ -1,8 +1,5 @@
 export const addMessage = text => ({ type: 'ADD-MESSAGE', text });
-export const changeCurrentMessageText = text => ({ type: 'CHANGE-CURRENT-MESSAGE-TEXT', text });
-
 let InitialState = {
-    CurrentMessageText: '',
     messages: [
         {
             id: 0,
@@ -137,10 +134,7 @@ let messagesPageReducer = (state = InitialState, action) => {
                 'message': action.text,
                 'mine': true
             };  
-            return { ...state, messages: [...state.messages, message], CurrentMessageText: '' };
-
-        case 'CHANGE-CURRENT-MESSAGE-TEXT':
-            return { ...state, CurrentMessageText: action.text };
+            return { ...state, messages: [...state.messages, message]}
     }
 
     return state;

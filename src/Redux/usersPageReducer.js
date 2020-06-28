@@ -8,6 +8,7 @@ const setCurrentPage = page => ({ type: 'SET-CURRENT-PAGE', page })
 const toggleLoader = val => ({ type: 'TOGGLE-LOADER', val })
 const toggleButtonStatus = (id, val) => ({ type: 'TOGGLE-BUTTON-STATUS', id, val })
 
+
 /*Thunk Creators*/
 export const getUsers = (friend, count, page) => dispatch => {
     dispatch(toggleLoader(true))
