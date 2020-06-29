@@ -4,7 +4,7 @@ import { compose } from 'redux'
 import styles from './LoginPage.module.css'
 import { connect } from 'react-redux'
 import { loginAPI } from '../../API/api'
-const LoginForm = props => {
+const LogForm = props => {
     return (
         <div className={styles.formWrapper}>
             <h2>Login form</h2>
@@ -14,6 +14,33 @@ const LoginForm = props => {
                 <div> <Field component='input' type='checkbox' name='rememberMe' /></div>
                 <div><button>Login</button></div>
             </form>
+        </div>
+    )
+}
+
+const LoginForm = props => {
+    return (
+        <div className={styles.main}>
+            <p className={styles.sign} align="center">Sign in</p>
+            <form onSubmit={props.handleSubmit} className={styles.form1}>
+                <Field
+                    component='input'
+                    name='email'
+                    className={styles.un} type="text"
+                    align="center"
+                    placeholder="Username"
+                />
+                <Field
+                    component='input'
+                    name='password'
+                    className={styles.pass}
+                    type="password" align="center"
+                    placeholder="Password"
+                />
+                <button className={styles.submit} align="center">Sign in</button>
+                <p className={styles.forgot} align="center"><a href="#" onClick={ () =>{ alert('Not my problem :P')}}>Forgot Password?</a></p>
+            </form>
+
         </div>
     )
 }
@@ -34,7 +61,7 @@ const LoginPage = props => {
     }
     return (
         <div className={styles.LoginPage}>
-            <ReduxFormWrapper onSubmit={onSubmit} auth={auth}/>
+            <ReduxFormWrapper onSubmit={onSubmit} auth={auth} />
         </div>
     )
 }

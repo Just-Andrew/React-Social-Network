@@ -30,4 +30,3 @@ let mapStateToProps = state => ({
 })
 
 export default connect(mapStateToProps, {})(Navbar)
-//export default Navbar;

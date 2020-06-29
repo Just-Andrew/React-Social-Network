@@ -46,6 +46,7 @@
     border: none;
     background-color: steelblue;
     box-shadow: 10px 10px 7px rgba(0, 0, 0, .3);
+    outline: none;
 }
 
 .userInfo {
