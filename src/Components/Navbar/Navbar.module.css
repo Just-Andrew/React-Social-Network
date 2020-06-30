@@ -27,3 +27,8 @@
 .navItem a:focus {
     color: gold;
 }
+
+
+.hiddenNav {
+    display: none;
+}

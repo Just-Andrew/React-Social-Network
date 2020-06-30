@@ -32,28 +32,36 @@ class Status extends React.Component {
         })
     }
 
-    componentDidMount() {
-        if (this.state.currentUserId === this.state.myId) {
+    toggleStatusEditability = () => {
+        if (this.state.currentUserId === this.state.myId && this.props.isAuth === true) {
             this.state.statusEditability = true
+            console.log(this.state.statusEditability)
         } else {
             this.state.statusEditability = false
+            console.log(this.state.statusEditability)
         }
     }
 
-    componentDidUpdate(prevProps, prevState) {
+    componentDidMount() {
+        this.toggleStatusEditability()
+    }
+
+    componentDidUpdate(prevProps) {
+        this.toggleStatusEditability()
+
         if (prevProps.status !== this.props.status) {
             this.setState({
                 status: this.props.status
             })
         }
 
-        if(prevProps.myId !== this.props.myId) {
+        if (prevProps.myId !== this.props.myId) {
             this.setState({
                 myId: this.props.myId
             })
         }
 
-        if(prevProps.currentUserId !== this.props.currentUserId) {
+        if (prevProps.currentUserId !== this.props.currentUserId) {
             this.setState({
                 currentUserId: this.props.currentUserId
             })
@@ -84,7 +92,7 @@ class Status extends React.Component {
     render() {
         return (
             <>
-                {!this.state.statusEditability
+                {this.state.statusEditability
                     ? !this.state.editMode
                         ? <div className={styles.status} onDoubleClick={this.activateEditMode}>
                             Status: {this.state.status !== null
@@ -104,7 +112,6 @@ class Status extends React.Component {
                             ? this.state.status
                             : <b>This user doesnt have any status</b>}
                     </div>}
-
             </>
         )
     }
@@ -135,6 +142,7 @@ class PersonInfo extends React.Component {
                                 myId={this.props.myId}
                                 currentUserId={this.props.currentUserId}
                                 setNewStatus={this.props.setNewStatus}
+                                isAuth={this.props.isAuth}
                             />
                         </div>
 

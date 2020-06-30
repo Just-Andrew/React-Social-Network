@@ -2,26 +2,20 @@ import React from 'react';
 import styles from "./AddPost.module.css";
 import { Field, reduxForm } from 'redux-form';
 
-
-let txtArea = React.createRef();
-
 let AddPost = (props) => {
-    
+
     let onSubmit = data => {
-        if(data.postMessage !== undefined) {
-            console.log(data.postMessage)
+        if (data.postMessage !== undefined) {
             props.addPost(data.postMessage)
         }
     }
 
     return (
-        <ReduxFormWrapper  onSubmit={onSubmit}/>
+        <ReduxFormWrapper onSubmit={onSubmit} />
     );
 };
 
-
 const AddPostForm = props => {
-
     return (
         <div className={styles.AddPostBlock}>
             <form onSubmit={props.handleSubmit}>

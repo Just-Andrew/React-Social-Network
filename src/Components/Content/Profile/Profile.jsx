@@ -15,6 +15,7 @@ const Profile = props => {
             myId={props.myId}
             currentUserId={props.currentUserId}
             setNewStatus={props.setNewStatus}
+            isAuth={props.isAuth}
             />
 
            

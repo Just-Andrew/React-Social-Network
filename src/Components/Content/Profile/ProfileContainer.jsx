@@ -10,21 +10,13 @@ import withRedirect from '../../../HOCs/redirect'
 
 class GetProfile extends React.Component {
     componentDidUpdate(prevProps, prevState) {
-       /*  debugger */
        if(prevProps.match.params.id !== this.props.match.params.id) {
         this.props.getUserProfile(this.props.match.params.id)
        }
-      /*   console.log('prev props', prevProps.match.params.id)
-        console.log('new props', this.props.match.params.id) */
     }
 
     componentDidMount() {
-        if (this.props.match.params.id === undefined) {
-            this.props.getUserProfile(/* this.props.myId */ 8833)
-        } else {
             this.props.getUserProfile(this.props.match.params.id)
-        }
-
     }
 
     render() {
@@ -40,6 +32,7 @@ class GetProfile extends React.Component {
                         myId={this.props.myId}
                         currentUserId={this.props.currentUserId}
                         setNewStatus={this.props.setNewStatus}
+                        isAuth={this.props.isAuth}
                     />}
             </div>
         )
@@ -54,8 +47,8 @@ let mapStateToProps = state => ({
     status: state.profile.status,
     loading: state.profile.loading,
     currentUserId: state.profile.currentUserId,
-    myId: state.header.myId,
-    isAuth: state.header.isAuth
+    myId: state.authorization.myId,
+    isAuth: state.authorization.isAuth
 })
 
 export default compose(

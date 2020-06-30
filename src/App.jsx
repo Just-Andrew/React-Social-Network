@@ -9,10 +9,9 @@ import HeaderContainer from './Components/Header/HeaderContainer';
 import LoginPage from './Components/LoginPage/LoginPage';
 
 const App = () => {
-
   return (
     <BrowserRouter >
-      <div className="App-wrapper">
+      <div className="App-wrapper" >
         <HeaderContainer />
 
         <Navbar />
