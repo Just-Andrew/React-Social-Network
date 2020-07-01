@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './UsersPage.module.css';
 import NoPhotoImage from '../../../assets/Pictures/NoPhotoImg.jpg'
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 
 const Title = props => {
     return (
@@ -16,7 +16,7 @@ const Users = props => {
                 <div className={styles.avatarAndButton}>
                     <div className={styles.avatar}>
                         <img
-                           src={u.photos.large === null ? NoPhotoImage : u.photos.large}
+                            src={u.photos.large === null ? NoPhotoImage : u.photos.large}
                             alt='' />
                     </div>
                     <button disabled={u.isButtonDisabled} onClick={() => { props.toggleFollowStatus(u.id, u.followed) }}>
@@ -54,7 +54,7 @@ const Pages = props => {
     if (pagesAmount !== 1) {
         for (let i = 1; i <= pagesAmount; i++) {
             pagesSwitches[i] =
-                <i  key={i}
+                <i key={i}
                     className={props.currentPage === i ? styles.selectedPage : ''}
                     onClick={(e) => { props.getNewUsers(i) }}>{i + ' '}
                 </i>
@@ -72,23 +72,24 @@ const Pages = props => {
 
 const UsersPage = props => {
     return (
-        <div className={styles.UsersPageWrapper} >
-            <Title
-                title={props.title}
-            />
+        !props.isAuth ? <Redirect to='/login' />
+            : <div className={styles.UsersPageWrapper} >
+                <Title
+                    title={props.title}
+                />
 
-            <Users
-                users={props.users}
-                toggleFollowStatus={props.toggleFollowStatus}
-            />
+                <Users
+                    users={props.users}
+                    toggleFollowStatus={props.toggleFollowStatus}
+                />
 
-            <Pages
-                totalCount={props.totalCount}
-                count={props.count}
-                currentPage={props.currentPage}
-                getNewUsers={props.getNewUsers}
-            />
-        </div>
+                <Pages
+                    totalCount={props.totalCount}
+                    count={props.count}
+                    currentPage={props.currentPage}
+                    getNewUsers={props.getNewUsers}
+                />
+            </div>
     );
 }
 

@@ -8,7 +8,7 @@ const setError = (val) => ({ type: 'SET-ERROR', val })
 
 /*Thunks Creators*/
 export const authMe = () => dispatch => {
-    headerAPI.getAuthorizedPersonData()
+    return headerAPI.getAuthorizedPersonData()
         .then(res => {
             dispatch(setCurrentUserInfo({
                 myId: res.data.id,
@@ -28,7 +28,7 @@ export const authMe = () => dispatch => {
 
 export const logIn = (email, password) => dispatch => {
     authAPI.logIn(email, password)
-        .then((res2) => { console.log(res2.data)
+        .then((res2) => {
             headerAPI.getAuthorizedPersonData()
                 .then(res => {
                     if (res.resultCode === 0) {
@@ -47,19 +47,19 @@ export const logIn = (email, password) => dispatch => {
 }
 
 export const logOut = () => dispatch => {
-    authAPI.logOut()
     dispatch(setCurrentUserInfo({
-        myId: null,
+        myId: undefined,
         login: null,
         email: null,
         isAuth: false
     }))
+    authAPI.logOut()
 }
 
 
 
 let InitialState = {
-    myId: null,
+    myId: undefined,
     login: null,
     email: null,
     avatar: null,

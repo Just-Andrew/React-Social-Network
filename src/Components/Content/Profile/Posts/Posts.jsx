@@ -1,14 +1,15 @@
-import React from 'react';
-import styles from "./Posts.module.css";
+import React from 'react'
+import styles from './Posts.module.css'
+import NoPhotoImg from '../../../../assets/Pictures/NoPhotoImg.jpg'
+import { connect } from 'react-redux';
 
-const Posts = (props) => {
-    /* Creating posts from received data */
+const Posts = props => {
     let posts = props.posts.map(p => {
         return (
             <div className={styles.post} key={p.id}>
 
                 <div className={styles.avatar} >
-                    <img src='https://avatars.mds.yandex.net/get-zen_doc/1538903/pub_5de7ba698d5b5f00b251d2e7_5de8721cfe289100b0b4a9f5/scale_1200' alt=''/>
+                    <img src={props.avatar === null? NoPhotoImg  : props.avatar} alt=''/>
                 </div>
 
                 <div className={styles.post}>
@@ -24,14 +25,10 @@ const Posts = (props) => {
         );
     });
 
-
-
-    /* component itself */
     return (
         <div >
-            <div className={styles.title}>  <b> My posts </b> </div>
+            <div className={styles.title}>  <b> Posts </b> </div>
             <div className={styles.PostsBlock}>
-
                 <div className={styles.posts}>
                     {posts}
                 </div>
@@ -40,4 +37,8 @@ const Posts = (props) => {
     );
 }
 
-export default Posts;
+let mapStateToProps = state => ({
+    avatar: state.profile.avatar
+})
+
+export default connect(mapStateToProps, {})(Posts)

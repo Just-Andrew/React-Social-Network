@@ -13,7 +13,19 @@ class Status extends React.Component {
         editMode: false,
         statusInputValue: '',
         myId: this.props.myId,
-        currentUserId: this.props.currentUserId
+        currentUserId: this.props.currentUserId,
+        statusEditability: false
+    }
+
+  /*   componentDidMount() {
+        this.state.statusEditability = this.props.myProfile
+    } */
+
+    componentDidUpdate(pP) {
+        this.state.statusEditability = this.props.myProfile
+        if(this.props.status !== pP.status) {
+            this.state.status = this.props.status
+        }
     }
 
     statusInput = React.createRef()
@@ -32,42 +44,6 @@ class Status extends React.Component {
         })
     }
 
-    toggleStatusEditability = () => {
-        if (this.state.currentUserId === this.state.myId && this.props.isAuth === true) {
-            this.state.statusEditability = true
-            console.log(this.state.statusEditability)
-        } else {
-            this.state.statusEditability = false
-            console.log(this.state.statusEditability)
-        }
-    }
-
-    componentDidMount() {
-        this.toggleStatusEditability()
-    }
-
-    componentDidUpdate(prevProps) {
-        this.toggleStatusEditability()
-
-        if (prevProps.status !== this.props.status) {
-            this.setState({
-                status: this.props.status
-            })
-        }
-
-        if (prevProps.myId !== this.props.myId) {
-            this.setState({
-                myId: this.props.myId
-            })
-        }
-
-        if (prevProps.currentUserId !== this.props.currentUserId) {
-            this.setState({
-                currentUserId: this.props.currentUserId
-            })
-        }
-    }
-
     onInputChange = () => {
         this.setState({
             statusInputValue: this.statusInput.current.value
@@ -83,13 +59,13 @@ class Status extends React.Component {
             }).bind(this)()
                 .then(() => {
                     this.props.setNewStatus(this.state.status)
-
                 })
             this.disableEditMode()
         }
     }
 
     render() {
+
         return (
             <>
                 {this.state.statusEditability
@@ -97,7 +73,7 @@ class Status extends React.Component {
                         ? <div className={styles.status} onDoubleClick={this.activateEditMode}>
                             Status: {this.state.status !== null
                                 ? this.state.status
-                                : <b>Change your status</b>} <img src={editIcon} alt='' />
+                                : <b>Change your status</b>}
                         </div>
                         : <>
                             <input type='text'
@@ -109,8 +85,8 @@ class Status extends React.Component {
                         </>
                     : <div className={styles.status} onDoubleClick={this.activateEditMode}>
                         Status: {this.state.status !== null
-                            ? this.state.status
-                            : <b>This user doesnt have any status</b>}
+                                ? this.state.status
+                                : <b>This user doesn't have any status</b>}
                     </div>}
             </>
         )
@@ -139,10 +115,9 @@ class PersonInfo extends React.Component {
 
                         <div className={styles.statusBlock}>
                             <Status status={this.props.status}
-                                myId={this.props.myId}
-                                currentUserId={this.props.currentUserId}
                                 setNewStatus={this.props.setNewStatus}
                                 isAuth={this.props.isAuth}
+                                myProfile={this.props.myProfile}
                             />
                         </div>
 

@@ -1,19 +1,23 @@
 import React from 'react';
 import styles from "./MessagesPage.module.css";
 import MessagesBlock from './MessagesBlock/MessagesBlock';
-import ContactsContainer from './Contacts/ContactsContainer';
-import withRedirect from '../../../HOCs/redirect'
+import ContactsContainer from './Contacts/ContactsContainer'
+import { Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 const MessagesPage = (props) => {
     return (
-        <div className={styles.Dialogs}>       
-             <MessagesBlock  />                         
-            <ContactsContainer/>                     
-        </div>
-    );
+        !props.isAuth
+            ? <Redirect to='/login' />
+            : <div className={styles.Dialogs}>
+                <MessagesBlock />
+                <ContactsContainer />
+            </div>
+    )
 }
 
-//let MessagesPageContainer = withRedirect(MessagesPage)
+let mapStateToProps = state => ({
+    isAuth: state.authorization.isAuth
+})
 
-export default MessagesPage;
-/* export default MessagesPageContainer; */
+export default connect(mapStateToProps, {})(MessagesPage)

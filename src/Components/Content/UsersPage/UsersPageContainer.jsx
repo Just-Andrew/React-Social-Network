@@ -5,7 +5,7 @@ import { changeFollowStatus, getUsers } from "../../../Redux/usersPageReducer";
 import UsersPage from './UsersPage';
 import Preloader from '../../Preloader/Preloader';
 
-class GetUsers extends React.Component {
+class UsersPageContainer extends React.Component {
     componentDidMount() {
         this.props.getUsers(this.props.friend, this.props.count, this.props.currentPage)
     }
@@ -30,6 +30,7 @@ class GetUsers extends React.Component {
                         totalCount={this.props.totalCount}
                         count={this.props.count}
                         title={this.props.title}
+                        isAuth={this.props.isAuth}
                     />}
             </div>
         )
@@ -41,14 +42,10 @@ let mapStateToProps = state => ({
     currentPage: state.usersPage.currentPage,
     totalCount: state.usersPage.totalCount,
     count: state.usersPage.count,
-    loading: state.usersPage.loading
+    loading: state.usersPage.loading,
+    isAuth: state.authorization.isAuth
 })
-
-let UsersPageContainer = connect(mapStateToProps,
-    { changeFollowStatus, getUsers })(GetUsers);
-
 
 export default compose(
     connect(mapStateToProps, { changeFollowStatus, getUsers })
-)(GetUsers)
-//export default UsersPageContainer
+)(UsersPageContainer)

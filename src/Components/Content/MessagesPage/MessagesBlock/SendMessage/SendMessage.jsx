@@ -24,7 +24,6 @@ const SendMessage = (props) => {
 
     let onSubmit = data => {
         if (data.message !== undefined) {
-            console.log(data.message)
             props.addMessage(data.message)
         }
         scroll()

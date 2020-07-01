@@ -8,7 +8,7 @@ import { Redirect } from 'react-router-dom'
 
 const LoginForm = props => {
     const { register, handleSubmit, errors } = useForm();
-    const onSubmit = data => {
+    const logIn= data => {
         props.logIn(data.email, data.password)
     }
 
@@ -16,7 +16,7 @@ const LoginForm = props => {
         <div className={styles.main}>
             <p className={styles.sign} align="center"> Sign in </p>
             {props.error !== false && <div className={styles.errorMsg}> {props.error}</div>}
-            <form onSubmit={handleSubmit(onSubmit)} className={styles.form1}>
+            <form onSubmit={handleSubmit(logIn)} className={styles.form1}>
                 <input
                     name='email'
                     className={`${styles.un} ${errors.email && styles.error}`}

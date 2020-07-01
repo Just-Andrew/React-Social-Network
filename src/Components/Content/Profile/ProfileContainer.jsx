@@ -1,27 +1,57 @@
 import React from 'react'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Redirect } from 'react-router-dom'
 import Profile from './Profile'
 import { getUserProfile, setNewStatus } from '../../../Redux/profileReducer'
 import Preloader from '../../Preloader/Preloader'
 import withRedirect from '../../../HOCs/redirect'
 
 
-class GetProfile extends React.Component {
+class ProfileContainer extends React.Component {
+
+    state = {
+        myId: this.props.myId,
+        currentUserId: this.props.currentUserId,
+        myProfile: false
+    }
+
+    toggleMyProfileValue = () => {
+        if (this.props.currentUserId === this.props.myId && this.props.isAuth === true) {
+            this.state.myProfile = true
+        } else {
+            this.state.myProfile = false
+        }
+    }
+
     componentDidUpdate(prevProps, prevState) {
-       if(prevProps.match.params.id !== this.props.match.params.id) {
-        this.props.getUserProfile(this.props.match.params.id)
-       }
+        this.toggleMyProfileValue()
+        if (prevProps.status !== this.props.status) {
+            this.setState({
+                status: this.props.status
+            })
+        }
+
+        if (prevProps.currentUserId !== this.props.currentUserId) {
+            this.setState({
+                currentUserId: this.props.currentUserId
+            })
+        }
+
+        if (prevProps.match.params.id !== this.props.match.params.id) {
+            this.props.getUserProfile(this.props.match.params.id)
+        }
     }
 
     componentDidMount() {
-            this.props.getUserProfile(this.props.match.params.id)
+        this.toggleMyProfileValue()
+        this.props.getUserProfile(this.props.match.params.id)
     }
 
     render() {
         return (
             <div>
+                {this.props.match.params.id === 'undefined' && <Redirect to='/login' />}
                 {this.props.loading ?
                     <Preloader /> :
                     <Profile
@@ -29,10 +59,9 @@ class GetProfile extends React.Component {
                         fullName={this.props.fullName}
                         job={this.props.job}
                         status={this.props.status}
-                        myId={this.props.myId}
-                        currentUserId={this.props.currentUserId}
                         setNewStatus={this.props.setNewStatus}
                         isAuth={this.props.isAuth}
+                        myProfile={this.state.myProfile}
                     />}
             </div>
         )
@@ -55,4 +84,4 @@ export default compose(
     connect(mapStateToProps, { getUserProfile, setNewStatus }),
     withRouter,
     // withRedirect
-)(GetProfile)
+)(ProfileContainer)

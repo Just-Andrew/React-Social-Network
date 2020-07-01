@@ -4,27 +4,14 @@ import { compose } from 'redux'
 import { authMe } from '../../Redux/authReducer'
 import Header from './Header'
 
-class HeaderAPI extends React.Component {
-    componentDidMount() {
-        this.props.authMe()
-        console.log(this.props)
-    }
-    
-    componentDidUpdate(pP, pS) {
-        if(this.props.login !== pP.login) {
-            this.props.authMe()
-        }
-    }
-
-    render() {
+const HeaderContainer = props => {
         return (
             <Header
-                isAuth={this.props.isAuth}
-                avatar={this.props.avatar}
-                login={this.props.login}
+                isAuth={props.isAuth}
+                avatar={props.avatar}
+                login={props.login}
             />
         )
-    }
 }
 
 let mapStateToProps = state => ({
@@ -35,4 +22,4 @@ let mapStateToProps = state => ({
 
 export default compose(
     connect(mapStateToProps, { authMe })
-)(HeaderAPI)
+)(HeaderContainer)
