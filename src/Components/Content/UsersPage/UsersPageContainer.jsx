@@ -1,41 +1,44 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { changeFollowStatus, getUsers } from "../../../Redux/usersPageReducer";
 import UsersPage from './UsersPage';
 import Preloader from '../../Preloader/Preloader';
 
-class UsersPageContainer extends React.Component {
-    componentDidMount() {
-        this.props.getUsers(this.props.friend, this.props.count, this.props.currentPage)
+const UsersPageContainer = props => {
+    let [currentPage, setCurrentPage] = useState(0)
+
+    useEffect(() => {
+        if (currentPage === 0) {
+            setCurrentPage(1)
+            props.getUsers(props.friend, props.count, 1)
+        }
+    })
+
+    let GetNewUsers = page => {
+        props.getUsers(props.friend, props.count, page)
     }
 
-    GetNewUsers = page => {
-        this.props.getUsers(this.props.friend, this.props.count, page)
+    let ToggleFollowStatus = (id, val) => {
+        props.changeFollowStatus(id, val)
     }
 
-    ToggleFollowStatus = (id, val) => {
-        this.props.changeFollowStatus(id, val)
-    }
-
-    render() {
-        return (
-            <div>
-                {(this.props.loading) ? <Preloader /> :
-                    <UsersPage
-                        getNewUsers={this.GetNewUsers}
-                        toggleFollowStatus={this.ToggleFollowStatus}
-                        users={this.props.users}
-                        currentPage={this.props.currentPage}
-                        totalCount={this.props.totalCount}
-                        count={this.props.count}
-                        title={this.props.title}
-                        isAuth={this.props.isAuth}
-                    />}
-            </div>
-        )
-    }
-};
+    return (
+        <div>
+            {(props.loading) ? <Preloader /> :
+                <UsersPage
+                    getNewUsers={GetNewUsers}
+                    toggleFollowStatus={ToggleFollowStatus}
+                    users={props.users}
+                    currentPage={props.currentPage}
+                    totalCount={props.totalCount}
+                    count={props.count}
+                    title={props.title}
+                    isAuth={props.isAuth}
+                />}
+        </div>
+    )
+}
 
 let mapStateToProps = state => ({
     users: state.usersPage.users,
