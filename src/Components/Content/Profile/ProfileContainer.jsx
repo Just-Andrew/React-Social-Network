@@ -1,11 +1,10 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { withRouter, Redirect } from 'react-router-dom'
 import Profile from './Profile'
 import { getUserProfile, setNewStatus } from '../../../Redux/profileReducer'
 import Preloader from '../../Preloader/Preloader'
-import withRedirect from '../../../HOCs/redirect'
 
 
 class ProfileContainer extends React.Component {
@@ -69,7 +68,6 @@ class ProfileContainer extends React.Component {
 }
 
 let mapStateToProps = state => ({
-    userId: state.profile.currentUserId,
     avatar: state.profile.avatar,
     fullName: state.profile.fullName,
     job: state.profile.lookingForAJob,
@@ -83,5 +81,4 @@ let mapStateToProps = state => ({
 export default compose(
     connect(mapStateToProps, { getUserProfile, setNewStatus }),
     withRouter,
-    // withRedirect
 )(ProfileContainer)
