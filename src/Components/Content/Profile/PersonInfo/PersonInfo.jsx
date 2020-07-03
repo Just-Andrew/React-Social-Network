@@ -12,12 +12,11 @@ const Status = props => {
     let [postInputValue, setPostInputValue ] = useState(status)
 
     useEffect(() => {
-        setStatus(props.status)
+            setStatus(props.status)
     })
 
     let onStatusPrint = e => {
         setPostInputValue(e.currentTarget.value)
-       
     }
 
     let ActivateEditMode = () => {
@@ -28,8 +27,8 @@ const Status = props => {
         setEditMode(false)
     }
 
-    let changeStatus = () => {
-        props.setNewStatus(status)
+    let changeStatus = e => {
+        props.setNewStatus(postInputValue)
     }
 
     return (

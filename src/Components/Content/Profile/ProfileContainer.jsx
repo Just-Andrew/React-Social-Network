@@ -6,65 +6,46 @@ import Profile from './Profile'
 import { getUserProfile, setNewStatus } from '../../../Redux/profileReducer'
 import Preloader from '../../Preloader/Preloader'
 
+const ProfileContainer = props => {
+    let [currentUserId, setCurrentUserId] = useState(props.currentUserId)
+    let [myProfile, setMyProfileValue] = useState(false)
+    let [status, setStatus] = useState(null)
 
-class ProfileContainer extends React.Component {
-
-    state = {
-        myId: this.props.myId,
-        currentUserId: this.props.currentUserId,
-        myProfile: false
-    }
-
-    toggleMyProfileValue = () => {
-        if (this.props.currentUserId === this.props.myId && this.props.isAuth === true) {
-            this.state.myProfile = true
+    let RegenerateCurrentPageData = () => {
+        if (props.currentUserId === props.myId && props.isAuth === true) {
+            setMyProfileValue(true)
         } else {
-            this.state.myProfile = false
+            setMyProfileValue(false)
+        }
+
+        if (status !== props.status) {
+            setStatus(props.status)
+        }
+
+        if (currentUserId !== props.match.params.id) {
+            setCurrentUserId(props.match.params.id)
+            props.getUserProfile(props.match.params.id)
         }
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        this.toggleMyProfileValue()
-        if (prevProps.status !== this.props.status) {
-            this.setState({
-                status: this.props.status
-            })
-        }
+    useEffect(() => RegenerateCurrentPageData())
 
-        if (prevProps.currentUserId !== this.props.currentUserId) {
-            this.setState({
-                currentUserId: this.props.currentUserId
-            })
-        }
-
-        if (prevProps.match.params.id !== this.props.match.params.id) {
-            this.props.getUserProfile(this.props.match.params.id)
-        }
-    }
-
-    componentDidMount() {
-        this.toggleMyProfileValue()
-        this.props.getUserProfile(this.props.match.params.id)
-    }
-
-    render() {
-        return (
-            <div>
-                {this.props.match.params.id === 'undefined' && <Redirect to='/login' />}
-                {this.props.loading ?
-                    <Preloader /> :
-                    <Profile
-                        avatar={this.props.avatar}
-                        fullName={this.props.fullName}
-                        job={this.props.job}
-                        status={this.props.status}
-                        setNewStatus={this.props.setNewStatus}
-                        isAuth={this.props.isAuth}
-                        myProfile={this.state.myProfile}
-                    />}
-            </div>
-        )
-    }
+    return (
+        <div>
+            {props.match.params.id === 'undefined' && <Redirect to='/login' />}
+            {props.loading ?
+                <Preloader /> :
+                <Profile
+                    avatar={props.avatar}
+                    fullName={props.fullName}
+                    job={props.job}
+                    status={props.status}
+                    setNewStatus={props.setNewStatus}
+                    isAuth={props.isAuth}
+                    myProfile={myProfile}
+                />}
+        </div>
+    )
 }
 
 let mapStateToProps = state => ({
