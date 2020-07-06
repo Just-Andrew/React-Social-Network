@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './UsersPage.module.css';
-import NoPhotoImage from '../../../assets/Pictures/NoPhotoImg.jpg'
-import { NavLink, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom'
+import User from './User';
 
 const Title = props => {
     return (
@@ -10,36 +10,16 @@ const Title = props => {
 }
 
 const Users = props => {
-    let users = props.users.map(u => {
-        return (
-            <div className={styles.userBlock} key={u.id}>
-                <div className={styles.avatarAndButton}>
-                    <div className={styles.avatar}>
-                        <img
-                            src={u.photos.large === null ? NoPhotoImage : u.photos.large}
-                            alt='' />
-                    </div>
-                    <button disabled={u.isButtonDisabled} onClick={() => { props.toggleFollowStatus(u.id, u.followed) }}>
-                        {u.followed === true ? 'Unfriend' : 'Add'}
-                    </button>
-                </div>
-                <div className={styles.userInfo}>
-
-                    <div className={styles.city}>{'Hell knows where (s)he\'s from'}</div>
-                    <NavLink to={`/profile/${u.id}`}>
-                        <div className={styles.userName}>{`${u.name}`}</div>
-                    </NavLink>
-                    <br />
-                    <br />
-                    <div className={styles.status}>
-                        {u.status === null ?
-                            <i className={styles.noStatus}>This user doesn't have any status</i> :
-                            u.status}
-                    </div>
-                </div>
-            </div>
-        );
-    })
+    let users = props.users.map(u =>
+        <User
+            toggleFollowStatus={props.toggleFollowStatus}
+            photo={u.photos.large}
+            isButtonDisabled={u.isButtonDisabled}
+            id={u.id}
+            status={u.status}
+            name={u.name}
+            followed={u.followed}
+        />)
 
     return (
         <div className={styles.users}>

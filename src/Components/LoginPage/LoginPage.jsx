@@ -19,7 +19,7 @@ const LoginForm = props => {
             <form onSubmit={handleSubmit(logIn)} className={styles.form1}>
                 <input
                     name='email'
-                    className={`${styles.un} ${errors.email && styles.error}`}
+                    className={`${styles.un} ${errors.email && styles.error} ${styles.inp}`}
                     type="email"
                     align="center"
                     placeholder="Email"
@@ -27,7 +27,7 @@ const LoginForm = props => {
                 />
                 <input
                     name='password'
-                    className={`${styles.pass}  ${errors.password && styles.error}`}
+                    className={`${styles.pass}  ${errors.password && styles.error} ${styles.inp}`}
                     type="password"
                     align="center"
                     placeholder="Password"

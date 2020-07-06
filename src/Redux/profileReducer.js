@@ -8,31 +8,27 @@ const toggleLoader = val => ({ type: 'TOGGLE-LOADER', val })
 export const updateStatusText = text => ({ type: 'UPDATE-STATUS-TEXT', text })
 
 /*Thunk Creators*/
-export const getUserProfile = id => dispatch => {
+export const getUserProfile = id => async dispatch => {
     dispatch(toggleLoader(true))
-    profileAPI.getProfile(id)
-        .then(res => {
-            dispatch(toggleLoader(false))
-            dispatch(setCurrentUserData({
-                userId: res.data.userId,
-                avatar: res.data.photos.large,
-                fullName: res.data.fullName,
-                job: res.data.lookingForAJob
-            }))
-        })
-    profileAPI.getProfileStatus(id)
-        .then(resp => {
-            dispatch(setCurrentUserStatus(resp.data))
-        })
+    let res = await profileAPI.getProfile(id)
+    let status = await profileAPI.getProfileStatus(id)
+    dispatch(setCurrentUserStatus(status.data))
+    dispatch(setCurrentUserData({
+        userId: res.data.userId,
+        avatar: res.data.photos.large,
+        fullName: res.data.fullName,
+        job: res.data.lookingForAJob
+    }))
+    dispatch(toggleLoader(false))
+
+
 }
 
-export const setNewStatus = status => dispatch => {
+export const setNewStatus = status => async dispatch => {
     dispatch(toggleLoader(true))
-    profileAPI.setNewStatus(status)
-    .then(() => {
-        dispatch(setCurrentUserStatus(status))
-        dispatch(toggleLoader(false))
-    })
+   await profileAPI.setNewStatus(status)
+            dispatch(setCurrentUserStatus(status))
+            dispatch(toggleLoader(false))
 }
 
 let InitialState = {
@@ -45,18 +41,18 @@ let InitialState = {
     posts: [
         {
             id: 1,
-            'text': 'Here is supposed to be sth... sooo',
-            'likes': 7
+            text: 'Here is supposed to be sth... sooo',
+            likes: 7
         },
         {
             id: 2,
-            'text': 'Hi there!',
-            'likes': 0
+            text: 'Hi there!',
+            likes: 0
         },
         {
             id: 3,
-            'text': 'The Earth is flat!!!',
-            'likes': 11
+            text: 'The Earth is flat!!!',
+            likes: 11
         }
     ]
 }

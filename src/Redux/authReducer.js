@@ -26,24 +26,20 @@ export const authMe = () => dispatch => {
         })
 }
 
-export const logIn = (email, password) => dispatch => {
-    authAPI.logIn(email, password)
-        .then((res2) => {
-            headerAPI.getAuthorizedPersonData()
-                .then(res => {
-                    if (res.resultCode === 0) {
-                        dispatch(setError(false))
-                        dispatch(setCurrentUserInfo({
-                            myId: res.data.id,
-                            login: res.data.login,
-                            email: res.data.email,
-                            isAuth: true
-                        }))
-                    } else {
-                        dispatch(setError(true))
-                    }
-                })
-        })
+export const logIn = (email, password) => async dispatch => {
+    await authAPI.logIn(email, password)
+    let res = await headerAPI.getAuthorizedPersonData()
+    if (res.resultCode === 0) {
+        dispatch(setError(false))
+        dispatch(setCurrentUserInfo({
+            myId: res.data.id,
+            login: res.data.login,
+            email: res.data.email,
+            isAuth: true
+        }))
+    } else {
+        dispatch(setError(true))
+    }
 }
 
 export const logOut = () => dispatch => {

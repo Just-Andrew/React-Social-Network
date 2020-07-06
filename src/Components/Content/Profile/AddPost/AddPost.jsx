@@ -3,7 +3,6 @@ import styles from "./AddPost.module.css";
 import { Field, reduxForm } from 'redux-form';
 
 let AddPost = (props) => {
-
     let onSubmit = data => {
         if (data.postMessage !== undefined) {
             props.addPost(data.postMessage)

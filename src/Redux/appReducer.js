@@ -1,4 +1,4 @@
-import { authMe } from "./authReducer"
+ import { authMe } from "./authReducer"
 
 /*Action Creators */
 const setInitializationStatus = () => ({type: 'SET-INITIALIZATION-STATUS'})
@@ -25,4 +25,4 @@ let appReducer = (state = InitialState, action) => {
     }
     return state
 }
-export default appReducer;
+export default appReducer; 

@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import styles from "./PersonInfo.module.css"
-import icon from '../../../../assets/Pictures/gps_icon.png'
 import NoPhotoImg from '../../../../assets/Pictures/NoPhotoImg.jpg'
 import tick from '../../../../assets/Pictures/tick.png'
 import cross from '../../../../assets/Pictures/cross.png'
-import { profileAPI } from '../../../../API/api'
 
 const Status = props => {
     let [editMode, setEditMode] = useState(false)
     let [status, setStatus] = useState(props.status)
-    let [postInputValue, setPostInputValue ] = useState(status)
+    let [postInputValue, setPostInputValue] = useState(status)
 
     useEffect(() => {
-            setStatus(props.status)
+        setStatus(props.status)
     })
 
     let onStatusPrint = e => {
@@ -44,7 +42,7 @@ const Status = props => {
                         <input type='text'
                             onChange={onStatusPrint}
                             value={postInputValue}
-                            onFocus={()=> console.log('focus')} />
+                            onFocus={() => console.log('focus')} />
                         <button onClick={changeStatus}>save</button>
                         <button onClick={DisableEditMode} >X</button>
                     </>
@@ -56,8 +54,6 @@ const Status = props => {
         </>
     )
 }
-
-
 
 const PersonInfo = props => {
     return (

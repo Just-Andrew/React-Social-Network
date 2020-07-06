@@ -6,7 +6,8 @@ import Profile from './Profile'
 import { getUserProfile, setNewStatus } from '../../../Redux/profileReducer'
 import Preloader from '../../Preloader/Preloader'
 
-const ProfileContainer = props => {
+
+const ProfileContainer = /* React.memo( */props => {
     let [currentUserId, setCurrentUserId] = useState(props.currentUserId)
     let [myProfile, setMyProfileValue] = useState(false)
     let [status, setStatus] = useState(null)
@@ -14,6 +15,8 @@ const ProfileContainer = props => {
     let RegenerateCurrentPageData = () => {
         if (props.currentUserId === props.myId && props.isAuth === true) {
             setMyProfileValue(true)
+
+            console.log('rerender')
         } else {
             setMyProfileValue(false)
         }
@@ -46,7 +49,7 @@ const ProfileContainer = props => {
                 />}
         </div>
     )
-}
+}/* ) */
 
 let mapStateToProps = state => ({
     avatar: state.profile.avatar,
@@ -62,4 +65,5 @@ let mapStateToProps = state => ({
 export default compose(
     connect(mapStateToProps, { getUserProfile, setNewStatus }),
     withRouter,
+    React.memo
 )(ProfileContainer)

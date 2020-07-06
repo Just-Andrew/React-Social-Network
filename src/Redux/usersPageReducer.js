@@ -10,35 +10,30 @@ const toggleButtonStatus = (id, val) => ({ type: 'TOGGLE-BUTTON-STATUS', id, val
 
 
 /*Thunk Creators*/
-export const getUsers = (friend, count, page) => dispatch => {
+export const getUsers = (friend, count, page) => async dispatch => {
     dispatch(toggleLoader(true))
     dispatch(setCurrentPage(page))
-    usersAPI.getUsers(friend, count, page)
-        .then(response => {
-            dispatch(setUsers(response.data.items))
-            dispatch(toggleLoader(false))
-            if (response.data.totalCount > 50) {
-                dispatch(setTotalCount(50))
-            } else {
-                dispatch(setTotalCount(response.data.totalCount))
-            }
-        })
+    let res = await usersAPI.getUsers(friend, count, page)
+    dispatch(setUsers(res.data.items))
+    dispatch(toggleLoader(false))
+    if (res.data.totalCount > 50) {
+        dispatch(setTotalCount(50))
+    } else {
+        dispatch(setTotalCount(res.data.totalCount))
+    }
+
 }
 
-export const changeFollowStatus = (id, val) => dispatch => {
+export const changeFollowStatus = (id, val) => async dispatch => {
     dispatch(toggleButtonStatus(id, true))
+    await usersAPI.unfollow(id)
     if (val) {
-        usersAPI.unfollow(id)
-            .then(res2 => {
-                dispatch(toggleFollowStatus(id, false))
-                dispatch(toggleButtonStatus(id, false))
-            })
+        dispatch(toggleFollowStatus(id, false))
+        dispatch(toggleButtonStatus(id, false))
     } else {
-        usersAPI.follow(id)
-            .then(res2 => {
-                dispatch(toggleFollowStatus(id, true))
-                dispatch(toggleButtonStatus(id, false))
-            })
+        await usersAPI.follow(id)
+        dispatch(toggleFollowStatus(id, true))
+        dispatch(toggleButtonStatus(id, false))
     }
 }
 

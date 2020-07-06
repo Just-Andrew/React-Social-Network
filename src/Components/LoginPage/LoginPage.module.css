@@ -21,6 +21,7 @@
     border-radius: 1.5em;
     box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 1);
     text-align: center;
+    background: url('https://wallpapersmug.com/download/2932x2932/995dc5/winter-evening-beautiful-sky.jpg') no-repeat;
 }
 
 .sign {
@@ -112,4 +113,8 @@ p a {
 .errorMsg {
     color: red;
     font-size: 20px;
+}
+
+.inp {
+    color: orangered;
 }

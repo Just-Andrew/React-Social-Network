@@ -1,0 +1,70 @@
+.userBlock {
+    text-align: center;
+    margin-bottom: -10px;
+ }
+
+ .avatarAndButton {
+    width: 90px;
+    display: inline-block;
+}
+
+.avatarAndButton button {
+    height: 25px;
+    width: 90px;
+    border-radius: 10px;
+    border: none;
+    background-color: steelblue;
+    box-shadow: 10px 10px 7px rgba(0, 0, 0, .3);
+    outline: none;
+}
+
+.avatar img {
+    width: 90px;
+    height: 90px;
+}
+
+.avatar {
+    width: 90px;
+    height: 90px;
+    overflow: hidden;
+    border-radius: 100%;
+    margin-bottom: 10px;
+    box-shadow: 10px 10px 7px rgba(0, 0, 0, .3);
+}
+
+.userInfo {
+    display: inline-block;
+    width: 450px;
+    max-height: 120px;
+    position: relative;
+    background-color: #a3a9d4;
+    top: -50px;
+    margin-left: 25px;
+    border-radius: 20px;
+    font-size: 17px;
+    color: #093d67;
+    font-weight: bold;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: left;
+    box-shadow: 10px 10px 7px rgba(0, 0, 0, .3);
+}
+
+.city {
+    float: right;
+}
+
+.userName {
+    float: left;
+}
+
+.status {
+    float:left;
+    max-width: 350px;
+}
+
+.noStatus {
+    color: black;
+    font-size: 15px;
+    font-weight: normal;
+}
