@@ -35,6 +35,7 @@ const UsersPageContainer = props => {
                     count={props.count}
                     title={props.title}
                     isAuth={props.isAuth}
+                    friend={props.friend}
                 />}
         </div>
     )

@@ -16,11 +16,12 @@ export const getUsers = (friend, count, page) => async dispatch => {
     let res = await usersAPI.getUsers(friend, count, page)
     dispatch(setUsers(res.data.items))
     dispatch(toggleLoader(false))
-    if (res.data.totalCount > 50) {
+    /* if (res.data.totalCount > 50) {
         dispatch(setTotalCount(50))
     } else {
         dispatch(setTotalCount(res.data.totalCount))
-    }
+    } */
+    dispatch(setTotalCount(res.data.totalCount))
 
 }
 
