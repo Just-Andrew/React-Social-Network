@@ -5,8 +5,8 @@
 .background {
     width: 1020px;
     height: 200px;
-    background: url('https://www.nastol.com.ua/pic/201303/1920x1200/nastol.com.ua-42958.jpg');
-    /* -webkit-background-size: cover; */
+    background: url('C:/WinFile/File/React-Social-Network/src/assets/Pictures/ProfilePageBG.jpg');
+    background-size: cover;
 }
 
 .aboutPerson {

@@ -18,7 +18,7 @@ const User = props => {
             </div>
             <div className={styles.userInfo}>
 
-                <div className={styles.city}>{'Hell knows where (s)he\'s from'}</div>
+                <div className={styles.city}>{'Russia'}</div>
                 <NavLink to={`/profile/${props.id}`}>
                     <div className={styles.userName}>{`${props.name}`}</div>
                 </NavLink>

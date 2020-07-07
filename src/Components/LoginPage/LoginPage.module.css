@@ -6,11 +6,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: url('C:/WinFile/File/social_network/React-Social-Network/src/assets/Pictures/LoginPageBG.jpg') no-repeat;
+    background: url('C:/WinFile/File/React-Social-Network/src/assets/Pictures/LoginPageBG.jpg') no-repeat;
     background-size: 100%;
-    -moz-background-size: 100%;
+  /*   -moz-background-size: 100%;
     -webkit-background-size: 100%;
-    -o-background-size: 100%;
+    -o-background-size: 100%; */
 }
 
 .main {
@@ -21,7 +21,6 @@
     border-radius: 1.5em;
     box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 1);
     text-align: center;
-    /*     background: url('https://wallpapersmug.com/download/2932x2932/995dc5/winter-evening-beautiful-sky.jpg') no-repeat; */
     background-color: rgba(0, 0, 0, .851);
 }
 
