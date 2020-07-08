@@ -1,9 +1,13 @@
 .userBlock {
     text-align: center;
     margin-bottom: -10px;
- }
+}
 
- .avatarAndButton {
+.userBlockWithNoButton {
+    margin-bottom: 7.5px;
+}
+
+.avatarAndButton {
     width: 90px;
     display: inline-block;
 }
@@ -59,7 +63,7 @@
 }
 
 .status {
-    float:left;
+    float: left;
     max-width: 350px;
 }
 

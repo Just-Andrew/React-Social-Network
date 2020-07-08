@@ -37,7 +37,7 @@
     height: 35px;
     border-radius: 100%;
     overflow: hidden;
-    display: inline-block
+    display: inline-block;
 }
 
 .avatar img {

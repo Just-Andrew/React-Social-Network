@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from "./Header.module.css";
 import { NavLink } from 'react-router-dom';
-import NoPhotoImg from '../../assets/Pictures/NoPhotoImg.jpg'
+import NoPhotoImg from '../../../assets/Pictures/NoPhotoImg.jpg'
 
 const Header = props => {
     return (

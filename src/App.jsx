@@ -1,17 +1,19 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Suspense } from 'react'
 import { Route } from 'react-router-dom'
-import Navbar from './Components/Navbar/Navbar'
-import MessagesPage from './Components/Content/MessagesPage/MessagesPage'
+import Navbar from './Components/common/Navbar/Navbar'
 import './App.css'
-import UsersPageContainer from './Components/Content/UsersPage/UsersPageContainer'
-import ProfileContainer from './Components/Content/Profile/ProfileContainer'
-import HeaderContainer from './Components/Header/HeaderContainer'
-import LoginPage from './Components/LoginPage/LoginPage'
+import UsersPageContainer from './Components/UsersPage/UsersPageContainer'
+import ProfileContainer from './Components/Profile/ProfileContainer'
+import HeaderContainer from './Components/common/Header/HeaderContainer'
 import { initialize } from './Redux/appReducer'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { compose } from 'redux'
-import Preloader from './Components/Preloader/Preloader'
+import Preloader from './Components/common/Preloader/Preloader'
+//import MessagesPage from './Components/Content/MessagesPage/MessagesPage'
+//import LoginPage from './Components/LoginPage/LoginPage'
+const MessagesPage = React.lazy(() => import('./Components/MessagesPage/MessagesPage'))
+const LoginPage = React.lazy(() => import('./Components/LoginPage/LoginPage'))
 
 const App = props => {
   useEffect(() => {
@@ -32,14 +34,16 @@ const App = props => {
           <Route path="/friends"
             render={() => <UsersPageContainer friend={true} title='People You added' />} />
 
-          <Route path="/dialogs"
-            render={() => <MessagesPage />} />
+          <Suspense fallback={<Preloader />}>
+            <Route path="/dialogs"
+              render={() => <MessagesPage />} />
+            <Route path="/login"
+              render={() => <LoginPage />} />
+          </Suspense >
 
           <Route path="/users"
             render={() => <UsersPageContainer friend={false} title='All registered users' />} />
 
-          <Route path="/login"
-            render={() => <LoginPage />} />
         </>
         : <Preloader />}
     </div>

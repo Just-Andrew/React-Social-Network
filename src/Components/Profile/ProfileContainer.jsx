@@ -3,11 +3,11 @@ import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { withRouter, Redirect } from 'react-router-dom'
 import Profile from './Profile'
-import { getUserProfile, setNewStatus } from '../../../Redux/profileReducer'
-import Preloader from '../../Preloader/Preloader'
+import { getUserProfile, setNewStatus } from '../../Redux/profileReducer'
+import Preloader from '../common/Preloader/Preloader'
 
 
-const ProfileContainer = /* React.memo( */props => {
+const ProfileContainer = props => {
     let [currentUserId, setCurrentUserId] = useState(props.currentUserId)
     let [myProfile, setMyProfileValue] = useState(false)
     let [status, setStatus] = useState(null)
@@ -49,7 +49,7 @@ const ProfileContainer = /* React.memo( */props => {
                 />}
         </div>
     )
-}/* ) */
+}
 
 let mapStateToProps = state => ({
     avatar: state.profile.avatar,

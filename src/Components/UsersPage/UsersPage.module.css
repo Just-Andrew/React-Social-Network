@@ -21,29 +21,5 @@
     margin-bottom: 20px;
 }
 
-.selectedPage {
-    font-weight: bold;
-    color: steelblue;
-}
 
-.pages {
-    text-align: center;
-    cursor: pointer;
-}
-/* experemental paginator */
-.currentPageInput {
-    width: 50px;
-    border: none;
-    outline: none;
-    font-size: 22px;
-    color: steelblue;
-    text-align: center;
-    cursor: pointer;
-}
-.pageTubmler {
-    border: none;
-    outline: none;
-    color:  rgb(91, 91, 216);
-    font-size: 22px;
-}
 

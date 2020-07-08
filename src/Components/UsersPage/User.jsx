@@ -1,20 +1,22 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import styles from './User.module.css'
-import NoPhotoImage from '../../../assets/Pictures/NoPhotoImg.jpg'
+import NoPhotoImage from '../../assets/Pictures/NoPhotoImg.jpg'
 
 const User = props => {
+    console.log(props.isAuth)
     return (
-        <div className={styles.userBlock} key={props.id}>
+        <div className={`${styles.userBlock} ${!props.isAuth && styles.userBlockWithNoButton}`} key={props.id}>
             <div className={styles.avatarAndButton}>
                 <div className={styles.avatar}>
                     <img
                         src={props.photo === null ? NoPhotoImage : props.photo}
                         alt='' />
                 </div>
-                <button disabled={props.isButtonDisabled} onClick={() => { props.toggleFollowStatus(props.id, props.followed) }}>
+                {props.isAuth 
+                ?<button disabled={props.isButtonDisabled} onClick={() => { props.toggleFollowStatus(props.id, props.followed) }}>
                     {props.followed === true ? 'Unfriend' : 'Add'}
-                </button>
+                </button> : ''}
             </div>
             <div className={styles.userInfo}>
 

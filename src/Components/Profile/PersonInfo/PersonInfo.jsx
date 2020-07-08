@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import styles from "./PersonInfo.module.css"
-import NoPhotoImg from '../../../../assets/Pictures/NoPhotoImg.jpg'
-import tick from '../../../../assets/Pictures/tick.png'
-import cross from '../../../../assets/Pictures/cross.png'
+import NoPhotoImg from '../../../assets/Pictures/NoPhotoImg.jpg'
+import tick from '../../../assets/Pictures/tick.png'
+import cross from '../../../assets/Pictures/cross.png'
 
 const Status = props => {
     let [editMode, setEditMode] = useState(false)

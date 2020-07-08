@@ -1,10 +1,8 @@
 import React from 'react'
 import styles from './Navbar.module.css'
-import { NavLink, Redirect } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { logOut } from '../../Redux/authReducer'
-import { render } from '@testing-library/react'
-import Preloader from '../Preloader/Preloader'
+import { logOut } from '../../../Redux/authReducer'
 
 const Navbar = props => {
     return (

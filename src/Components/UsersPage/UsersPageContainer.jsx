@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { changeFollowStatus, getUsers } from "../../../Redux/usersPageReducer";
+import { changeFollowStatus, getUsers } from "../../Redux/usersPageReducer";
 import UsersPage from './UsersPage';
-import Preloader from '../../Preloader/Preloader';
+import Preloader from '../../Components/common/Preloader/Preloader';
 
 const UsersPageContainer = props => {
     let [currentPage, setCurrentPage] = useState(0)

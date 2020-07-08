@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { compose } from 'redux'
-import { authMe } from '../../Redux/authReducer'
+import { authMe } from '../../../Redux/authReducer'
 import Header from './Header'
 
 const HeaderContainer = props => {

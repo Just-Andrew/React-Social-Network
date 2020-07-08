@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './Posts.module.css'
-import NoPhotoImg from '../../../../assets/Pictures/NoPhotoImg.jpg'
+import NoPhotoImg from '../../../assets/Pictures/NoPhotoImg.jpg'
 import { connect } from 'react-redux';
 
 const Posts = props => {
