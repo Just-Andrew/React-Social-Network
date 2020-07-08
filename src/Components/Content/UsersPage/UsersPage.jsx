@@ -100,8 +100,10 @@ const PaginatorForHugeNumbers = props => {
     }, [incrementDisability, decrementDisability])
 
     let changeCurrentPage = () => {
-        setCurrentPage(currentPageInputValue)
-        props.getNewUsers(currentPageInputValue)
+        if (currentPageInputValue !== currentPage) {
+            setCurrentPage(currentPageInputValue)
+            props.getNewUsers(currentPageInputValue)
+        }
     }
 
     let onPagePrint = (e) => {
@@ -124,8 +126,10 @@ const PaginatorForHugeNumbers = props => {
 
     return (
         <div className={styles.paginator}>
-            <button className={styles.pageTubmler} disabled={decrementDisability}
-                onClick={() => de_or_in__crementCurrentPage(false)}>◄</button>
+            {!decrementDisability
+                ? <button className={styles.pageTubmler}
+                    onClick={() => de_or_in__crementCurrentPage(false)}>◄</button>
+                : ''}
             <input min='1' max='4'
                 className={styles.currentPageInput}
                 value={currentPageInputValue}
@@ -134,8 +138,10 @@ const PaginatorForHugeNumbers = props => {
                 onFocus={() => { console.log('focus') }}
                 onBlur={changeCurrentPage}
             />
-            <button className={styles.pageTubmler} disabled={incrementDisability}
-                onClick={() => de_or_in__crementCurrentPage(true)}>►</button>
+            {!incrementDisability
+                ? <button className={styles.pageTubmler} disabled={incrementDisability}
+                    onClick={() => de_or_in__crementCurrentPage(true)}>►</button>
+                : ''}
         </div>
     )
 }
