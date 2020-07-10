@@ -15,6 +15,9 @@ const Profile = props => {
                 setNewStatus={props.setNewStatus}
                 isAuth={props.isAuth}
                 myProfile={props.myProfile}
+                avatarEditMode={props.avatarEditMode}
+                toggleAvatarEditMode={props.toggleAvatarEditMode}
+                updateAvatar={props.updateAvatar}
             />
             <PostsContainer />
             {props.myProfile === true

@@ -1,0 +1,39 @@
+.avatarInput {
+    position: relative;
+    top: -5px;
+    left: 15px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.lbl {
+    border: 1px solid #ccc;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+.controlPanel {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.closeButton {
+    color: white;
+    background-color: red;
+    outline: none;
+    height: 25px;
+    width: 25px;
+}
+
+.saveButton {
+    color: white;
+    background-color: green;
+    outline: none;
+    height: 25px;
+    width: 25px;
+    margin-right: 5px;
+}

@@ -1,0 +1,29 @@
+.status {
+    position: relative;
+    top: -5px;
+    cursor: pointer;
+}
+
+.statusBlock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.closeButton {
+    color: white;
+    background-color: red;
+    outline: none;
+    height: 25px;
+    width: 25px;
+}
+
+.saveButton {
+    color: white;
+    background-color: green;
+    outline: none;
+    height: 25px;
+    width: 25px;
+    margin-right: 5px;
+}

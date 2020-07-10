@@ -6,6 +6,8 @@ const setCurrentUserData = data => ({ type: 'SET-CURRENT-USER-DATA', data })
 const setCurrentUserStatus = status => ({ type: 'SET-CURRENT-USER-STATUS', status })
 const toggleLoader = val => ({ type: 'TOGGLE-LOADER', val })
 export const updateStatusText = text => ({ type: 'UPDATE-STATUS-TEXT', text })
+export const toggleAvatarEditMode = val => ({type: 'TOGGLE-AVATAR-EDIT-MODE', val})
+const setNewAvatar = avatar => ({type: 'SET-NEW-AVATAR', avatar})
 
 /*Thunk Creators*/
 export const getUserProfile = id => async dispatch => {
@@ -31,7 +33,15 @@ export const setNewStatus = status => async dispatch => {
             dispatch(toggleLoader(false))
 }
 
+export const updateAvatar = file => async dispatch => {
+    toggleLoader(true)
+    let res = await profileAPI.updateAvatar(file)
+    dispatch(setNewAvatar(res.data.data.photos.large))
+    toggleLoader(true)
+}
+
 let InitialState = {
+    avatarEditMode: false,
     currentUserId: null,
     fullName: null,
     avatar: null,
@@ -83,6 +93,12 @@ let profileReducer = (state = InitialState, action) => {
 
         case 'UPDATE-STATUS-TEXT':
             return { ...state, status: action.text }
+      
+            case 'TOGGLE-AVATAR-EDIT-MODE':
+            return { ...state, avatarEditMode: action.val }
+            
+            case 'SET-NEW-AVATAR':
+            return { ...state, avatar: action.avatar }
     }
     return state
 }

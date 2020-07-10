@@ -3,7 +3,7 @@ import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { withRouter, Redirect } from 'react-router-dom'
 import Profile from './Profile'
-import { getUserProfile, setNewStatus } from '../../Redux/profileReducer'
+import { getUserProfile, setNewStatus, updateAvatar, toggleAvatarEditMode } from '../../Redux/profileReducer'
 import Preloader from '../common/Preloader/Preloader'
 
 
@@ -46,6 +46,9 @@ const ProfileContainer = props => {
                     setNewStatus={props.setNewStatus}
                     isAuth={props.isAuth}
                     myProfile={myProfile}
+                    avatarEditMode={props.avatarEditMode}
+                    toggleAvatarEditMode={props.toggleAvatarEditMode}
+                    updateAvatar={props.updateAvatar}
                 />}
         </div>
     )
@@ -59,11 +62,12 @@ let mapStateToProps = state => ({
     loading: state.profile.loading,
     currentUserId: state.profile.currentUserId,
     myId: state.authorization.myId,
-    isAuth: state.authorization.isAuth
+    isAuth: state.authorization.isAuth,
+    avatarEditMode: state.profile.avatarEditMode
 })
 
 export default compose(
-    connect(mapStateToProps, { getUserProfile, setNewStatus }),
+    connect(mapStateToProps, { getUserProfile, setNewStatus, updateAvatar, toggleAvatarEditMode }),
     withRouter,
     React.memo
 )(ProfileContainer)

@@ -33,6 +33,15 @@ export const profileAPI = {
 
     setNewStatus(status) {
         return Instance.put(`profile/status`, { status: status })
+    },
+    updateAvatar(file) {
+        let formData = new FormData()
+        formData.append('image', file)
+        return Instance.put(`profile/photo`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
     }
 }
 
