@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Suspense } from 'react'
+import React, { useEffect, Suspense } from 'react'
 import { Route } from 'react-router-dom'
 import Navbar from './Components/common/Navbar/Navbar'
 import './App.css'
@@ -10,6 +10,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { compose } from 'redux'
 import Preloader from './Components/common/Preloader/Preloader'
+import EditProfile from './Components/EditProfile/EditProfile'
 //import MessagesPage from './Components/Content/MessagesPage/MessagesPage'
 //import LoginPage from './Components/LoginPage/LoginPage'
 const MessagesPage = React.lazy(() => import('./Components/MessagesPage/MessagesPage'))
@@ -39,6 +40,8 @@ const App = props => {
               render={() => <MessagesPage />} />
             <Route path="/login"
               render={() => <LoginPage />} />
+            <Route path="/editProfile"
+              render={() => <EditProfile />} />
           </Suspense >
 
           <Route path="/users"

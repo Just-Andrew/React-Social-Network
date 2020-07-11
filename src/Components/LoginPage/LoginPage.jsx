@@ -2,13 +2,12 @@ import React from 'react'
 import styles from './LoginPage.module.css'
 import { connect } from 'react-redux'
 import { useForm } from 'react-hook-form'
-import { authMe } from '../../Redux/authReducer'
-import { logIn } from '../../Redux/authReducer'
+import { logIn, authMe } from '../../Redux/authReducer'
 import { Redirect } from 'react-router-dom'
 
 const LoginForm = props => {
     const { register, handleSubmit, errors } = useForm();
-    const logIn= data => {
+    const logIn = data => {
         props.logIn(data.email, data.password)
     }
 
@@ -34,8 +33,9 @@ const LoginForm = props => {
                     ref={register({ required: true, minLength: 8 })}
                 />
                 <button className={styles.submit}
-                    align="center" disabled={errors === undefined ? true : false}
-                    onClick={authMe}>Sign in</button>
+                    align="center" disabled={errors === undefined ? true : false}>
+                    Sign in
+                </button>
 
                 <p className={styles.forgot} align="center"><a href="#" onClick={() => { alert('Not my problem :P') }}>Forgot Password?</a></p>
             </form>
@@ -49,7 +49,7 @@ const LoginPage = props => {
         props.isAuth
             ? <Redirect to={`/profile/${props.myId}`} />
             : <div className={styles.LoginPage}>
-                <LoginForm logIn={props.logIn} error={props.error} />
+                <LoginForm logIn={props.logIn} authMe={props.authMe} error={props.error} />
             </div>
 
     )
@@ -61,4 +61,4 @@ let mapStateToProps = state => ({
     error: state.authorization.error
 })
 
-export default connect(mapStateToProps, { logIn })(LoginPage)
+export default connect(mapStateToProps, { logIn, authMe })(LoginPage)

@@ -15,8 +15,6 @@ const ProfileContainer = props => {
     let RegenerateCurrentPageData = () => {
         if (props.currentUserId === props.myId && props.isAuth === true) {
             setMyProfileValue(true)
-
-            console.log('rerender')
         } else {
             setMyProfileValue(false)
         }

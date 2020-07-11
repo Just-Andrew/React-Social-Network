@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import styles from './PersonInfo.module.css'
 import Avatar from './Avatar/Avatar'
 import Status from './Status/Status'
 import tick from '../../../assets/Pictures/tick.png'
 import cross from '../../../assets/Pictures/cross.png'
 import UpdateAvatarForm from './UpdateAvatarForm/UpdateAvatarForm'
-
-
 
 const PersonInfo = props => {
     return (
@@ -16,7 +14,7 @@ const PersonInfo = props => {
                 <Avatar avatar={props.avatar} myProfile={props.myProfile}
                     toggleAvatarEditMode={props.toggleAvatarEditMode}
                     avatarEditMode={props.avatarEditMode} />
-                {!props.avatarEditMode || !props.myProfile
+                {!props.avatarEditMode
                     ? <div className={styles.info}>
                         <div className={styles.username}><b> {props.fullName} </b></div>
                         <div className={styles.job}>Avaliable for a hire
@@ -36,7 +34,5 @@ const PersonInfo = props => {
 
     )
 }
-
-
 
 export default PersonInfo;

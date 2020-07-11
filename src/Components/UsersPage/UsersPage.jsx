@@ -14,7 +14,7 @@ const Title = props => {
 
 const Users = props => {
     let users = props.users.map(u =>
-        <User
+        <User key ={u.id}
             toggleFollowStatus={props.toggleFollowStatus}
             photo={u.photos.large}
             isButtonDisabled={u.isButtonDisabled}

@@ -8,13 +8,9 @@
     justify-content: center;
     background: url('C:/WinFile/File/React-Social-Network/src/assets/Pictures/LoginPageBG.jpg') no-repeat;
     background-size: 100%;
-  /*   -moz-background-size: 100%;
-    -webkit-background-size: 100%;
-    -o-background-size: 100%; */
 }
 
 .main {
-    background-color: #e0dede;
     width: 400px;
     min-height: 400px;
     margin: 7em auto;
@@ -116,5 +112,5 @@ p a {
 }
 
 .inp {
-    color: orangered;
+    color: white;
 }

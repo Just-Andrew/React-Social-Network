@@ -10,7 +10,6 @@ const Paginator = props => {
 
 
     useEffect(() => {
-        console.log('sth has been changed')
         if (parseInt(currentPage) < 2) {
             setDecrementDisabilityValue(true)
         }
@@ -18,7 +17,7 @@ const Paginator = props => {
         if (parseInt(currentPage) === pagesAmount) {
             setIncrementDisabilityValue(true)
         }
-    }, [incrementDisability, decrementDisability])
+    }, [incrementDisability, decrementDisability, props.currentPage])
 
     let changeCurrentPage = () => {
         if (currentPageInputValue !== currentPage) {

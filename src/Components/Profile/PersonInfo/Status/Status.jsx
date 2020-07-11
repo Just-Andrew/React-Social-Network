@@ -1,5 +1,7 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import styles from './Status.module.css'
+import { NavLink } from 'react-router-dom'
+import editProfileIcon from '../../../../assets/Pictures/edit_profile_icon.png'
 
 const Status = props => {
     let [editMode, setEditMode] = useState(false)
@@ -34,6 +36,11 @@ const Status = props => {
                         Status: {status !== null
                             ? status
                             : <b>Change your status</b>}
+                        <div className={styles.editProfileBtn}>
+                            <NavLink to='/editProfile'>
+                                <img src={editProfileIcon} alt='' />
+                            </NavLink>
+                        </div>
                     </div>
                     : <div className={styles.statusBlock}>
                         <input type='text'

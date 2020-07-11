@@ -4,7 +4,6 @@ import styles from './User.module.css'
 import NoPhotoImage from '../../assets/Pictures/NoPhotoImg.jpg'
 
 const User = props => {
-    console.log(props.isAuth)
     return (
         <div className={`${styles.userBlock} ${!props.isAuth && styles.userBlockWithNoButton}`} key={props.id}>
             <div className={styles.avatarAndButton}>

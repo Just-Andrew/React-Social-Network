@@ -37,6 +37,8 @@ export const logIn = (email, password) => async dispatch => {
             email: res.data.email,
             isAuth: true
         }))
+        let avatar = await headerAPI.getAvatar(res.data.id)
+        dispatch(setCurrentUserAvatar(avatar))
     } else {
         dispatch(setError(true))
     }
@@ -47,8 +49,9 @@ export const logOut = () => dispatch => {
         myId: undefined,
         login: null,
         email: null,
-        isAuth: false
+        isAuth: false,
     }))
+    dispatch(setCurrentUserAvatar(null))
     authAPI.logOut()
 }
 
