@@ -9,9 +9,10 @@ input[type="file"] {
 }
 
 .lbl {
-    border: 1px solid #ccc;
+    border: 1px solid steelblue;
     padding: 6px 12px;
     cursor: pointer;
+    color: steelblue;
 }
 
 .controlPanel {

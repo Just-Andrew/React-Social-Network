@@ -63,14 +63,17 @@ export const headerAPI = {
 }
 
 export const authAPI = {
-    logIn(email, password, rememberMe = false) {
-        return Instance.post(`auth/login`, {
-            email,
-            password,
-            rememberMe
-        })
+    logIn(data) {
+        return Instance.post(`auth/login`, { ...data })
     },
+    
     logOut() {
         return Instance.delete(`auth/login`)
+    }
+}
+
+export const securityAPI = {
+    getCaptcha() {
+        return Instance.get(`security/get-captcha-url`)
     }
 }

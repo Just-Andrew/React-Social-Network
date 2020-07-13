@@ -18,7 +18,7 @@ const UpdateAvatarForm = props => {
 
     return (
         <div className={styles.avatarInput}>
-            <label for='fileForm' className={styles.lbl}>{btnText}</label>
+            <label htmlFor='fileForm' className={styles.lbl}>{btnText}</label>
             <input id='fileForm' type='file' onChange={onFileGot} ref={input} />
             <div className={styles.controlPanel}>
                 <button onClick={setAvatar}

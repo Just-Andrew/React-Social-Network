@@ -1,46 +1,44 @@
-import { headerAPI, authAPI } from '../API/api'
+import { headerAPI, authAPI, securityAPI } from '../API/api'
 
 /*Action Creators */
 const setCurrentUserInfo = data => ({ type: 'SET-CURRENT-USER-INFO', data })
 const setCurrentUserAvatar = avatar => ({ type: 'SET-CURRENT-USER-AVATAR', avatar })
 const setAuthStatus = () => ({ type: 'SET-AUTH-STATUS' })
-const setError = (val) => ({ type: 'SET-ERROR', val })
-
+export const setError = msg => ({ type: 'SET-ERROR', msg })
+export const setCaptchaUrl = url => ({ type: 'SET-CAPTCHA-URL', url })
 /*Thunks Creators*/
-export const authMe = () => dispatch => {
-    return headerAPI.getAuthorizedPersonData()
-        .then(res => {
-            dispatch(setCurrentUserInfo({
-                myId: res.data.id,
-                login: res.data.login,
-                email: res.data.email,
-            }))
+export const authMe = () => async dispatch => {
+    let res = await headerAPI.getAuthorizedPersonData()
+    dispatch(setCurrentUserInfo({
+        myId: res.data.id,
+        login: res.data.login,
+        email: res.data.email,
+    }))
 
-            if (res.data.id !== undefined) {
-                dispatch(setAuthStatus())
-                headerAPI.getAvatar(res.data.id)
-                    .then(avatar => {
-                        dispatch(setCurrentUserAvatar(avatar))
-                    })
-            }
-        })
+    if (res.data.id !== undefined) {
+        dispatch(setAuthStatus())
+        headerAPI.getAvatar(res.data.id)
+            .then(avatar => {
+                dispatch(setCurrentUserAvatar(avatar))
+            })
+    }
+    return res
 }
 
 export const logIn = (email, password) => async dispatch => {
-    await authAPI.logIn(email, password)
-    let res = await headerAPI.getAuthorizedPersonData()
-    if (res.resultCode === 0) {
-        dispatch(setError(false))
-        dispatch(setCurrentUserInfo({
-            myId: res.data.id,
-            login: res.data.login,
-            email: res.data.email,
-            isAuth: true
-        }))
-        let avatar = await headerAPI.getAvatar(res.data.id)
-        dispatch(setCurrentUserAvatar(avatar))
-    } else {
-        dispatch(setError(true))
+    let log = await authAPI.logIn(email, password)
+    console.log(log)
+
+    if (log.data.resultCode === 0) {
+        const res = await dispatch(authMe())
+    }
+    else if (log.data.messages[0] === 'Incorrect anti-bot symbols') {
+        console.log('Incorrect anti-bot symbols')
+        dispatch(getCaptcha())
+        dispatch(setError(log.data.messages[0]))
+    }
+    else {
+        dispatch(setError(log.data.messages[0]))
     }
 }
 
@@ -55,6 +53,10 @@ export const logOut = () => dispatch => {
     authAPI.logOut()
 }
 
+export const getCaptcha = () => async dispatch => {
+    let res = await securityAPI.getCaptcha()
+    dispatch(setCaptchaUrl(res.data.url))
+}
 
 
 let InitialState = {
@@ -63,7 +65,8 @@ let InitialState = {
     email: null,
     avatar: null,
     isAuth: false,
-    error: false
+    error: null,
+    captchaImg: null
 }
 
 let authReducer = (state = InitialState, action) => {
@@ -84,8 +87,10 @@ let authReducer = (state = InitialState, action) => {
             return { ...state, isAuth: true }
 
         case 'SET-ERROR':
-            if (action.val) return { ...state, error: 'Email or password is wrong' }
-            else return { ...state, error: false }
+            return { ...state, error: action.msg }
+
+        case 'SET-CAPTCHA-URL':
+            return { ...state, captchaImg: action.url }
     }
     return state
 }
