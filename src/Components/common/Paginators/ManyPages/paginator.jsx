@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './paginator.module.css'
 
 const Paginator = props => {
@@ -6,18 +6,21 @@ const Paginator = props => {
     let [currentPageInputValue, setCurrentPageInputValue] = useState(currentPage)
     let [incrementDisability, setIncrementDisabilityValue] = useState(false)
     let [decrementDisability, setDecrementDisabilityValue] = useState(false)
-    let pagesAmount = Math.ceil(props.totalCount / props.count)
-
+    let [pagesAmount, setPagesAmount] = useState(Math.ceil(props.totalCount / props.count))
 
     useEffect(() => {
+        let pA = Math.ceil(props.totalCount / props.count)
+        setPagesAmount(pA)
         if (parseInt(currentPage) < 2) {
             setDecrementDisabilityValue(true)
-        }
+        } else { setDecrementDisabilityValue(false) }
 
-        if (parseInt(currentPage) === pagesAmount) {
+        if (parseInt(currentPage) === pA) {
             setIncrementDisabilityValue(true)
-        }
-    }, [incrementDisability, decrementDisability, props.currentPage])
+        } else { setIncrementDisabilityValue(false) }
+
+
+    }, [incrementDisability, decrementDisability, props.currentPage, props.totalCount])
 
     let changeCurrentPage = () => {
         if (currentPageInputValue !== currentPage) {

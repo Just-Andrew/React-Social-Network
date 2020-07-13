@@ -6,14 +6,11 @@ import UsersPage from './UsersPage';
 import Preloader from '../../Components/common/Preloader/Preloader';
 
 const UsersPageContainer = props => {
-    let [currentPage, setCurrentPage] = useState(0)
+   /*  let [currentPage, setCurrentPage] = useState(1) */
 
     useEffect(() => {
-        if (currentPage === 0) {
-            setCurrentPage(1)
-            props.getUsers(props.friend, props.count, 1)
-        }
-    })
+        props.getUsers(props.friend, props.count, 1)
+    }, [props.friend])
 
     let GetNewUsers = page => {
         props.getUsers(props.friend, props.count, page)

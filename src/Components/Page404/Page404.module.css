@@ -1,0 +1,49 @@
+.pageWrapper {
+    grid-area: c;
+    background-color: white;
+    box-shadow: 10px 10px 7px rgba(0, 0, 0, .3);
+    max-height: 870px;
+    overflow-y: scroll;
+    height: 870px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 250px;
+}
+
+.icon {
+    box-sizing: border-box;
+    width: 250px;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon b {
+    font-size: 250px;
+    font-family: Cookie;
+}
+
+.icon img {
+    width: 250px;
+    height: 250px;
+    display: inline-block;
+    animation: rotation 3s linear infinite;
+}
+
+.text {
+    font-size: 100px;
+    font-family: Cookie;
+    color: steelblue;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

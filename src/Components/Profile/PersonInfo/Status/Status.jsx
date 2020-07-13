@@ -10,7 +10,7 @@ const Status = props => {
 
     useEffect(() => {
         setStatus(props.status)
-    })
+    }, [props.status])
 
     let onStatusPrint = e => {
         setPostInputValue(e.currentTarget.value)

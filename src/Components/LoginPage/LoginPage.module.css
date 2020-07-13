@@ -115,3 +115,10 @@ p a {
 .inp {
     color: white;
 }
+
+.captcha p{
+    position: relative;
+    top: -15px;
+    color: red;
+    cursor: pointer;
+}

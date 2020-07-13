@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react'
 import styles from './LoginPage.module.css'
 import { connect } from 'react-redux'
 import { useForm } from 'react-hook-form'
-import { logIn, authMe, setCaptchaUrl, setError } from '../../Redux/authReducer'
+import { logIn, authMe, getCaptcha, setCaptchaUrl, setError } from '../../Redux/authReducer'
 import { Redirect } from 'react-router-dom'
-
+import classNames from 'classnames'
 const LoginForm = props => {
     let [captcha, setCaptcha] = useState(props.captchaImg)
     let [error, setError] = useState(props.error)
@@ -13,16 +13,17 @@ const LoginForm = props => {
         props.logIn({ email: data.email, password: data.password, captcha: data.captcha })
     }
 
+    /* componentDidMount */
     useEffect(() => {
         props.setCaptchaUrl(null)
         props.setError(null)
     }, [])
 
+    /* ComponentDidUpdate */
     useEffect(() => {
         setCaptcha(props.captchaImg)
         setError(props.error)
     }, [props.captchaImg, props.error])
-
 
     return (
         <div className={styles.main}>
@@ -31,7 +32,7 @@ const LoginForm = props => {
             <form onSubmit={handleSubmit(logIn)} className={styles.form1}>
                 <input
                     name='email'
-                    className={`${styles.un} ${errors.email && styles.error} ${styles.inp}`}
+                    className={classNames(styles.un, styles.inp, { [styles.error]: errors.email !== undefined })}
                     type="email"
                     align="center"
                     placeholder="Email"
@@ -39,7 +40,7 @@ const LoginForm = props => {
                 />
                 <input
                     name='password'
-                    className={`${styles.pass}  ${errors.password && styles.error} ${styles.inp}`}
+                    className={classNames(styles.un, styles.inp, { [styles.error]: errors.password !== undefined })}
                     type="password"
                     align="center"
                     placeholder="Password"
@@ -49,10 +50,11 @@ const LoginForm = props => {
                     <div className={styles.captchaBlock}>
                         <div className={styles.captcha}>
                             <img src={props.captchaImg} alt="" />
+                            <p onClick={props.getCaptcha}>Can't see symbols</p>
                         </div>
                         <input
                             name='captcha'
-                            className={`${styles.pass}  ${errors.password && styles.error} ${styles.inp}`}
+                            className={classNames(styles.pass, styles.inp)}
                             type="text"
                             align="center"
                             placeholder="Enter sybmols from the picture"
@@ -78,7 +80,8 @@ const LoginPage = props => {
                 <LoginForm logIn={props.logIn} authMe={props.authMe}
                     error={props.error} captchaImg={props.captchaImg}
                     setCaptchaUrl={props.setCaptchaUrl}
-                    setError={props.setError} />
+                    setError={props.setError}
+                    getCaptcha={props.getCaptcha} />
             </div>
 
     )
@@ -91,4 +94,4 @@ let mapStateToProps = state => ({
     captchaImg: state.authorization.captchaImg
 })
 
-export default connect(mapStateToProps, { logIn, authMe, setCaptchaUrl, setError })(LoginPage)
+export default connect(mapStateToProps, { logIn, authMe, getCaptcha, setCaptchaUrl, setError })(LoginPage)

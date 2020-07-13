@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 
 const MessagesPage = (props) => {
     return (
-        !props.isAuth
+        !props.isAuth && props.initialization
             ? <Redirect to='/login' />
             : <div className={styles.Dialogs}>
                 <MessagesBlock />
@@ -17,7 +17,8 @@ const MessagesPage = (props) => {
 }
 
 let mapStateToProps = state => ({
-    isAuth: state.authorization.isAuth
+    isAuth: state.authorization.isAuth,
+    initialization: state.app.initialization
 })
 
 export default connect(mapStateToProps, {})(MessagesPage)

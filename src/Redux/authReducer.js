@@ -17,23 +17,17 @@ export const authMe = () => async dispatch => {
 
     if (res.data.id !== undefined) {
         dispatch(setAuthStatus())
-        headerAPI.getAvatar(res.data.id)
-            .then(avatar => {
-                dispatch(setCurrentUserAvatar(avatar))
-            })
+        let avatar = await headerAPI.getAvatar(res.data.id)
+        dispatch(setCurrentUserAvatar(avatar))
     }
-    return res
 }
 
 export const logIn = (email, password) => async dispatch => {
     let log = await authAPI.logIn(email, password)
-    console.log(log)
-
     if (log.data.resultCode === 0) {
-        const res = await dispatch(authMe())
+        dispatch(authMe())
     }
     else if (log.data.messages[0] === 'Incorrect anti-bot symbols') {
-        console.log('Incorrect anti-bot symbols')
         dispatch(getCaptcha())
         dispatch(setError(log.data.messages[0]))
     }

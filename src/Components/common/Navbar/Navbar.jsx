@@ -6,7 +6,7 @@ import { logOut } from '../../../Redux/authReducer'
 
 const Navbar = props => {
     return (
-        <nav className={`${styles.nav}`}>
+        <nav className={styles.nav}>
             <div className={styles.navItem}>
                 <NavLink to={`/profile/${props.myId}`} className={styles.td}>Profile</NavLink>
             </div>

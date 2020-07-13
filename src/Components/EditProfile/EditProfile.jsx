@@ -22,7 +22,6 @@ const EditProfile = props => {
 
         if (prev != LookingForAJob.current) {
             debugger
-            console.log('worked')
             setCheckedStatus(props.lookingForAJob)
         }
     })
