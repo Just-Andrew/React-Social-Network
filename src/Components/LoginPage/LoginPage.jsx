@@ -6,13 +6,12 @@ import { logIn, authMe, getCaptcha, setCaptchaUrl, setError } from '../../Redux/
 import { Redirect } from 'react-router-dom'
 import classNames from 'classnames'
 const LoginForm = props => {
+
     let [captcha, setCaptcha] = useState(props.captchaImg)
     let [error, setError] = useState(props.error)
-    const { register, handleSubmit, errors } = useForm();
-    const logIn = data => {
-        props.logIn({ email: data.email, password: data.password, captcha: data.captcha })
-    }
+    let [requiresCaptcha, setCaptchaRequirement] = useState(false)
 
+    const { register, handleSubmit, errors } = useForm();
     /* componentDidMount */
     useEffect(() => {
         props.setCaptchaUrl(null)
@@ -23,7 +22,17 @@ const LoginForm = props => {
     useEffect(() => {
         setCaptcha(props.captchaImg)
         setError(props.error)
+        if (props.captchaImg !== null) setCaptchaRequirement(true)
     }, [props.captchaImg, props.error])
+
+    const logIn = data => {
+        props.logIn({
+            email: data.email, password: data.password,
+            captcha: data.captcha, requiresCaptcha
+        })
+    }
+
+
 
     return (
         <div className={styles.main}>

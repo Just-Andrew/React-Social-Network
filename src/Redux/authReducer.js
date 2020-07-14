@@ -22,12 +22,12 @@ export const authMe = () => async dispatch => {
     }
 }
 
-export const logIn = (email, password) => async dispatch => {
-    let log = await authAPI.logIn(email, password)
+export const logIn = (data) => async dispatch => {
+    let log = await authAPI.logIn(data)
     if (log.data.resultCode === 0) {
         dispatch(authMe())
     }
-    else if (log.data.messages[0] === 'Incorrect anti-bot symbols') {
+    else if (log.data.messages[0] === 'Incorrect anti-bot symbols' || data.requiresCaptcha) {
         dispatch(getCaptcha())
         dispatch(setError(log.data.messages[0]))
     }
