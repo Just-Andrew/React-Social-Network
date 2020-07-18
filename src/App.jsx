@@ -14,15 +14,15 @@ import { compose } from 'redux'
 import Preloader from './Components/common/Preloader/Preloader'
 import EditProfile from './Components/EditProfile/EditProfile'
 import Page404 from './Components/Page404/Page404'
-/* const MessagesPage = React.lazy(() => import('./Components/MessagesPage/MessagesPage'))
-const LoginPage = React.lazy(() => import('./Components/LoginPage/LoginPage')) */
+import NewsPage from './Components/NewsPage/NewsPage'
 
 const App = props => {
   useEffect(() => {
+    console.log(props.initialization)
     if (props.initialization === false) {
       props.initialize()
     }
-  })
+  }, [props.initialization])
 
   return (
     <div className="App-wrapper" >
@@ -32,17 +32,17 @@ const App = props => {
         ? <>
           <Switch>
             <Route exact path="/"
-              render={() => <Redirect to={`/profile/${props.myId}`} />} />
+              render={() => <Redirect to={props.isAuth ? `/profile/${props.myId}` : `/login`} />} />
             <Route path="/profile/:id?"
               render={() => <ProfileContainer />} />
-            {/*  <Suspense fallback={<Preloader />}> */}
+            <Route path="/news"
+              render={() => <NewsPage/>} />
             <Route path="/dialogs"
               render={() => <MessagesPage />} />
             <Route path="/login"
               render={() => <LoginPage />} />
             <Route path="/editProfile"
               render={() => <EditProfile />} />
-            {/* </Suspense > */}
             <Route path="/friends"
               render={() => <UsersPageContainer friend={true} title='People You added' />} />
             <Route path="/users"

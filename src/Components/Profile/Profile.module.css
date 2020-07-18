@@ -1,14 +1,17 @@
 /* Profile */
 
-.profile {
+.ContentWrapper {
     grid-area: c;
-    background-color:  white ;
+    background-color: white;
     box-shadow: 10px 10px 7px rgba(0, 0, 0, .3);
     height: 870px;
     overflow-y: scroll;
 }
 
-
+.ContentWrapper::-webkit-scrollbar {
+    width: 0px;
+    background-color: rgba(255, 255, 255, 0);
+}
 
 /* hr */
 
@@ -16,12 +19,3 @@
     width: 800px;
     margin-top: 20px;
 }
-
-.profile::-webkit-scrollbar {
-    width: 0px;
-    background-color: rgba(255, 255, 255, 0);
-}
-
-
-
-

@@ -18,7 +18,7 @@ const AddPostForm = props => {
     return (
         <div className={styles.AddPostBlock}>
             <form onSubmit={props.handleSubmit}>
-                <Field component='textarea' name='postMessage' placeholder='Write text of your post' />
+                <Field component='textarea' name='postMessage' placeholder='Type sth and post it' />
                 <br />
                 <button >Create Post</button>
             </form>

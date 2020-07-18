@@ -6,11 +6,12 @@
 }
 
 .navItem {
-    font-size: 27px ;
+    font-size: 27px;
     color: white;
     box-shadow: none;
     padding-bottom: 10px;
     text-align: center;
+   /*  padding-left: 10px; */
     padding-top: 15px;
     text-decoration: none;
 }
@@ -28,7 +29,16 @@
     color: gold;
 }
 
-
 .hiddenNav {
     display: none;
 }
+
+.icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+/* .exit {
+    text-align: center;
+} */

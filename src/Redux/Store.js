@@ -5,6 +5,7 @@ import profile from './profileReducer'
 import messagesPage from './messagesPageReducer'
 import usersPage from './usersPageReducer'
 import authorization from './authReducer'
+import news from './newsPageReducer'
 import ThunkMiddleware from 'redux-thunk'
 
 let reducers = combineReducers({
@@ -13,13 +14,14 @@ let reducers = combineReducers({
     messagesPage,
     usersPage,
     authorization,
+    news,
     form
 })
 
 let store = createStore(reducers, compose(
     applyMiddleware(ThunkMiddleware),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__()
-    )
+)
 )
 
 window.store = store

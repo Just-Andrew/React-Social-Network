@@ -6,7 +6,7 @@ import AddPostContainer from './AddPost/AddPostContainer';
 
 const Profile = props => {
     return (
-        <div className={styles.profile}>
+        <div className={styles.ContentWrapper}>
             <PersonInfo
                 avatar={props.avatar}
                 fullName={props.fullName}
@@ -19,7 +19,7 @@ const Profile = props => {
                 toggleAvatarEditMode={props.toggleAvatarEditMode}
                 updateAvatar={props.updateAvatar}
             />
-            <PostsContainer />
+            <PostsContainer  text={props.aboutMe}/>
             {props.myProfile === true
                 ? <>
                     <hr className={styles.line} />

@@ -66,7 +66,7 @@ export const authAPI = {
     logIn(data) {
         return Instance.post(`auth/login`, { ...data })
     },
-    
+
     logOut() {
         return Instance.delete(`auth/login`)
     }
@@ -75,5 +75,12 @@ export const authAPI = {
 export const securityAPI = {
     getCaptcha() {
         return Instance.get(`security/get-captcha-url`)
+    }
+}
+
+export const newsAPI = {
+    getArticles() {
+        return axios.get(`http://newsapi.org/v2/top-headlines?apiKey=7b75f2d0a98e44f8a96f7933462d72ce&country=us`)
+        .then(res => res.data)
     }
 }

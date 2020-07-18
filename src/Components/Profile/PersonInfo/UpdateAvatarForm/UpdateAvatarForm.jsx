@@ -1,13 +1,15 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import styles from './UpdateAvatarForm.module.css'
 
 const UpdateAvatarForm = props => {
     let [btnText, setBtnText] = useState(`Choose file`)
+    let [btnDisability, setBtnDisability] = useState(true)
 
     let input = React.createRef()
 
     const onFileGot = e => {
         setBtnText(`Choose file ✓`)
+        setBtnDisability(false)
     }
 
     const setAvatar = () => {
@@ -21,7 +23,8 @@ const UpdateAvatarForm = props => {
             <label htmlFor='fileForm' className={styles.lbl}>{btnText}</label>
             <input id='fileForm' type='file' onChange={onFileGot} ref={input} />
             <div className={styles.controlPanel}>
-                <button onClick={setAvatar}
+                <button disabled={btnDisability}
+                    onClick={setAvatar}
                     className={styles.saveButton} >✓</button>
 
                 <button className={styles.closeButton}

@@ -35,7 +35,7 @@ const Users = props => {
 const UsersPage = props => {
     return (
 
-        <div className={styles.UsersPageWrapper} >
+        <div className={styles.ContentWrapper} >
             <Title
                 title={props.title}
             />

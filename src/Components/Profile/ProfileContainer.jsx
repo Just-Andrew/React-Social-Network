@@ -47,6 +47,7 @@ const ProfileContainer = props => {
                     avatarEditMode={props.avatarEditMode}
                     toggleAvatarEditMode={props.toggleAvatarEditMode}
                     updateAvatar={props.updateAvatar}
+                    aboutMe={props.aboutMe}
                 />}
         </div>
     )
@@ -61,7 +62,8 @@ let mapStateToProps = state => ({
     currentUserId: state.profile.currentUserId,
     myId: state.authorization.myId,
     isAuth: state.authorization.isAuth,
-    avatarEditMode: state.profile.avatarEditMode
+    avatarEditMode: state.profile.avatarEditMode,
+    aboutMe: state.profile.aboutMe
 })
 
 export default compose(

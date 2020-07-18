@@ -16,6 +16,7 @@ export const getUserProfile = (id, val = false, data) => async dispatch => {
         profileAPI.updateProfile(data)
     }
     let res = await profileAPI.getProfile(id)
+    console.log(res.data.aboutMe)
     dispatch(setCurrentUserData({
         userId: res.data.userId,
         avatar: res.data.photos.large,

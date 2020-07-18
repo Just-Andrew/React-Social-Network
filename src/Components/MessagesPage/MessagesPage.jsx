@@ -9,7 +9,7 @@ const MessagesPage = (props) => {
     return (
         !props.isAuth && props.initialization
             ? <Redirect to='/login' />
-            : <div className={styles.Dialogs}>
+            : <div className={styles.ContentWrapper}>
                 <MessagesBlock />
                 <ContactsContainer />
             </div>

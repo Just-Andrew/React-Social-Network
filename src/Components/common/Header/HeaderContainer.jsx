@@ -1,17 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { compose } from 'redux'
-import { authMe } from '../../../Redux/authReducer'
 import Header from './Header'
 
 const HeaderContainer = props => {
-        return (
-            <Header
-                isAuth={props.isAuth}
-                avatar={props.avatar}
-                login={props.login}
-            />
-        )
+    return (
+        <Header
+            isAuth={props.isAuth}
+            avatar={props.avatar}
+            login={props.login}
+        />
+    )
 }
 
 let mapStateToProps = state => ({
@@ -21,5 +20,5 @@ let mapStateToProps = state => ({
 })
 
 export default compose(
-    connect(mapStateToProps, { authMe })
+    connect(mapStateToProps, {})
 )(HeaderContainer)

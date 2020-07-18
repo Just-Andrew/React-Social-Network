@@ -1,6 +1,6 @@
 /* Main component */
 
-.Dialogs {
+.ContentWrapper {
     grid-area: c;
     display: grid;
     grid-template-columns: 22fr 5fr;

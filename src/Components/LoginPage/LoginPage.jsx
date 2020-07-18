@@ -2,11 +2,10 @@ import React, { useEffect, useState } from 'react'
 import styles from './LoginPage.module.css'
 import { connect } from 'react-redux'
 import { useForm } from 'react-hook-form'
-import { logIn, authMe, getCaptcha, setCaptchaUrl, setError } from '../../Redux/authReducer'
+import { logIn, getCaptcha, setCaptchaUrl, setError } from '../../Redux/authReducer'
 import { Redirect } from 'react-router-dom'
 import classNames from 'classnames'
 const LoginForm = props => {
-
     let [captcha, setCaptcha] = useState(props.captchaImg)
     let [error, setError] = useState(props.error)
     let [requiresCaptcha, setCaptchaRequirement] = useState(false)
@@ -31,8 +30,6 @@ const LoginForm = props => {
             captcha: data.captcha, requiresCaptcha
         })
     }
-
-
 
     return (
         <div className={styles.main}>
@@ -85,8 +82,8 @@ const LoginPage = props => {
     return (
         props.isAuth
             ? <Redirect to={`/profile/${props.myId}`} />
-            : <div className={styles.LoginPage}>
-                <LoginForm logIn={props.logIn} authMe={props.authMe}
+            : <div className={styles.ContentWrapper}>
+                <LoginForm logIn={props.logIn}
                     error={props.error} captchaImg={props.captchaImg}
                     setCaptchaUrl={props.setCaptchaUrl}
                     setError={props.setError}
@@ -103,4 +100,4 @@ let mapStateToProps = state => ({
     captchaImg: state.authorization.captchaImg
 })
 
-export default connect(mapStateToProps, { logIn, authMe, getCaptcha, setCaptchaUrl, setError })(LoginPage)
+export default connect(mapStateToProps, { logIn, getCaptcha, setCaptchaUrl, setError })(LoginPage)

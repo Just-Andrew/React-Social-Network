@@ -8,7 +8,7 @@ import UpdateAvatarForm from './UpdateAvatarForm/UpdateAvatarForm'
 
 const PersonInfo = props => {
     return (
-        <div className={styles.wrapper}>
+        <div className={styles.ContentWrapper}>
             <div className={styles.background}></div>
             <div className={styles.aboutPerson}>
                 <Avatar avatar={props.avatar} myProfile={props.myProfile}
