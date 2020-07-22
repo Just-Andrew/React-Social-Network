@@ -1,6 +1,6 @@
-import AddPost from './AddPost';
-import { addPost } from '../../../Redux/profileReducer'
-import { connect } from 'react-redux';
+import AddPost from './AddPost'
+import { createPost } from '../../../Redux/profileReducer'
+import { connect } from 'react-redux'
 
 let mapStateToProps = state => {
     return {
@@ -9,6 +9,6 @@ let mapStateToProps = state => {
 }
 
 let AddPostContainer = connect(mapStateToProps,
-    { addPost })(AddPost);
+    { createPost })(AddPost)
 
-export default AddPostContainer;
+export default AddPostContainer

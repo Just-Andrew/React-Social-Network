@@ -18,7 +18,6 @@ import NewsPage from './Components/NewsPage/NewsPage'
 
 const App = props => {
   useEffect(() => {
-    console.log(props.initialization)
     if (props.initialization === false) {
       props.initialize()
     }

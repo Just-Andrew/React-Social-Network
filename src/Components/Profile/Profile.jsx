@@ -1,8 +1,8 @@
-import React from 'react';
-import styles from "./Profile.module.css";
-import PostsContainer from './Posts/PostsContainer';
-import PersonInfo from './PersonInfo/PersonInfo';
-import AddPostContainer from './AddPost/AddPostContainer';
+import React from 'react'
+import styles from "./Profile.module.css"
+import PostsContainer from './Posts/PostsContainer'
+import PersonInfo from './PersonInfo/PersonInfo'
+import AddPostContainer from './AddPost/AddPostContainer'
 
 const Profile = props => {
     return (
@@ -22,14 +22,13 @@ const Profile = props => {
             <PostsContainer  text={props.aboutMe}/>
             {props.myProfile === true
                 ? <>
-                    <hr className={styles.line} />
                     <AddPostContainer />
                 </>
                 : ''
             }
 
         </div>
-    );
+    )
 }
 
-export default Profile;
+export default Profile

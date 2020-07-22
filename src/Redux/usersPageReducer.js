@@ -50,7 +50,7 @@ let usersPageReducer = (state = InitialState, action) => {
                     array[i].followed = action.val
                 }
             })
-            return copiedState;
+            return copiedState
 
         case 'SET-USERS':
             let modifiedUsers = [...action.users]
@@ -76,7 +76,10 @@ let usersPageReducer = (state = InitialState, action) => {
                 }
             })
             return newState
+
+        default:
+            return state
     }
     return state
 }
-export default usersPageReducer;
+export default usersPageReducer

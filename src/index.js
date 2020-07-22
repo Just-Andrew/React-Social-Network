@@ -21,7 +21,7 @@ ReactDOM.render(
     </Provider>
   </BrowserRouter>,
   document.getElementById('root')
-);
+)
 
 serviceWorker.unregister()
 // If you want your app to work offline and load faster, you can change

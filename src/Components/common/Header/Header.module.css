@@ -1,13 +1,12 @@
 .header {
     grid-area: h;
-    background-color: steelblue;
-    box-shadow: 10px 10px 7px rgba(0, 0, 0, .3);
+    background-color: #2b2a2b;
 }
 
 .title {
     font-size: 35px;
     text-align: center;
-    color: white;
+    color: forestgreen;
 }
 
 .auth {
@@ -16,7 +15,7 @@
     top: -30px;
     margin-right: 25px;
     font-size: 20px;
-    color: white;
+    color: forestgreen;
 }
 
 .auth a {

@@ -1,29 +1,30 @@
 .PostsBlock {
     margin-left: 15px;
     overflow-y: scroll;
-    max-height: 315px;
+    max-height: 350px;
+    justify-content: center;
 }
 
 .PostsBlock::-webkit-scrollbar {
-    width: 0px;
+    width: 5px;
     background-color: rgba(255, 255, 255, 0.0);
 }
 
-.posttext {
-    color: gray;
-    font-size: 18px;
-    margin-left: 35px;
-    display: inline-block;
-    max-width: 500px;
+.PostsBlock::-webkit-scrollbar-thumb {
+    background: forestgreen;
+    border-radius: 10px;
 }
+
+
 
 .likes {
     display: inline-block;
-    margin-left: 10px;
+    margin-left: 30px;
+    padding-bottom: 10px;
 }
 
 .likes b {
-    color: steelblue;
+    color: forestgreen;
     padding-left: 5px;
 }
 
@@ -33,17 +34,33 @@
 }
 
 .post {
-    padding-bottom: 20px;
-    max-width: 600px;
-    overflow-x: hidden;
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    width: 950px;
+}
+
+.post hr {
+    width: 900px;
 }
 
 .avatar {
     width: 50px;
     height: 50px;
     margin-left: 19px;
+    margin-top: 20px;
     border-radius: 100%;
     overflow: hidden;
+    display: inline-block;
+}
+
+.postTextContainer {
+    display: inline-block;
+    padding-bottom: 20px;
+    color: forestgreen;
+    font-weight: 700;
+    font-size: 18px;
+    margin-left: 35px;
     display: inline-block;
 }
 

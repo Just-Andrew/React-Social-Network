@@ -1,12 +1,12 @@
- import { authMe } from "./authReducer"
+import { authMe } from "./authReducer"
 
 /*Action Creators */
-const setInitializationStatus = () => ({type: 'SET-INITIALIZATION-STATUS'})
+const setInitializationStatus = () => ({ type: 'SET-INITIALIZATION-STATUS' })
 
 /*Thunks Creators*/
 export const initialize = () => dispatch => {
     let promise = dispatch(authMe())
-    promise.then(()=> {
+    promise.then(() => {
         dispatch(setInitializationStatus())
     })
 }
@@ -22,7 +22,8 @@ let appReducer = (state = InitialState, action) => {
                 ...state,
                 finishedInitialization: true
             }
+        default:
+            return state
     }
-    return state
 }
-export default appReducer; 
+export default appReducer

@@ -12,11 +12,9 @@ export const usersAPI = {
     getUsers(friend, count, page) {
         return Instance.get(`users/?friend=${friend}&count=${count}&page=${page}`)
     },
-
     follow(id) {
         return Instance.post(`follow/${id}`)
     },
-
     unfollow(id) {
         return Instance.delete(`follow/${id}`)
     }
@@ -26,15 +24,16 @@ export const profileAPI = {
     getProfile(id) {
         return Instance.get(`profile/${id}`)
     },
-
     getProfileStatus(id) {
         return Instance.get(`profile/status/${id}`)
     },
-
+    getPosts(id) {
+        return axios.get(`http://localhost:3001/posts/${id}`)
+            .then(res => res.data)
+    },
     setNewStatus(status) {
         return Instance.put(`profile/status`, { status: status })
     },
-
     updateAvatar(file) {
         let formData = new FormData()
         formData.append('image', file)
@@ -44,9 +43,17 @@ export const profileAPI = {
             }
         })
     },
-
     updateProfile(data) {
         return Instance.put(`profile`, { ...data })
+    },
+    createPost(text) {
+        return axios.post(`http://localhost:3001/posts`,
+            {
+                "ownerId": 8833,
+                "text": text
+            })
+            .then(res => res.data)
+
     }
 }
 
@@ -55,7 +62,6 @@ export const headerAPI = {
         return Instance.get(`auth/me`)
             .then(res => res.data)
     },
-
     getAvatar(id) {
         return Instance.get(`profile/${id}`)
             .then(res => res.data.photos.large)
@@ -66,7 +72,6 @@ export const authAPI = {
     logIn(data) {
         return Instance.post(`auth/login`, { ...data })
     },
-
     logOut() {
         return Instance.delete(`auth/login`)
     }
@@ -81,6 +86,6 @@ export const securityAPI = {
 export const newsAPI = {
     getArticles() {
         return axios.get(`http://newsapi.org/v2/top-headlines?apiKey=7b75f2d0a98e44f8a96f7933462d72ce&country=us`)
-        .then(res => res.data)
+            .then(res => res.data)
     }
 }

@@ -1,17 +1,13 @@
 .nav {
-    background-color: steelblue;
     grid-area: n;
-    box-shadow: 10px 10px 7px rgba(0, 0, 0, .3);
     min-height: 870px;
 }
 
 .navItem {
     font-size: 27px;
-    color: white;
     box-shadow: none;
     padding-bottom: 10px;
     text-align: center;
-   /*  padding-left: 10px; */
     padding-top: 15px;
     text-decoration: none;
 }
@@ -22,11 +18,7 @@
 
 .navItem a {
     text-decoration: none;
-    color: white;
-}
-
-.navItem a:focus {
-    color: gold;
+    color: forestgreen;
 }
 
 .hiddenNav {

@@ -1,7 +1,7 @@
-import React from 'react';
-import { Redirect } from 'react-router-dom';
-import styles from './UsersPage.module.css';
-import User from './User';
+import React from 'react'
+import { Redirect } from 'react-router-dom'
+import styles from './UsersPage.module.css'
+import User from './User'
 import PaginatorForHugeNumbers from '../common/Paginators/ManyPages/paginator'
 import PaginatorForLowNumbers from '../common/Paginators/FewPages/paginator'
 
@@ -60,7 +60,7 @@ const UsersPage = props => {
             }
             {!props.isAuth && props.friend && <Redirect to='/login' />}
         </div>
-    );
+    )
 }
 
-export default UsersPage;
+export default UsersPage

@@ -1,7 +1,8 @@
 import { profileAPI } from '../API/api'
 
 /*Action Creators */
-export const addPost = text => ({ type: 'ADD-POST', text })
+export const addPost = post => ({ type: 'ADD-POST', post })
+const setPosts = posts => ({ type: 'SET-POSTS', posts })
 const setCurrentUserData = data => ({ type: 'SET-CURRENT-USER-DATA', data })
 const setCurrentUserStatus = status => ({ type: 'SET-CURRENT-USER-STATUS', status })
 const toggleLoader = val => ({ type: 'TOGGLE-LOADER', val })
@@ -16,7 +17,6 @@ export const getUserProfile = (id, val = false, data) => async dispatch => {
         profileAPI.updateProfile(data)
     }
     let res = await profileAPI.getProfile(id)
-    console.log(res.data.aboutMe)
     dispatch(setCurrentUserData({
         userId: res.data.userId,
         avatar: res.data.photos.large,
@@ -25,11 +25,25 @@ export const getUserProfile = (id, val = false, data) => async dispatch => {
         jobDescription: res.data.lookingForAJobDescription,
         aboutMe: res.data.aboutMe
     }))
+
     let status = await profileAPI.getProfileStatus(id)
     dispatch(setCurrentUserStatus(status.data))
+
+    dispatch(getPosts(id))
+}
+
+export const getPosts = id => async dispatch => {
+    dispatch(toggleLoader(true))
+    let posts = await profileAPI.getPosts(id)
+    dispatch(setPosts(posts))
     dispatch(toggleLoader(false))
+}
 
-
+export const createPost = text => async dispatch => {
+    dispatch(toggleLoader(true))
+    let post = await profileAPI.createPost(text)
+    dispatch(addPost(post))
+    dispatch(toggleLoader(false))
 }
 
 export const setNewStatus = status => async dispatch => {
@@ -40,11 +54,13 @@ export const setNewStatus = status => async dispatch => {
 }
 
 export const updateAvatar = file => async dispatch => {
-    toggleLoader(true)
+    dispatch(toggleLoader(true))
     let res = await profileAPI.updateAvatar(file)
     dispatch(setNewAvatar(res.data.data.photos.large))
-    toggleLoader(true)
+    dispatch(toggleLoader(false))
 }
+
+
 
 let InitialState = {
     avatarEditMode: false,
@@ -56,33 +72,16 @@ let InitialState = {
     lookingForAJob: false,
     lookingForAJobDescription: null,
     aboutMe: null,
-    posts: [
-        {
-            id: 1,
-            text: 'Here is supposed to be sth... sooo',
-            likes: 7
-        },
-        {
-            id: 2,
-            text: 'Hi there!',
-            likes: 0
-        },
-        {
-            id: 3,
-            text: 'The Earth is flat!!!',
-            likes: 11
-        }
-    ]
+    posts: []
 }
 
 let profileReducer = (state = InitialState, action) => {
     switch (action.type) {
         case 'ADD-POST':
-            let post = {
-                'text': action.text,
-                'likes': 0
-            };
-            return { ...state, posts: [post, ...state.posts] }
+            return { ...state, posts: [...state.posts, action.post] }
+
+        case 'SET-POSTS':
+            return { ...state, posts: [...action.posts] }
 
         case 'SET-CURRENT-USER-DATA':
             return {
@@ -109,8 +108,11 @@ let profileReducer = (state = InitialState, action) => {
 
         case 'SET-NEW-AVATAR':
             return { ...state, avatar: action.avatar }
+
+        default:
+            return state
     }
     return state
 }
-export default profileReducer;
+export default profileReducer
 

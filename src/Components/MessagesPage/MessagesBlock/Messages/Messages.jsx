@@ -1,5 +1,5 @@
-import React from 'react';
-import styles from './Messages.module.css';
+import React from 'react'
+import styles from './Messages.module.css'
 
 const Messages = props => {
 
@@ -12,7 +12,7 @@ const Messages = props => {
                         <div className={styles.msgContainer}> {m.message} </div>
                     </div>
                 </div>
-            );
+            )
         } else {
             return (
                 <div className={styles.message} key={m.id}>
@@ -20,15 +20,15 @@ const Messages = props => {
                         <div className={styles.msgContainer}> {m.message} </div>
                     </div>
                 </div>
-            );
+            )
         }
-    });
+    })
 
     /* component itself */
     document.addEventListener('DOMContentLoaded', () => {
-        let msgBox = document.querySelector(`.${styles.MessagesBlock}`);
-        msgBox.scrollTo(0, msgBox.scrollHeight);
-    });
+        let msgBox = document.querySelector(`.${styles.MessagesBlock}`)
+        msgBox.scrollTo(0, msgBox.scrollHeight)
+    })
 
     return (
         <div className={styles.MessagesBlock}>
@@ -37,8 +37,7 @@ const Messages = props => {
             </div>
 
         </div>
-    );
+    )
 }
 
- /* window.msgBox = document.querySelector(`.${styles.MessagesBlock}`);  */
 export default Messages

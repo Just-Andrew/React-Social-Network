@@ -1,7 +1,7 @@
-import React from 'react';
-import styles from "./MessagesBlock.module.css";
-import MessagesContainer from './Messages/MessagesContainer';
-import SendMessageContainer from './SendMessage/SendMessageContainer';
+import React from 'react'
+import styles from "./MessagesBlock.module.css"
+import MessagesContainer from './Messages/MessagesContainer'
+import SendMessageContainer from './SendMessage/SendMessageContainer'
 
 const MessagesBlock = (props) => {
     return (
@@ -9,8 +9,8 @@ const MessagesBlock = (props) => {
             <MessagesContainer />
             <SendMessageContainer />
         </div>
-    );
+    )
 }
 
 
-export default MessagesBlock;
+export default MessagesBlock

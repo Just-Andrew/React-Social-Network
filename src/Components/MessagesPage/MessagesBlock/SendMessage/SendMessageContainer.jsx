@@ -1,6 +1,6 @@
-import { connect } from "react-redux";
+import { connect } from "react-redux"
 import { addMessage} from '../../../../Redux/messagesPageReducer'
-import SendMessage from './SendMessage';
+import SendMessage from './SendMessage'
 
 
 let mapStateToProps = state => {
@@ -8,6 +8,6 @@ let mapStateToProps = state => {
     }
 }
 
-let SendMessageContainer = connect(mapStateToProps,{ addMessage})(SendMessage);
+let SendMessageContainer = connect(mapStateToProps,{ addMessage})(SendMessage)
 
-export default SendMessageContainer;
+export default SendMessageContainer

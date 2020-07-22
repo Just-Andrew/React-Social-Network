@@ -1,18 +1,18 @@
-import React from 'react';
-import styles from "./AddPost.module.css";
-import { Field, reduxForm } from 'redux-form';
+import React from 'react'
+import styles from "./AddPost.module.css"
+import { Field, reduxForm } from 'redux-form'
 
 let AddPost = (props) => {
     let onSubmit = data => {
         if (data.postMessage !== undefined) {
-            props.addPost(data.postMessage)
+            props.createPost(data.postMessage)
         }
     }
 
     return (
         <ReduxFormWrapper onSubmit={onSubmit} />
-    );
-};
+    )
+}
 
 const AddPostForm = props => {
     return (
@@ -28,4 +28,4 @@ const AddPostForm = props => {
 
 let ReduxFormWrapper = reduxForm({ form: 'login' })(AddPostForm)
 
-export default AddPost;
+export default AddPost

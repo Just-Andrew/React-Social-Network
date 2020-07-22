@@ -28,6 +28,9 @@ const newsPageReducer = (state = InitialState, action) => {
 
         case 'TOGGLE-LOADER':
             return { ...state, loading: action.val }
+
+        default:
+            return state
     }
     return state
 }

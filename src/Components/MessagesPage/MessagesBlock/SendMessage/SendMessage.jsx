@@ -1,5 +1,5 @@
-import React from 'react';
-import styles from "./SendMessage.module.css";
+import React from 'react'
+import styles from "./SendMessage.module.css"
 /* styles for another component (needed for 1 function) */
 import style from '../Messages/Messages.module.css'
 import { Field, reduxForm } from 'redux-form'
@@ -36,7 +36,7 @@ const SendMessage = (props) => {
 
     return (
         <ReduxFormWrapper onSubmit={onSubmit} />
-    );
+    )
 }
 
 export default SendMessage

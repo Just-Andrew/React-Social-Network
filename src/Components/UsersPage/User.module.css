@@ -17,7 +17,8 @@
     width: 90px;
     border-radius: 10px;
     border: none;
-    background-color: steelblue;
+    background-color: #146b35;
+    color: white;
     box-shadow: 10px 10px 7px rgba(0, 0, 0, .3);
     outline: none;
 }
@@ -41,7 +42,7 @@
     width: 450px;
     max-height: 120px;
     position: relative;
-    background-color: #a3a9d4;
+    background-color: white;
     top: -50px;
     margin-left: 25px;
     border-radius: 20px;
@@ -56,15 +57,18 @@
 
 .city {
     float: right;
+    color: forestgreen;
 }
 
 .userName {
     float: left;
+    color: forestgreen;
 }
 
 .status {
     float: left;
     max-width: 350px;
+    color: darkcyan;
 }
 
 .noStatus {

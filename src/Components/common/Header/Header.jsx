@@ -1,6 +1,6 @@
-import React from 'react';
-import styles from "./Header.module.css";
-import { NavLink } from 'react-router-dom';
+import React from 'react'
+import styles from "./Header.module.css"
+import { NavLink } from 'react-router-dom'
 import NoPhotoImg from '../../../assets/Pictures/NoPhotoImg.jpg'
 
 const Header = props => {
@@ -18,5 +18,5 @@ const Header = props => {
         </header>
     );
 }
-export default Header;
+export default Header
 

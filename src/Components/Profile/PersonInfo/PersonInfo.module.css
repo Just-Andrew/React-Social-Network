@@ -5,23 +5,25 @@
 .background {
     width: 1020px;
     height: 200px;
-    background: url('C:/WinFile/File/React-Social-Network/src/assets/Pictures/ProfilePageBG.jpg');
+    background: url('https://lawnchick.com/wp-content/uploads/2020/02/when-to-fertilize-new-grass.jpg');
     background-size: cover;
 }
 
 .aboutPerson {
     display: flex;
     align-items: flex-end;
-    background: #e0dede;
     padding-bottom: 15px;
     box-sizing: border-box;
     height: 94px;
+    background-color: 
+    #e6e3e6;
 }
 
 .username {
     font-size: 23px;
     position: relative;
     top: 10px;
+    color: forestgreen;
 }
 
 .info {
@@ -31,10 +33,14 @@
     padding-left: 15px;
 }
 
-.job img {
-    width: 25px;
-    height: 25px;
-    position: relative;
-    top: 8px;
+.job, .jobTxt {
+    display: inline-block;
 }
 
+.job img {
+    width: 20px;
+    height: 20px;
+    position: relative;
+    top: 6px;
+    left: 10px;
+}

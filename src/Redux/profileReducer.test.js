@@ -26,7 +26,7 @@ let profileReducer = (state = InState, action) => {
             let post = {
                 'text': action.text,
                 'likes': 0
-            };
+            }
             return { ...state, posts: [post, ...state.posts] }
     }
     return state
@@ -43,4 +43,4 @@ it('checking reducer for correctly addigng new post', () => {
     // 3) expectation
     expect(newState.posts.length).toBe(InState.posts.length + 1)
 
-});
+})

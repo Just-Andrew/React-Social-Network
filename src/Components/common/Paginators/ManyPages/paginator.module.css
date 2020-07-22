@@ -3,13 +3,15 @@
     border: none;
     outline: none;
     font-size: 22px;
-    color: steelblue;
+    color: forestgreen;
     text-align: center;
     cursor: pointer;
+    background-color: #cbc9cb;
 }
 .pageTubmler {
     border: none;
     outline: none;
-    color:  rgb(91, 91, 216);
+    color:  forestgreen;
     font-size: 22px;
+    background-color: #cbc9cb;
 }

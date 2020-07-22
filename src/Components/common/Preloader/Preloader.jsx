@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './Preloader.module.css'
-import preloader from '../../../assets/Pictures/earth.gif'
+import preloader from '../../../assets/Pictures/preloader.gif'
 const Preloader = props => {
     return (
         <div className={styles.mainBlock}>
@@ -9,4 +9,4 @@ const Preloader = props => {
     );
 }
 
-export default Preloader;
+export default Preloader

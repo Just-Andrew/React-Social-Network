@@ -10,16 +10,19 @@
     height: 100px;
     box-sizing: border-box;
     overflow: scroll;
-    border: 1px solid steelblue;
+    border: 2px solid forestgreen;
+    border-radius: 10px;
     resize: none;
     font-size:  17px;
     padding: 10px;
+    outline: none;
 }
 
 .AddPostBlock textarea::placeholder {
     font-size:  17px;
     text-align: center;
     padding-top: 30px;
+    color: forestgreen;
 }
 
 .AddPostBlock textarea::-webkit-scrollbar {

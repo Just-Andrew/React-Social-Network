@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import styles from './NewsPage.module.css'
-import classNames from 'classnames'
 import { connect } from 'react-redux'
 import { getArticles } from '../../Redux/newsPageReducer'
-import earthGif from '../../assets/Pictures/earth.gif'
+import preloader from '../../assets/Pictures/preloader.gif'
 
 const NewsCard = props => {
     return (
@@ -63,7 +62,7 @@ const NewsPage = props => {
 
             {loading ?
                 <div>
-                    <img src={earthGif} alt="" />
+                    <img src={preloader} alt="" />
                 </div>
                 : <div className={styles.cardsWrapper}>
                     {cards}

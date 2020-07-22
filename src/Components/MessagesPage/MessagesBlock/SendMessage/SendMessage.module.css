@@ -7,17 +7,18 @@
     box-sizing: border-box;
     width: 450px;
     height: 140px;
-    background-color: steelblue;
+    background-color: white;
     font-size: 17px; 
-    color: white;
+    color: forestgreen;
     font-family: 'Times New Roman', Times, serif;
     resize: none;
     border-radius: 10px;
     padding: 15px;
+    border: 2px solid forestgreen;
 } 
 .SendMessage textarea::placeholder {
     font-size: 17px; 
-    color: white;
+    color: forestgreen;
     text-align: center;
     padding: 5px;
     padding-top: 40px;

@@ -1,12 +1,12 @@
 .ContentWrapper {
     grid-area: c;
-    box-shadow: 10px 10px 7px rgba(0, 0, 0, .3);
     max-height: 870px;
     overflow-y: scroll;
-    background: url('https://i.pinimg.com/originals/11/b6/76/11b6769c8f2ea91b25fa0bb10bcaf4ab.jpg');
+   
+    /* background: url('https://i.pinimg.com/originals/11/b6/76/11b6769c8f2ea91b25fa0bb10bcaf4ab.jpg'); */
+    background: url('https://previews.123rf.com/images/bigio/bigio1604/bigio160400008/55951766-palm-tree-leaves-background-template-tropical-greeting-card-.jpg');
     display: flex;
     justify-content: center;
-    /* align-items: center; */
 }
 
 .ContentWrapper::-webkit-scrollbar {
@@ -14,7 +14,7 @@
 }
 
 .ContentWrapper::-webkit-scrollbar-thumb {
-    background: steelblue;
+    background: forestgreen;
     border-radius: 10px;
 }
 
@@ -31,7 +31,7 @@
 
 .cardWrapper {
     box-sizing: border-box;
-    margin-bottom: 140px;
+    margin-bottom: 10px;
     margin-top: 140px;
 }
 

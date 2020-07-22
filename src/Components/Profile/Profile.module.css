@@ -2,20 +2,11 @@
 
 .ContentWrapper {
     grid-area: c;
-    background-color: white;
-    box-shadow: 10px 10px 7px rgba(0, 0, 0, .3);
-    height: 870px;
+    height: 900px;
     overflow-y: scroll;
 }
 
 .ContentWrapper::-webkit-scrollbar {
     width: 0px;
     background-color: rgba(255, 255, 255, 0);
-}
-
-/* hr */
-
-.line {
-    width: 800px;
-    margin-top: 20px;
 }

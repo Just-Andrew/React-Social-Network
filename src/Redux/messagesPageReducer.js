@@ -1,4 +1,4 @@
-export const addMessage = text => ({ type: 'ADD-MESSAGE', text });
+export const addMessage = text => ({ type: 'ADD-MESSAGE', text })
 let InitialState = {
     messages: [
         {
@@ -133,10 +133,11 @@ let messagesPageReducer = (state = InitialState, action) => {
             let message = {
                 'message': action.text,
                 'mine': true
-            };  
-            return { ...state, messages: [...state.messages, message]}
-    }
+            }
+            return { ...state, messages: [...state.messages, message] }
 
-    return state;
+        default:
+            return state
+    }
 }
-export default messagesPageReducer;
+export default messagesPageReducer

@@ -10,7 +10,7 @@ const LoginForm = props => {
     let [error, setError] = useState(props.error)
     let [requiresCaptcha, setCaptchaRequirement] = useState(false)
 
-    const { register, handleSubmit, errors } = useForm();
+    const { register, handleSubmit, errors } = useForm()
     /* componentDidMount */
     useEffect(() => {
         props.setCaptchaUrl(null)

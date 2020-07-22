@@ -1,5 +1,5 @@
-import React from 'react';
-import styles from "./Contacts.module.css";
+import React from 'react'
+import styles from "./Contacts.module.css"
 
 
 const Contacts = (props) => {
@@ -12,17 +12,17 @@ const Contacts = (props) => {
                 <b> {c.user} </b>
                 
             </div>
-        );
-    });
+        )
+    })
 
     return (
         <div className={styles.ContactsBlock}>
             {contacts}
         </div>
-    );
+    )
 }
 
 
 
 
-export default Contacts;
+export default Contacts

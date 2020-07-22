@@ -1,6 +1,4 @@
 .ContactsBlock {
-    background: steelblue;
-    box-shadow: 10px 10px 7px rgba(0, 0, 0, .3);
     padding-left: 5px;
 }
 
@@ -11,14 +9,14 @@
 
 .contact b {
     font-size: 15px;
-    color: white;
+    color: forestgreen;
     position: relative;
     top: -14px;
 }
 
 
 .avatar {
-    border: 2px solid gray;
+    border: 2px solid forestgreen;
     width: 50px;
     height: 50px;
     border-radius: 100%;

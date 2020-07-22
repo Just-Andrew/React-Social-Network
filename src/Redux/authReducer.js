@@ -88,4 +88,4 @@ let authReducer = (state = InitialState, action) => {
     }
     return state
 }
-export default authReducer;
+export default authReducer

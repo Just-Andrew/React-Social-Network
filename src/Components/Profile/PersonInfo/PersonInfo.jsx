@@ -17,8 +17,10 @@ const PersonInfo = props => {
                 {!props.avatarEditMode
                     ? <div className={styles.info}>
                         <div className={styles.username}><b> {props.fullName} </b></div>
-                        <div className={styles.job}>Avaliable for a hire
-                        <img src={props.job ? tick : cross} alt="" />
+                        <div className={styles.jobTxt}>
+                            Avaliable for a hire </div>
+                        <div className={styles.job}> 
+                            <img src={props.job ? tick : cross} alt="" />
                         </div>
                         <Status status={props.status}
                             setNewStatus={props.setNewStatus}
@@ -35,4 +37,4 @@ const PersonInfo = props => {
     )
 }
 
-export default PersonInfo;
+export default PersonInfo

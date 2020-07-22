@@ -28,9 +28,9 @@
     max-width: 375px;
     text-align: right;
     padding: 10px;
-    border-left: 1px solid gray;
-    border-top: 1px solid gray;
-    border-bottom: 1px solid gray;
+    border-left: 1px solid white;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
     border-radius: 10px 0 0 10px;
     text-align: center;
 }
@@ -44,15 +44,15 @@
     display: inline-block;
     text-align: center;
     padding: 10px;
-    border-right: 1px solid gray;
-    border-top: 1px solid gray;
-    border-bottom: 1px solid gray;
+    border-right: 1px solid white;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
     border-radius: 0 10px 10px 0;
     max-width: 375px;
 }
 
 .msgContainer {
-    background-color:  rgba(0, 140, 255, 0.7) ;
+    background-color:  forestgreen ;
 }
 
 .messages {
