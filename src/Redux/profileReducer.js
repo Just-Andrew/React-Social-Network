@@ -1,8 +1,9 @@
 import { profileAPI } from '../API/api'
 
 /*Action Creators */
-export const addPost = post => ({ type: 'ADD-POST', post })
 const setPosts = posts => ({ type: 'SET-POSTS', posts })
+export const addPost = post => ({ type: 'ADD-POST', post })
+const deletePost = id => ({ type: 'DELETE-POST', id })
 const setCurrentUserData = data => ({ type: 'SET-CURRENT-USER-DATA', data })
 const setCurrentUserStatus = status => ({ type: 'SET-CURRENT-USER-STATUS', status })
 const toggleLoader = val => ({ type: 'TOGGLE-LOADER', val })
@@ -33,16 +34,26 @@ export const getUserProfile = (id, val = false, data) => async dispatch => {
 }
 
 export const getPosts = id => async dispatch => {
+    if (id !== undefined) {
+        dispatch(toggleLoader(true))
+        let posts = await profileAPI.getPosts(id)
+        dispatch(setPosts(posts))
+        dispatch(toggleLoader(false))
+    }
+}
+
+export const createPost = (id, text) => async dispatch => {
     dispatch(toggleLoader(true))
-    let posts = await profileAPI.getPosts(id)
-    dispatch(setPosts(posts))
+    let post = await profileAPI.createPost(id, text)
+    dispatch(addPost(post))
     dispatch(toggleLoader(false))
 }
 
-export const createPost = text => async dispatch => {
+export const removePost = id => async dispatch => {
     dispatch(toggleLoader(true))
-    let post = await profileAPI.createPost(text)
-    dispatch(addPost(post))
+    await profileAPI.deletePost(id)
+    dispatch(deletePost(id))
+    console.log(`post with id ${id} has been successfully deleted`)
     dispatch(toggleLoader(false))
 }
 
@@ -60,8 +71,6 @@ export const updateAvatar = file => async dispatch => {
     dispatch(toggleLoader(false))
 }
 
-
-
 let InitialState = {
     avatarEditMode: false,
     currentUserId: null,
@@ -78,7 +87,18 @@ let InitialState = {
 let profileReducer = (state = InitialState, action) => {
     switch (action.type) {
         case 'ADD-POST':
-            return { ...state, posts: [...state.posts, action.post] }
+            return { ...state, posts: [action.post, ...state.posts] }
+
+        case 'DELETE-POST':
+            let copiedState = { ...state }
+            for (let i = 0; i < copiedState.posts.length; i++) {
+                if (copiedState.posts[i]._id === action.id) {
+                    copiedState.posts.splice(i, 1)
+                    break
+                }
+            }
+            return copiedState
+
 
         case 'SET-POSTS':
             return { ...state, posts: [...action.posts] }
@@ -112,7 +132,6 @@ let profileReducer = (state = InitialState, action) => {
         default:
             return state
     }
-    return state
 }
 export default profileReducer
 

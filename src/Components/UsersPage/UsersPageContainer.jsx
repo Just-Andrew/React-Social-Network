@@ -8,7 +8,7 @@ import Preloader from '../../Components/common/Preloader/Preloader'
 const UsersPageContainer = props => {
     useEffect(() => {
         props.getUsers(props.friend, props.count, 1)
-    }, [props.friend])
+    }, [props.friend, props.count])
 
     let GetNewUsers = page => {
         props.getUsers(props.friend, props.count, page)

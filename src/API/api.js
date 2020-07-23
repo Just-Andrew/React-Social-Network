@@ -29,7 +29,18 @@ export const profileAPI = {
     },
     getPosts(id) {
         return axios.get(`http://localhost:3001/posts/${id}`)
+            .then(res => res.data.reverse())
+    },
+    createPost(id, text) {
+        return axios.post(`http://localhost:3001/posts`,
+            {
+                "ownerId": id,
+                "text": text
+            })
             .then(res => res.data)
+    },
+    deletePost(id) {
+        return axios.delete(`http://localhost:3001/posts/${id}`)
     },
     setNewStatus(status) {
         return Instance.put(`profile/status`, { status: status })
@@ -45,15 +56,6 @@ export const profileAPI = {
     },
     updateProfile(data) {
         return Instance.put(`profile`, { ...data })
-    },
-    createPost(text) {
-        return axios.post(`http://localhost:3001/posts`,
-            {
-                "ownerId": 8833,
-                "text": text
-            })
-            .then(res => res.data)
-
     }
 }
 

@@ -80,6 +80,5 @@ let usersPageReducer = (state = InitialState, action) => {
         default:
             return state
     }
-    return state
 }
 export default usersPageReducer

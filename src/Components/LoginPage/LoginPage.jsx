@@ -71,7 +71,7 @@ const LoginForm = props => {
                     Sign in
                 </button>
 
-                <p className={styles.forgot} align="center"><a href="#" onClick={() => { alert('Not my problem :P') }}>Forgot Password?</a></p>
+                <p className={styles.forgot} align="center" onClick={() => { alert('Not my problem :P') }}>Forgot Password?</p>
             </form>
 
         </div>

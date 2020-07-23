@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from "react"
-import styles from "./Posts.module.css"
-import NoPhotoImg from "../../../assets/Pictures/NoPhotoImg.jpg"
-import like from "../../../assets/Pictures/like.png"
-import { connect } from "react-redux"
+import React, { useEffect, useState } from 'react'
+import styles from './Posts.module.css'
+import NoPhotoImg from '../../../assets/Pictures/NoPhotoImg.jpg'
+import deleteIcon from '../../../assets/Pictures/delete_icon.png'
+import optionsIcon from '../../../assets/Pictures/options_icon.png'
+import like from '../../../assets/Pictures/like.png'
+import { connect } from 'react-redux'
+import { removePost } from '../../../Redux/profileReducer'
 
 const Post = (props) => {
   return (
@@ -14,10 +17,20 @@ const Post = (props) => {
       <div className={styles.postTextContainer}>
         <div className={styles.posttext}>{props.text}</div>
       </div>
+
+      <div className={styles.deleteBtn} onClick={() => {
+        props.removePost(props.id)
+      }} >
+        <img src={deleteIcon} alt="" />
+      </div>
+
       <hr />
       <div className={styles.likes}>
         <img src={like} alt="" />
         <b> {props.likes} </b>
+      </div>
+      <div className={styles.postedOn}>
+        Posted <i>{props.postedOn}</i>
       </div>
     </div>
   )
@@ -28,10 +41,15 @@ const Posts = (props) => {
 
   useEffect(() => {
     setPosts(props.posts)
-  }, props.posts)
+  }, [props.posts])
 
-  let Posts =  posts.map((p) => (
-    <Post id={p._id} avatar={props.avatar} likes={p.likes} text={p.text} key={p._id} />
+  let Posts = posts.map((p) => (
+    <Post id={p._id}
+      avatar={props.avatar}
+      likes={p.likes} text={p.text}
+      key={p._id}
+      removePost={props.removePost}
+      postedOn={p.postedOn} />
   ))
 
   return (
@@ -49,6 +67,7 @@ const Posts = (props) => {
 
 let mapStateToProps = (state) => ({
   avatar: state.profile.avatar,
+  posts: state.profile.posts
 })
 
-export default connect(mapStateToProps, {})(Posts)
+export default connect(mapStateToProps, { removePost })(Posts)

@@ -4,7 +4,8 @@ import { connect } from 'react-redux'
 
 let mapStateToProps = state => {
     return {
-        CurrentPostText: state.profile.CurrentPostText
+        CurrentPostText: state.profile.CurrentPostText,
+        currentUserId: state.profile.currentUserId
     }
 }
 

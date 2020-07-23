@@ -20,7 +20,7 @@ const Paginator = props => {
         } else { setIncrementDisabilityValue(false) }
 
 
-    }, [incrementDisability, decrementDisability, props.currentPage, props.totalCount])
+    }, [incrementDisability, decrementDisability, props.currentPage, props.totalCount, props.count])
 
     let changeCurrentPage = () => {
         if (currentPageInputValue !== currentPage) {

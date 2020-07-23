@@ -85,7 +85,9 @@ let authReducer = (state = InitialState, action) => {
 
         case 'SET-CAPTCHA-URL':
             return { ...state, captchaImg: action.url }
+
+        default:
+            return state
     }
-    return state
 }
 export default authReducer

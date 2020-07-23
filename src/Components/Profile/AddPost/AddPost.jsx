@@ -5,7 +5,7 @@ import { Field, reduxForm } from 'redux-form'
 let AddPost = (props) => {
     let onSubmit = data => {
         if (data.postMessage !== undefined) {
-            props.createPost(data.postMessage)
+            props.createPost(props.currentUserId, data.postMessage)
         }
     }
 

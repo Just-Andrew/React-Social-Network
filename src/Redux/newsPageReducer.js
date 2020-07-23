@@ -32,7 +32,6 @@ const newsPageReducer = (state = InitialState, action) => {
         default:
             return state
     }
-    return state
 }
 
 export default newsPageReducer

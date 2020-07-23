@@ -4,11 +4,7 @@ import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { logOut } from '../../../Redux/authReducer'
 import classNames from 'classnames'
-import profileIcon from '../../../assets/Pictures/profile_icon.png'
-import newsIcon from '../../../assets/Pictures/news_icon.png'
-import friendsIcon from '../../../assets/Pictures/friends_icon.png'
-import messagesIcon from '../../../assets/Pictures/messages_icon.png'
-import usersIcon from '../../../assets/Pictures/users_icon.png'
+
 
 
 const Navbar = props => {

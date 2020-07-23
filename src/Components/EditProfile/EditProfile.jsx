@@ -20,7 +20,7 @@ const EditProfile = props => {
             props.getUserProfile(props.myId)
         }
 
-        if (prev != LookingForAJob.current) {
+        if (prev !== LookingForAJob.current) {
             debugger
             setCheckedStatus(props.lookingForAJob)
         }
