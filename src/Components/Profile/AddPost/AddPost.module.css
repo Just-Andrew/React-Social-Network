@@ -24,8 +24,3 @@
     padding-top: 30px;
     color: forestgreen;
 }
-
-.AddPostBlock textarea::-webkit-scrollbar {
-    background-color: rgba(0, 0, 0, 0);
-
-}

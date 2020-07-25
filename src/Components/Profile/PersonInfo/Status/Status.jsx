@@ -6,14 +6,14 @@ import editProfileIcon from '../../../../assets/Pictures/edit_profile_icon.png'
 const Status = props => {
     let [editMode, setEditMode] = useState(false)
     let [status, setStatus] = useState(props.status)
-    let [postInputValue, setPostInputValue] = useState(status)
+    let [statusInputValue, setStatusInputValue] = useState(status)
 
     useEffect(() => {
         setStatus(props.status)
     }, [props.status])
 
     let onStatusPrint = e => {
-        setPostInputValue(e.currentTarget.value)
+        setStatusInputValue(e.currentTarget.value)
     }
 
     let ActivateEditMode = () => {
@@ -25,7 +25,7 @@ const Status = props => {
     }
 
     let changeStatus = e => {
-        props.setNewStatus(postInputValue)
+        props.setNewStatus(statusInputValue)
     }
 
     return (
@@ -45,7 +45,7 @@ const Status = props => {
                     : <div className={styles.statusBlock}>
                         <input type='text'
                             onChange={onStatusPrint}
-                            value={postInputValue}
+                            value={statusInputValue}
                             onFocus={() => console.log('focus')} />
                         <button onClick={changeStatus}
                             className={styles.saveButton}>✓</button>

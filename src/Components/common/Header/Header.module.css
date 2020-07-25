@@ -21,14 +21,11 @@
 .auth a {
     text-decoration: none;
     font-size: 20px;
-    color: white;
+    color: forestgreen;
 }
 
 .login {
     display: inline-block;
-    margin-right: 10px;
-    position: relative;
-    top: -10px;
 }
 
 .avatar {
@@ -37,9 +34,22 @@
     border-radius: 100%;
     overflow: hidden;
     display: inline-block;
+    position: relative;
+    top: 10px;
+    left: 10px;
 }
 
 .avatar img {
     width: 35px;
     height: 35px;
 }
+
+.headerAuthInfoBlock {
+    position: relative;
+    top: -15px;
+}
+
+/* .loginBtn {
+    position: relative;
+    top: 10px;
+} */

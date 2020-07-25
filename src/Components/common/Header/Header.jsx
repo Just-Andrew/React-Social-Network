@@ -8,12 +8,12 @@ const Header = props => {
         <header className={styles.header}>
             <div className={styles.title}>HeyBook</div>
             <div className={styles.auth}>
-                {props.isAuth ? <div>
+                {props.isAuth ? <div className={styles.headerAuthInfoBlock}>
                     <div className={styles.login}> {props.login} </div>
                     <div className={styles.avatar}> <img src={props.avatar === null ? NoPhotoImg : props.avatar} alt="" />
                     </div>
                 </div> :
-                    <NavLink to='/login'> Log In </NavLink>}
+                    <NavLink to='/login' className={styles.loginBtn}> Log In </NavLink>}
             </div>
         </header>
     );

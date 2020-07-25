@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
 import Navbar from './Components/common/Navbar/Navbar'
+import 'antd/dist/antd.css'
 import './App.css'
 import UsersPageContainer from './Components/UsersPage/UsersPageContainer'
 import ProfileContainer from './Components/Profile/ProfileContainer'

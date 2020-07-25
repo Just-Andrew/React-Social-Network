@@ -42,6 +42,10 @@ export const profileAPI = {
     deletePost(id) {
         return axios.delete(`http://localhost:3001/posts/${id}`)
     },
+    updatePost(id, text) {
+        return axios.patch(`http://localhost:3001/posts/${id}`, { "text": text })
+            .then(res => res.data.editedOn)
+    },
     setNewStatus(status) {
         return Instance.put(`profile/status`, { status: status })
     },

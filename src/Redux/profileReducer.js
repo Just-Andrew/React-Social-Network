@@ -4,6 +4,7 @@ import { profileAPI } from '../API/api'
 const setPosts = posts => ({ type: 'SET-POSTS', posts })
 export const addPost = post => ({ type: 'ADD-POST', post })
 const deletePost = id => ({ type: 'DELETE-POST', id })
+const editPost = (id, text, updateTime) => ({ type: 'EDIT-POST', id, text, updateTime })
 const setCurrentUserData = data => ({ type: 'SET-CURRENT-USER-DATA', data })
 const setCurrentUserStatus = status => ({ type: 'SET-CURRENT-USER-STATUS', status })
 const toggleLoader = val => ({ type: 'TOGGLE-LOADER', val })
@@ -57,6 +58,13 @@ export const removePost = id => async dispatch => {
     dispatch(toggleLoader(false))
 }
 
+export const updatePost = (id, text) => async dispatch => {
+    dispatch(toggleLoader(true))
+    const updateTime = await profileAPI.updatePost(id, text)
+    dispatch(editPost(id, text, updateTime))
+    dispatch(toggleLoader(false))
+}
+
 export const setNewStatus = status => async dispatch => {
     dispatch(toggleLoader(true))
     await profileAPI.setNewStatus(status)
@@ -90,10 +98,21 @@ let profileReducer = (state = InitialState, action) => {
             return { ...state, posts: [action.post, ...state.posts] }
 
         case 'DELETE-POST':
+            let newState = { ...state }
+            for (let i = 0; i < newState.posts.length; i++) {
+                if (newState.posts[i]._id === action.id) {
+                    newState.posts.splice(i, 1)
+                    break
+                }
+            }
+            return newState
+
+        case 'EDIT-POST':
             let copiedState = { ...state }
             for (let i = 0; i < copiedState.posts.length; i++) {
                 if (copiedState.posts[i]._id === action.id) {
-                    copiedState.posts.splice(i, 1)
+                    copiedState.posts[i].text = action.text
+                    copiedState.posts[i].editedOn = action.updateTime
                     break
                 }
             }
