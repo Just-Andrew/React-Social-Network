@@ -61,7 +61,7 @@ let mapStateToProps = (state) => ({
   fullName: state.profile.fullName,
   job: state.profile.lookingForAJob,
   status: state.profile.status,
-  loading: state.profile.loading,
+  loading: state.app.loading,
   currentUserId: state.profile.currentUserId,
   myId: state.authorization.myId,
   isAuth: state.authorization.isAuth,

@@ -2,7 +2,7 @@ import React from 'react'
 import styles from "./Profile.module.css"
 import PostsContainer from './Posts/Posts'
 import PersonInfo from './PersonInfo/PersonInfo'
-import AddPostContainer from './AddPost/AddPostContainer'
+import AddPostContainer from './AddPost/AddPost'
 
 const Profile = props => {
     return (

@@ -1,6 +1,8 @@
 import React from 'react'
 import styles from "./AddPost.module.css"
 import { Field, reduxForm } from 'redux-form'
+import { createPost } from '../../../Redux/profileReducer'
+import { connect } from 'react-redux'
 
 let AddPost = (props) => {
     let onSubmit = data => {
@@ -28,4 +30,11 @@ const AddPostForm = props => {
 
 let ReduxFormWrapper = reduxForm({ form: 'login' })(AddPostForm)
 
-export default AddPost
+let mapStateToProps = state => {
+    return {
+        CurrentPostText: state.profile.CurrentPostText,
+        currentUserId: state.profile.currentUserId
+    }
+}
+
+export default connect(mapStateToProps, { createPost })(AddPost)

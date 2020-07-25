@@ -1,33 +1,37 @@
 
 import { newsAPI } from '../API/api'
+import { toggleLoader } from './appReducer'
+
+/* Action Types */
+type setArticlesDataActionType = {
+    type: 'SET-ARTICLES-DATA'
+    data: any
+}
 
 /*Action Creators*/
-const setArticlesData = data => ({ type: 'SET-ARTICLES-DATA', data })
-const toggleLoader = val => ({ type: 'TOGGLE-LOADER', val })
+const setArticlesData = (data: any): setArticlesDataActionType => ({ type: 'SET-ARTICLES-DATA', data })
+
 
 /*Thunk Creators*/
-export const getArticles = data => async dispatch => {
+export const getArticles = (data: any) => async (dispatch: Function) => {
     dispatch(toggleLoader(true))
     let res = await newsAPI.getArticles()
-
-    console.log(res.articles)
     dispatch(setArticlesData(res.articles))
     dispatch(toggleLoader(false))
+}
 
+type InitialStateType = {
+    articles: Array<object>
 }
 
 let InitialState = {
     articles: [],
-    loading: false
 }
 
-const newsPageReducer = (state = InitialState, action) => {
+const newsPageReducer = (state = InitialState, action: any): InitialStateType => {
     switch (action.type) {
         case 'SET-ARTICLES-DATA':
             return { ...state, articles: [...action.data] }
-
-        case 'TOGGLE-LOADER':
-            return { ...state, loading: action.val }
 
         default:
             return state

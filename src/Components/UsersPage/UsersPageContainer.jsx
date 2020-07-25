@@ -41,7 +41,7 @@ let mapStateToProps = state => ({
     currentPage: state.usersPage.currentPage,
     totalCount: state.usersPage.totalCount,
     count: state.usersPage.count,
-    loading: state.usersPage.loading,
+    loading: state.app.loading,
     isAuth: state.authorization.isAuth
 })
 

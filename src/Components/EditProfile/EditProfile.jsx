@@ -116,7 +116,7 @@ const mapStateToProps = state => ({
     lookingForAJob: state.profile.lookingForAJob,
     lookingForAJobDescription: state.profile.lookingForAJobDescription,
     myId: state.authorization.myId,
-    loading: state.profile.loading
+    loading: state.app.loading
 })
 
 export default connect(mapStateToProps, { getUserProfile })(EditProfile)

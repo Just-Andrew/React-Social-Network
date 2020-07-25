@@ -1,19 +1,67 @@
 import { profileAPI } from '../API/api'
+import {toggleLoader} from './appReducer'
+
+/* Action Types */
+type setPostsActionType = {
+    type: 'SET-POSTS'
+    posts: any
+}
+
+type addPostActionType = {
+    type: 'ADD-POST'
+    post: any
+}
+
+type deletePostActionType = {
+    type: 'DELETE-POST'
+    id: string
+}
+
+type editPostActionType = {
+    type: 'EDIT-POST'
+    id: string
+    text: string
+    updateTime: string
+}
+
+type setCurrentUserDataActionType = {
+    type: 'SET-CURRENT-USER-DATA'
+    data: object
+}
+
+type setCurrentUserStatusActionType = {
+    type: 'SET-CURRENT-USER-STATUS'
+    status: string
+}
+
+type updateStatusTextActionType = {
+    type: 'UPDATE-STATUS-TEXT'
+    text: string
+}
+
+type toggleAvatarEditModeActionType = {
+    type: 'TOGGLE-AVATAR-EDIT-MODE'
+    val: boolean
+}
+
+type setNewAvatarActionType = {
+    type: 'SET-NEW-AVATAR'
+    avatar: string
+}
 
 /*Action Creators */
-const setPosts = posts => ({ type: 'SET-POSTS', posts })
-export const addPost = post => ({ type: 'ADD-POST', post })
-const deletePost = id => ({ type: 'DELETE-POST', id })
-const editPost = (id, text, updateTime) => ({ type: 'EDIT-POST', id, text, updateTime })
-const setCurrentUserData = data => ({ type: 'SET-CURRENT-USER-DATA', data })
-const setCurrentUserStatus = status => ({ type: 'SET-CURRENT-USER-STATUS', status })
-const toggleLoader = val => ({ type: 'TOGGLE-LOADER', val })
-export const updateStatusText = text => ({ type: 'UPDATE-STATUS-TEXT', text })
-export const toggleAvatarEditMode = val => ({ type: 'TOGGLE-AVATAR-EDIT-MODE', val })
-const setNewAvatar = avatar => ({ type: 'SET-NEW-AVATAR', avatar })
+const setPosts = (posts: any): setPostsActionType => ({ type: 'SET-POSTS', posts })
+export const addPost = (post: any): addPostActionType => ({ type: 'ADD-POST', post })
+const deletePost = (id: string): deletePostActionType => ({ type: 'DELETE-POST', id })
+const editPost = (id: string, text: string, updateTime: string): editPostActionType => ({ type: 'EDIT-POST', id, text, updateTime })
+const setCurrentUserData = (data: any): setCurrentUserDataActionType => ({ type: 'SET-CURRENT-USER-DATA', data })
+const setCurrentUserStatus = (status: string): setCurrentUserStatusActionType => ({ type: 'SET-CURRENT-USER-STATUS', status })
+export const updateStatusText = (text: string): updateStatusTextActionType => ({ type: 'UPDATE-STATUS-TEXT', text })
+export const toggleAvatarEditMode = (val: boolean): toggleAvatarEditModeActionType => ({ type: 'TOGGLE-AVATAR-EDIT-MODE', val })
+const setNewAvatar = (avatar: string): setNewAvatarActionType => ({ type: 'SET-NEW-AVATAR', avatar })
 
 /*Thunk Creators*/
-export const getUserProfile = (id, val = false, data) => async dispatch => {
+export const getUserProfile = (id: string, val: boolean = false, data: any) => async (dispatch: Function) => {
     dispatch(toggleLoader(true))
     if (val) {
         profileAPI.updateProfile(data)
@@ -34,7 +82,7 @@ export const getUserProfile = (id, val = false, data) => async dispatch => {
     dispatch(getPosts(id))
 }
 
-export const getPosts = id => async dispatch => {
+export const getPosts = (id: string) => async (dispatch: Function) => {
     if (id !== undefined) {
         dispatch(toggleLoader(true))
         let posts = await profileAPI.getPosts(id)
@@ -43,14 +91,14 @@ export const getPosts = id => async dispatch => {
     }
 }
 
-export const createPost = (id, text) => async dispatch => {
+export const createPost = (id: string, text: string) => async (dispatch: Function) => {
     dispatch(toggleLoader(true))
     let post = await profileAPI.createPost(id, text)
     dispatch(addPost(post))
     dispatch(toggleLoader(false))
 }
 
-export const removePost = id => async dispatch => {
+export const removePost = (id: string) => async (dispatch: Function) => {
     dispatch(toggleLoader(true))
     await profileAPI.deletePost(id)
     dispatch(deletePost(id))
@@ -58,41 +106,54 @@ export const removePost = id => async dispatch => {
     dispatch(toggleLoader(false))
 }
 
-export const updatePost = (id, text) => async dispatch => {
+export const updatePost = (id: string, text: string) => async (dispatch: Function) => {
     dispatch(toggleLoader(true))
     const updateTime = await profileAPI.updatePost(id, text)
     dispatch(editPost(id, text, updateTime))
     dispatch(toggleLoader(false))
 }
 
-export const setNewStatus = status => async dispatch => {
+export const setNewStatus = (status: string) => async (dispatch: Function) => {
     dispatch(toggleLoader(true))
     await profileAPI.setNewStatus(status)
     dispatch(setCurrentUserStatus(status))
     dispatch(toggleLoader(false))
 }
 
-export const updateAvatar = file => async dispatch => {
+export const updateAvatar = (file: any) => async (dispatch: Function) => {
     dispatch(toggleLoader(true))
     let res = await profileAPI.updateAvatar(file)
     dispatch(setNewAvatar(res.data.data.photos.large))
     dispatch(toggleLoader(false))
 }
 
-let InitialState = {
+type InitialStateType = {
+    avatarEditMode: boolean
+    currentUserId: null | number
+    fullName: null | string
+    avatar: null | string
+    status: null | string
+    /* loading: boolean */
+    lookingForAJob: boolean
+    lookingForAJobDescription: null | string
+    aboutMe: null | string
+    posts: Array<object>
+}
+
+let InitialState: InitialStateType = {
     avatarEditMode: false,
     currentUserId: null,
     fullName: null,
     avatar: null,
     status: null,
-    loading: false,
+   /*  loading: false, */
     lookingForAJob: false,
     lookingForAJobDescription: null,
     aboutMe: null,
     posts: []
 }
 
-let profileReducer = (state = InitialState, action) => {
+let profileReducer = (state: any = InitialState, action: any): InitialStateType => {
     switch (action.type) {
         case 'ADD-POST':
             return { ...state, posts: [action.post, ...state.posts] }
@@ -136,9 +197,6 @@ let profileReducer = (state = InitialState, action) => {
         case 'SET-CURRENT-USER-STATUS':
             return { ...state, status: action.status }
 
-        case 'TOGGLE-LOADER':
-            return { ...state, loading: action.val }
-
         case 'UPDATE-STATUS-TEXT':
             return { ...state, status: action.text }
 
@@ -146,6 +204,7 @@ let profileReducer = (state = InitialState, action) => {
             return { ...state, avatarEditMode: action.val }
 
         case 'SET-NEW-AVATAR':
+            console.log(typeof (action.avatar))
             return { ...state, avatar: action.avatar }
 
         default:

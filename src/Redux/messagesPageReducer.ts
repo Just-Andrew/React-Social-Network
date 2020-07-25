@@ -1,5 +1,18 @@
-export const addMessage = text => ({ type: 'ADD-MESSAGE', text })
-let InitialState = {
+/* Action Types */
+type addMessageActionType = {
+    type: 'ADD-MESSAGE'
+    text: string
+}
+
+/* Action Creators */
+export const addMessage = (text: string): addMessageActionType => ({ type: 'ADD-MESSAGE', text })
+
+type InitialStateType = {
+    messages: Array<object>
+    contacts: Array<object>
+}
+
+let InitialState: InitialStateType = {
     messages: [
         {
             id: 0,
@@ -127,7 +140,7 @@ let InitialState = {
     ]
 }
 
-let messagesPageReducer = (state = InitialState, action) => {
+let messagesPageReducer = (state = InitialState, action: any): InitialStateType => {
     switch (action.type) {
         case 'ADD-MESSAGE':
             let message = {

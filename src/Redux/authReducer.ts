@@ -1,13 +1,38 @@
 import { headerAPI, authAPI, securityAPI } from '../API/api'
 
+/* Action Types */
+type setCurrentUserInfoActionType = {
+    type: 'SET-CURRENT-USER-INFO'
+    data: object
+}
+
+type setCurrentUserAvatarActionType = {
+    type: 'SET-CURRENT-USER-AVATAR'
+    avatar: string | null
+}
+
+type setAuthStatusActionType = { type: 'SET-AUTH-STATUS' }
+
+type setErrorActionType = {
+    type: 'SET-ERROR'
+    msg: string
+}
+
+type setCaptchaUrlActionType = {
+    type: 'SET-CAPTCHA-URL'
+    url: string
+}
+
+
 /*Action Creators */
-const setCurrentUserInfo = data => ({ type: 'SET-CURRENT-USER-INFO', data })
-const setCurrentUserAvatar = avatar => ({ type: 'SET-CURRENT-USER-AVATAR', avatar })
-const setAuthStatus = () => ({ type: 'SET-AUTH-STATUS' })
-export const setError = msg => ({ type: 'SET-ERROR', msg })
-export const setCaptchaUrl = url => ({ type: 'SET-CAPTCHA-URL', url })
+const setCurrentUserInfo = (data: object): setCurrentUserInfoActionType => ({ type: 'SET-CURRENT-USER-INFO', data })
+const setCurrentUserAvatar = (avatar: string | null): setCurrentUserAvatarActionType => ({ type: 'SET-CURRENT-USER-AVATAR', avatar })
+const setAuthStatus = (): setAuthStatusActionType => ({ type: 'SET-AUTH-STATUS' })
+export const setError = (msg: string): setErrorActionType => ({ type: 'SET-ERROR', msg })
+export const setCaptchaUrl = (url: string): setCaptchaUrlActionType => ({ type: 'SET-CAPTCHA-URL', url })
+
 /*Thunks Creators*/
-export const authMe = () => async dispatch => {
+export const authMe = () => async (dispatch: Function) => {
     let res = await headerAPI.getAuthorizedPersonData()
     dispatch(setCurrentUserInfo({
         myId: res.data.id,
@@ -22,7 +47,7 @@ export const authMe = () => async dispatch => {
     }
 }
 
-export const logIn = (data) => async dispatch => {
+export const logIn = (data: any) => async (dispatch: Function) => {
     let log = await authAPI.logIn(data)
     if (log.data.resultCode === 0) {
         dispatch(authMe())
@@ -36,9 +61,9 @@ export const logIn = (data) => async dispatch => {
     }
 }
 
-export const logOut = () => dispatch => {
+export const logOut = () => (dispatch: Function) => {
     dispatch(setCurrentUserInfo({
-        myId: undefined,
+        myId: null,
         login: null,
         email: null,
         isAuth: false,
@@ -47,14 +72,23 @@ export const logOut = () => dispatch => {
     authAPI.logOut()
 }
 
-export const getCaptcha = () => async dispatch => {
+export const getCaptcha = () => async (dispatch: Function) => {
     let res = await securityAPI.getCaptcha()
     dispatch(setCaptchaUrl(res.data.url))
 }
 
+type InitialStateType = {
+    myId: number | null
+    login: null | string
+    email: null | string
+    avatar: null | string
+    isAuth: boolean
+    error: null | string
+    captchaImg: null | string
+}
 
-let InitialState = {
-    myId: undefined,
+let InitialState: InitialStateType = {
+    myId: null,
     login: null,
     email: null,
     avatar: null,
@@ -63,7 +97,7 @@ let InitialState = {
     captchaImg: null
 }
 
-let authReducer = (state = InitialState, action) => {
+let authReducer = (state = InitialState, action: any): InitialStateType => {
     switch (action.type) {
         case 'SET-CURRENT-USER-INFO':
             return {
